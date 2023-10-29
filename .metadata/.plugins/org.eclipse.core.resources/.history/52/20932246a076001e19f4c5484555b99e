@@ -9,7 +9,6 @@ public class TestUsuario {
 	@Test
 	public void testUsuarioStringStringStringString() {
 		fail("Not yet implemented");
-		system.out.print("hola");
 	}
 
 	@Test
