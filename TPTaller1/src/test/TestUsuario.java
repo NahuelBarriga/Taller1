@@ -1,6 +1,6 @@
 package test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.fail;
 
 import org.junit.Test;
 
@@ -9,7 +9,7 @@ public class TestUsuario {
 	@Test
 	public void testUsuarioStringStringStringString() {
 		fail("Not yet implemented");
-		system.out.print("hola");
+		
 	}
 
 	@Test
