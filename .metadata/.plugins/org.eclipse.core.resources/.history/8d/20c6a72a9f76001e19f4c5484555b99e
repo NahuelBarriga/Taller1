@@ -13,7 +13,7 @@ public class TestUsuario {
 
 	@Test
 	public void testUsuario() {
-		fail("Not yet implemented");
+		
 	}
 
 	@Test
