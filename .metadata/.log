@@ -341,3 +341,179 @@ java.lang.IllegalArgumentException: release 18 is not found in the system
 
 !ENTRY org.eclipse.m2e.logback.appender 2 0 2023-10-29 16:53:14.356
 !MESSAGE Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.core.resources 2 2 2023-10-29 16:54:24.012
+!MESSAGE Save operation warnings.
+!SUBENTRY 1 org.eclipse.core.resources 2 234 2023-10-29 16:54:24.012
+!MESSAGE The project description file (.project) for 'TP' was missing.  This file contains important information about the project.  A new project description file has been created, but some information about the project may have been lost.
+
+!ENTRY org.eclipse.jdt.core 4 4 2023-10-29 16:54:24.364
+!MESSAGE JavaBuilder handling CoreException while building: TP
+!STACK 1
+org.eclipse.core.runtime.CoreException: release 18 is not found in the system
+	at org.eclipse.jdt.internal.core.builder.ClasspathJrtWithReleaseOption.initialize(ClasspathJrtWithReleaseOption.java:124)
+	at org.eclipse.jdt.internal.core.builder.ClasspathJrtWithReleaseOption.<init>(ClasspathJrtWithReleaseOption.java:82)
+	at org.eclipse.jdt.internal.core.builder.ClasspathLocation.forJrtSystem(ClasspathLocation.java:169)
+	at org.eclipse.jdt.internal.core.builder.NameEnvironment.computeClasspathLocations(NameEnvironment.java:333)
+	at org.eclipse.jdt.internal.core.builder.NameEnvironment.<init>(NameEnvironment.java:63)
+	at org.eclipse.jdt.internal.core.builder.JavaBuilder.initializeBuilder(JavaBuilder.java:644)
+	at org.eclipse.jdt.internal.core.builder.JavaBuilder.build(JavaBuilder.java:182)
+	at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:1020)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:247)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:303)
+	at org.eclipse.core.internal.events.BuildManager$1.run(BuildManager.java:392)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:395)
+	at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:506)
+	at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:454)
+	at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:536)
+	at org.eclipse.core.internal.events.AutoBuildJob.doBuild(AutoBuildJob.java:161)
+	at org.eclipse.core.internal.events.AutoBuildJob.run(AutoBuildJob.java:255)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+Caused by: java.lang.IllegalArgumentException: release 18 is not found in the system
+	at org.eclipse.jdt.internal.core.builder.ClasspathJrtWithReleaseOption.initialize(ClasspathJrtWithReleaseOption.java:123)
+	... 19 more
+!SUBENTRY 1 org.eclipse.jdt.core 4 0 2023-10-29 16:54:24.365
+!MESSAGE release 18 is not found in the system
+!STACK 0
+java.lang.IllegalArgumentException: release 18 is not found in the system
+	at org.eclipse.jdt.internal.core.builder.ClasspathJrtWithReleaseOption.initialize(ClasspathJrtWithReleaseOption.java:123)
+	at org.eclipse.jdt.internal.core.builder.ClasspathJrtWithReleaseOption.<init>(ClasspathJrtWithReleaseOption.java:82)
+	at org.eclipse.jdt.internal.core.builder.ClasspathLocation.forJrtSystem(ClasspathLocation.java:169)
+	at org.eclipse.jdt.internal.core.builder.NameEnvironment.computeClasspathLocations(NameEnvironment.java:333)
+	at org.eclipse.jdt.internal.core.builder.NameEnvironment.<init>(NameEnvironment.java:63)
+	at org.eclipse.jdt.internal.core.builder.JavaBuilder.initializeBuilder(JavaBuilder.java:644)
+	at org.eclipse.jdt.internal.core.builder.JavaBuilder.build(JavaBuilder.java:182)
+	at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:1020)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:247)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:303)
+	at org.eclipse.core.internal.events.BuildManager$1.run(BuildManager.java:392)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:395)
+	at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:506)
+	at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:454)
+	at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:536)
+	at org.eclipse.core.internal.events.AutoBuildJob.doBuild(AutoBuildJob.java:161)
+	at org.eclipse.core.internal.events.AutoBuildJob.run(AutoBuildJob.java:255)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.m2e.logback.appender 4 0 2023-10-29 16:54:24.394
+!MESSAGE File not found: D:\nahue\Nahuel\NAHUEL\FACULTAD\TALLER DE PROGRAMACION 1\TP\Taller1\TP\pom.xml.
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException(/TP/pom.xml)[368]: java.lang.Exception: File not found: D:\nahue\Nahuel\NAHUEL\FACULTAD\TALLER DE PROGRAMACION 1\TP\Taller1\TP\pom.xml.
+	at org.eclipse.core.internal.resources.ResourceException.provideStackTrace(ResourceException.java:42)
+	at org.eclipse.core.internal.resources.ResourceException.<init>(ResourceException.java:38)
+	at org.eclipse.core.internal.localstore.FileSystemResourceManager.read(FileSystemResourceManager.java:835)
+	at org.eclipse.core.internal.resources.File.getContents(File.java:277)
+	at org.eclipse.core.internal.resources.File.getContents(File.java:268)
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryManager.refreshPhase2(ProjectRegistryManager.java:572)
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryManager.refresh(ProjectRegistryManager.java:474)
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryManager.refresh(ProjectRegistryManager.java:360)
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryManager.refresh(ProjectRegistryManager.java:313)
+	at org.eclipse.m2e.core.internal.builder.MavenBuilder$BuildMethod.getProjectFacade(MavenBuilder.java:149)
+	at org.eclipse.m2e.core.internal.builder.MavenBuilder$BuildMethod.lambda$0(MavenBuilder.java:87)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.executeBare(MavenExecutionContext.java:364)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:274)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:213)
+	at org.eclipse.m2e.core.internal.builder.MavenBuilder$BuildMethod.execute(MavenBuilder.java:86)
+	at org.eclipse.m2e.core.internal.builder.MavenBuilder.build(MavenBuilder.java:196)
+	at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:1020)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:247)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:303)
+	at org.eclipse.core.internal.events.BuildManager$1.run(BuildManager.java:392)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:395)
+	at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:506)
+	at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:454)
+	at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:536)
+	at org.eclipse.core.internal.events.AutoBuildJob.doBuild(AutoBuildJob.java:161)
+	at org.eclipse.core.internal.events.AutoBuildJob.run(AutoBuildJob.java:255)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+!SUBENTRY 1 org.eclipse.core.resources 4 368 2023-10-29 16:54:24.394
+!MESSAGE File not found: D:\nahue\Nahuel\NAHUEL\FACULTAD\TALLER DE PROGRAMACION 1\TP\Taller1\TP\pom.xml.
+!STACK 0
+java.lang.Exception: File not found: D:\nahue\Nahuel\NAHUEL\FACULTAD\TALLER DE PROGRAMACION 1\TP\Taller1\TP\pom.xml.
+	at org.eclipse.core.internal.resources.ResourceException.provideStackTrace(ResourceException.java:42)
+	at org.eclipse.core.internal.resources.ResourceException.<init>(ResourceException.java:38)
+	at org.eclipse.core.internal.localstore.FileSystemResourceManager.read(FileSystemResourceManager.java:835)
+	at org.eclipse.core.internal.resources.File.getContents(File.java:277)
+	at org.eclipse.core.internal.resources.File.getContents(File.java:268)
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryManager.refreshPhase2(ProjectRegistryManager.java:572)
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryManager.refresh(ProjectRegistryManager.java:474)
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryManager.refresh(ProjectRegistryManager.java:360)
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryManager.refresh(ProjectRegistryManager.java:313)
+	at org.eclipse.m2e.core.internal.builder.MavenBuilder$BuildMethod.getProjectFacade(MavenBuilder.java:149)
+	at org.eclipse.m2e.core.internal.builder.MavenBuilder$BuildMethod.lambda$0(MavenBuilder.java:87)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.executeBare(MavenExecutionContext.java:364)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:274)
+	at org.eclipse.m2e.core.internal.embedder.MavenExecutionContext.execute(MavenExecutionContext.java:213)
+	at org.eclipse.m2e.core.internal.builder.MavenBuilder$BuildMethod.execute(MavenBuilder.java:86)
+	at org.eclipse.m2e.core.internal.builder.MavenBuilder.build(MavenBuilder.java:196)
+	at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:1020)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:247)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:303)
+	at org.eclipse.core.internal.events.BuildManager$1.run(BuildManager.java:392)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:395)
+	at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:506)
+	at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:454)
+	at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:536)
+	at org.eclipse.core.internal.events.AutoBuildJob.doBuild(AutoBuildJob.java:161)
+	at org.eclipse.core.internal.events.AutoBuildJob.run(AutoBuildJob.java:255)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.jdt.core 4 4 2023-10-29 16:54:25.412
+!MESSAGE JavaBuilder handling CoreException while building: TP
+!STACK 1
+org.eclipse.core.runtime.CoreException: release 18 is not found in the system
+	at org.eclipse.jdt.internal.core.builder.ClasspathJrtWithReleaseOption.initialize(ClasspathJrtWithReleaseOption.java:124)
+	at org.eclipse.jdt.internal.core.builder.ClasspathJrtWithReleaseOption.<init>(ClasspathJrtWithReleaseOption.java:82)
+	at org.eclipse.jdt.internal.core.builder.ClasspathLocation.forJrtSystem(ClasspathLocation.java:169)
+	at org.eclipse.jdt.internal.core.builder.NameEnvironment.computeClasspathLocations(NameEnvironment.java:333)
+	at org.eclipse.jdt.internal.core.builder.NameEnvironment.<init>(NameEnvironment.java:63)
+	at org.eclipse.jdt.internal.core.builder.JavaBuilder.initializeBuilder(JavaBuilder.java:644)
+	at org.eclipse.jdt.internal.core.builder.JavaBuilder.build(JavaBuilder.java:182)
+	at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:1020)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:247)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:303)
+	at org.eclipse.core.internal.events.BuildManager$1.run(BuildManager.java:392)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:395)
+	at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:506)
+	at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:454)
+	at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:536)
+	at org.eclipse.core.internal.events.AutoBuildJob.doBuild(AutoBuildJob.java:161)
+	at org.eclipse.core.internal.events.AutoBuildJob.run(AutoBuildJob.java:255)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+Caused by: java.lang.IllegalArgumentException: release 18 is not found in the system
+	at org.eclipse.jdt.internal.core.builder.ClasspathJrtWithReleaseOption.initialize(ClasspathJrtWithReleaseOption.java:123)
+	... 19 more
+!SUBENTRY 1 org.eclipse.jdt.core 4 0 2023-10-29 16:54:25.412
+!MESSAGE release 18 is not found in the system
+!STACK 0
+java.lang.IllegalArgumentException: release 18 is not found in the system
+	at org.eclipse.jdt.internal.core.builder.ClasspathJrtWithReleaseOption.initialize(ClasspathJrtWithReleaseOption.java:123)
+	at org.eclipse.jdt.internal.core.builder.ClasspathJrtWithReleaseOption.<init>(ClasspathJrtWithReleaseOption.java:82)
+	at org.eclipse.jdt.internal.core.builder.ClasspathLocation.forJrtSystem(ClasspathLocation.java:169)
+	at org.eclipse.jdt.internal.core.builder.NameEnvironment.computeClasspathLocations(NameEnvironment.java:333)
+	at org.eclipse.jdt.internal.core.builder.NameEnvironment.<init>(NameEnvironment.java:63)
+	at org.eclipse.jdt.internal.core.builder.JavaBuilder.initializeBuilder(JavaBuilder.java:644)
+	at org.eclipse.jdt.internal.core.builder.JavaBuilder.build(JavaBuilder.java:182)
+	at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:1020)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:247)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:303)
+	at org.eclipse.core.internal.events.BuildManager$1.run(BuildManager.java:392)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:395)
+	at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:506)
+	at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:454)
+	at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:536)
+	at org.eclipse.core.internal.events.AutoBuildJob.doBuild(AutoBuildJob.java:161)
+	at org.eclipse.core.internal.events.AutoBuildJob.run(AutoBuildJob.java:255)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
