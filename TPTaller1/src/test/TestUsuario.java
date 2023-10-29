@@ -1,14 +1,18 @@
 package test;
 
-import static org.junit.Assert.fail;
-
 import org.junit.Test;
+
+import modeloDatos.Usuario;
 
 public class TestUsuario {
 
 	@Test
-	public void testUsuarioStringStringStringString() {
-		fail("Not yet implemented");
+	public void testCreaUsuario() {
+		Usuario usuario = new Usuario("Alex", "qwerty123", "Alejandro", "223917552");
+		String nombreTest = usuario.getUsserName();
+		String passwordTest = usuario.getPassword();
+		String realNameTest = usuario.getRealName();
+		String telefonoTest = usuario.getTelefono();
 		
 	}
 
