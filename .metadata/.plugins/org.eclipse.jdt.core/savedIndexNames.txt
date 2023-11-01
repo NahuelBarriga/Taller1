@@ -1,4 +1,0 @@
-INDEX VERSION 1.131+D:\nahue\Nahuel\NAHUEL\FACULTAD\TALLER DE PROGRAMACION 1\TP\Taller1\.metadata\.plugins\org.eclipse.jdt.core
-3518937356.index
-4055547590.index
-1865797976.index
