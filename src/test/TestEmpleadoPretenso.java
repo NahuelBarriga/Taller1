@@ -38,6 +38,7 @@ public class TestEmpleadoPretenso {
 		
 		empleado.setCandidato(candidato);
 		Assert.assertEquals("El candidato no se seteo correctamnete", candidato, empleado.getCandidato());
+		
 	}
 	
 	@Test
