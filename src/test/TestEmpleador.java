@@ -1,7 +1,5 @@
 package test;
 
-import static org.junit.Assert.*;
-
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -15,9 +13,10 @@ public class TestEmpleador {
 		Assert.assertNotNull(null, empleadorTest);
 	}
 
+	
 	@Test
 	public void testCalculaComision() {
-		fail("Not yet implemented");
+		Empleador empleadorTest = new Empleador("Juan123", "Juan123", "Juan", "2235698547", "salud", "fisica"); 
 	}
 
 }
