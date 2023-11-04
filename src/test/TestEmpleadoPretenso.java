@@ -1,10 +1,10 @@
 package test;
 
 
+
 import java.util.ArrayList;
 
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 
 import modeloDatos.ClientePuntaje;
@@ -17,12 +17,16 @@ public class TestEmpleadoPretenso {
 	
 	@Test
 	public void testEmpleadoPretenso() {
-		EmpleadoPretenso empleado = new EmpleadoPretenso("Juan123", "Juan123", "Juan", "2235698547", "Rodriguez", 25);
-		int Edad = empleado.getEdad();
-		Assert.assertEquals(Edad, 25);
-		//Assert.assertNotNull("TaBien", empleadoTest);
+		EmpleadoPretenso empleado = new EmpleadoPretenso("Juan123", "Juan123", "Juan", "2235698547", "Rodriguez", 25);		
+		String apellido = "Rodriguez";
+		int edad = 25;
+			
+		Assert.assertNotNull("Fallo en constructor", empleado);
+		Assert.assertEquals("Fallo en constructor, parametro apellido",apellido,empleado.getApellido());
+		Assert.assertEquals("Fallo en constructor, parametro edad",edad,empleado.getEdad());
+		//Los otro parametros fueron testeados en la clase Empleador
 	}
-
+	
 	@Test
 	public void testSetEdad() {
 		EmpleadoPretenso empleado = new EmpleadoPretenso("Juan123", "Juan123", "Juan", "2235698547", "Rodriguez", 25);
