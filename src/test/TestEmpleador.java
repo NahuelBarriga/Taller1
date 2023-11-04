@@ -102,5 +102,6 @@ public class TestEmpleador {
 		Assert.assertEquals("Falla en setCandidato, candidato no agregado", empleadoTest, empleadorTest.getCandidato());
 	}
 	
+	
 
 }
