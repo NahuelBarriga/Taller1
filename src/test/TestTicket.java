@@ -19,12 +19,12 @@ public class TestTicket {
 		String experienciaTest = "EXP_NADA"; 
 		String estudiosTest = "PRIMARIOS";
 		
-		Assert.assertEquals(locacionTest, testTicket.getLocacion());
-		Assert.assertEquals(remuneracionTest, testTicket.getRemuneracion());
-		Assert.assertEquals(jornadaTest, testTicket.getJornada());
-		Assert.assertEquals(puestoTest, testTicket.getPuesto());
-		Assert.assertEquals(experienciaTest, testTicket.getExperiencia());
-		Assert.assertEquals(estudiosTest, testTicket.getEstudios());
+		Assert.assertEquals("Fallo en constructor, parametro locacion",locacionTest, testTicket.getLocacion());
+		Assert.assertEquals("Fallo en constructor, parametro remuneracion",remuneracionTest, testTicket.getRemuneracion());
+		Assert.assertEquals("Fallo en constructor, parametro jornada",jornadaTest, testTicket.getJornada());
+		Assert.assertEquals("Fallo en constructor, parametro puesto",puestoTest, testTicket.getPuesto());
+		Assert.assertEquals("Fallo en constructor, parametro experiencia",experienciaTest, testTicket.getExperiencia());
+		Assert.assertEquals("Fallo en constructor, parametro estudios",estudiosTest, testTicket.getEstudios());
 		
 	}
 	
