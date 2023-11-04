@@ -11,13 +11,14 @@ public class TestTicket {
 
 	@Test
 	public void TestConstructor1() {
-		Ticket testTicket = new Ticket("HOME_OFFICE", 1200, "JORNADA_COMPLETA", "JUNIOR", "EXP_NADA", "PRIMARIOS"); 
-		String locacionTest = "HOME_OFFICE";
+		 
+		String locacionTest = util.Constantes.HOME_OFFICE;
 		int remuneracionTest = 1200;
-		String jornadaTest = "JORNADA_COMPLETA";
-		String puestoTest = "JUNIOR"; 
-		String experienciaTest = "EXP_NADA"; 
-		String estudiosTest = "PRIMARIOS";
+		String jornadaTest = util.Constantes.JORNADA_COMPLETA;
+		String puestoTest = util.Constantes.JUNIOR; 
+		String experienciaTest = util.Constantes.EXP_NADA; 
+		String estudiosTest = util.Constantes.PRIMARIOS;		
+		Ticket testTicket = new Ticket(locacionTest, 1200, jornadaTest, puestoTest, experienciaTest, estudiosTest);
 		
 		Assert.assertEquals("Fallo en constructor, parametro locacion",locacionTest, testTicket.getLocacion());
 		Assert.assertEquals("Fallo en constructor, parametro remuneracion",remuneracionTest, testTicket.getRemuneracion());
@@ -30,13 +31,13 @@ public class TestTicket {
 	
 	@Test
 	public void TestConstructor2() {
-		Ticket testTicket = new Ticket("PRESENCIAL", 20000, "JORNADA_MEDIA", "SENIOR", "EXP_MEDIA", "SECUNDARIOS"); 
-		String locacionTest = "PRESENCIAL";
-		int remuneracionTest = 20000;
-		String jornadaTest = "JORNADA_MEDIA";
-		String puestoTest = "SENIOR"; 
-		String experienciaTest = "EXP_MEDIA"; 
-		String estudiosTest = "SECUNDARIOS";
+		String locacionTest = util.Constantes.PRESENCIAL;
+		int remuneracionTest = 1200;
+		String jornadaTest = util.Constantes.JORNADA_MEDIA;
+		String puestoTest = util.Constantes.SENIOR; 
+		String experienciaTest = util.Constantes.EXP_MEDIA; 
+		String estudiosTest = util.Constantes.SECUNDARIOS;		
+		Ticket testTicket = new Ticket(locacionTest, 1200, jornadaTest, puestoTest, experienciaTest, estudiosTest);
 		
 		Assert.assertEquals(locacionTest, testTicket.getLocacion());
 		Assert.assertEquals(remuneracionTest, testTicket.getRemuneracion());
@@ -49,13 +50,13 @@ public class TestTicket {
 	
 	@Test
 	public void TestConstructor3() {
-		Ticket testTicket = new Ticket("PRESENCIAL", 58000, "JORNADA_EXTENDIDA", "GERENCIA", "EXP_MUCHA", "TERCIARIOS"); 
-		String locacionTest = "PRESENCIAL";
-		int remuneracionTest = 58000;
-		String jornadaTest = "JORNADA_EXTENDIDA";
-		String puestoTest = "GERENCIA"; 
-		String experienciaTest = "EXP_MUCHA"; 
-		String estudiosTest = "TERCIARIOS";
+		String locacionTest = util.Constantes.PRESENCIAL;
+		int remuneracionTest = 1200;
+		String jornadaTest = util.Constantes.JORNADA_EXTENDIDA;
+		String puestoTest = util.Constantes.MANAGMENT; 
+		String experienciaTest = util.Constantes.EXP_MUCHA; 
+		String estudiosTest = util.Constantes.TERCIARIOS;		
+		Ticket testTicket = new Ticket(locacionTest, 1200, jornadaTest, puestoTest, experienciaTest, estudiosTest);
 		
 		Assert.assertEquals(locacionTest, testTicket.getLocacion());
 		Assert.assertEquals(remuneracionTest, testTicket.getRemuneracion());
@@ -68,10 +69,10 @@ public class TestTicket {
 
 	@Test
 	public void testSetRemuneracion() {
-		Ticket testTicket = new Ticket("HOME_OFFICE", 1200, "JORNADA_COMPLETA", "JUNIOR", "EXP_NADA", "PRIMARIOS");
+		Ticket testTicket = new Ticket(util.Constantes.HOME_OFFICE, 1200, util.Constantes.HOME_OFFICE, util.Constantes.JUNIOR, util.Constantes.EXP_NADA, util.Constantes.PRIMARIOS);
 		testTicket.setRemuneracion(5200);
 		int remuneracionTest = 5200; 
-		Assert.assertEquals(testTicket.getRemuneracion(), remuneracionTest);
+		Assert.assertEquals("No se seteo la remuneracion correctamente", remuneracionTest, testTicket.getRemuneracion());
 		
 		
 	}

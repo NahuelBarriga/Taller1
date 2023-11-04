@@ -14,66 +14,70 @@ public class TestEmpleador {
 
 	@Test
 	public void  testEmpleador1() {
-		Empleador empleadorTest = new Empleador("Juan123", "Juan123", "Juan", "2235698547", "salud", "fisica");
-		String empleadoNombreTest =  "Juan123";
-		String empleadoPasswordTest =  "Juan123";
-		String empleadoRealNameTest =  "Juan";
-		String empleadoTelefonoTest =  "2235698547";
-		String empleadoRubroTest =  "salud";
-		String empleadoTipoPersonaTest =  "fisica";
-		Assert.assertNotNull("Falla en constructor, constructor nulo",empleadorTest);
-		Assert.assertEquals("Falla en constructor, parametro: UsserName", empleadoNombreTest,empleadorTest.getUsserName());
-		Assert.assertEquals("Falla en constructor, parametro: Password", empleadoPasswordTest,empleadorTest.getPassword());
-		Assert.assertEquals("Falla en constructor, parametro: RealName",empleadoRealNameTest,empleadorTest.getRealName());
-		Assert.assertEquals("Falla en constructor, parametro: Telefono", empleadoTelefonoTest,empleadorTest.getTelefono());
-		Assert.assertEquals("Falla en constructor, parametro: Rubro", empleadoRubroTest,empleadorTest.getRubro());
-		Assert.assertEquals("Falla en constructor, parametro: TipoPersona", empleadoTipoPersonaTest, empleadorTest.getTipoPersona());
+		
+		String nombre =  "Juan123";
+		String password =  "Juan123";
+		String realName =  "Juan";
+		String telefono =  "2235698547";
+		String rubro =  util.Constantes.SALUD;
+		String persona =  util.Constantes.FISICA;
+		Empleador empleador = new Empleador("Juan123", "Juan123", "Juan", "2235698547", rubro, persona);
+		
+		Assert.assertNotNull("Falla en constructor, constructor nulo",empleador);
+		Assert.assertEquals("Falla en constructor, parametro: UsserName", nombre,empleador.getUsserName());
+		Assert.assertEquals("Falla en constructor, parametro: Password", password,empleador.getPassword());
+		Assert.assertEquals("Falla en constructor, parametro: RealName",realName,empleador.getRealName());
+		Assert.assertEquals("Falla en constructor, parametro: Telefono", telefono,empleador.getTelefono());
+		Assert.assertEquals("Falla en constructor, parametro: Rubro", rubro,empleador.getRubro());
+		Assert.assertEquals("Falla en constructor, parametro: TipoPersona", persona, empleador.getTipoPersona());
 		
 	}
 	
 	@Test
 	public void  testEmpleador2() {
-		Empleador empleadorTest = new Empleador("Juan123", "Juan123", "Juan", "2235698547", "comercio_internacional", "juridica");
-		String empleadoNombreTest =  "Juan123";
-		String empleadoPasswordTest =  "Juan123";
-		String empleadoRealNameTest =  "Juan";
-		String empleadoTelefonoTest =  "2235698547";
-		String empleadoRubroTest =  "comercio_internacional";
-		String empleadoTipoPersonaTest =  "juridica";
-		Assert.assertNotNull("Falla en constructor, constructor nulo",empleadorTest);
-		Assert.assertEquals("Falla en constructor, parametro: UsserName", empleadoNombreTest,empleadorTest.getUsserName());
-		Assert.assertEquals("Falla en constructor, parametro: Password", empleadoPasswordTest,empleadorTest.getPassword());
-		Assert.assertEquals("Falla en constructor, parametro: RealName",empleadoRealNameTest,empleadorTest.getRealName());
-		Assert.assertEquals("Falla en constructor, parametro: Telefono", empleadoTelefonoTest,empleadorTest.getTelefono());
-		Assert.assertEquals("Falla en constructor, parametro: Rubro", empleadoRubroTest,empleadorTest.getRubro());
-		Assert.assertEquals("Falla en constructor, parametro: TipoPersona", empleadoTipoPersonaTest, empleadorTest.getTipoPersona());
+		String nombre =  "Juan123";
+		String password =  "Juan123";
+		String realName =  "Juan";
+		String telefono =  "2235698547";
+		String rubro =  util.Constantes.COMERCIO_INTERNACIONAL;
+		String persona =  util.Constantes.JURIDICA;
+		
+		Empleador empleador = new Empleador("Juan123", "Juan123", "Juan", "2235698547", rubro, persona);
+		Assert.assertNotNull("Falla en constructor, constructor nulo",empleador);
+		Assert.assertEquals("Falla en constructor, parametro: UsserName", nombre,empleador.getUsserName());
+		Assert.assertEquals("Falla en constructor, parametro: Password", password,empleador.getPassword());
+		Assert.assertEquals("Falla en constructor, parametro: RealName",realName,empleador.getRealName());
+		Assert.assertEquals("Falla en constructor, parametro: Telefono", telefono,empleador.getTelefono());
+		Assert.assertEquals("Falla en constructor, parametro: Rubro", rubro,empleador.getRubro());
+		Assert.assertEquals("Falla en constructor, parametro: TipoPersona", persona, empleador.getTipoPersona());
 		
 	}
 	
 	@Test
 	public void  testEmpleador3() {
-		Empleador empleadorTest = new Empleador("Juan123", "Juan123", "Juan", "2235698547", "comercio_local", "fisica");
-		String empleadoNombreTest =  "Juan123";
-		String empleadoPasswordTest =  "Juan123";
-		String empleadoRealNameTest =  "Juan";
-		String empleadoTelefonoTest =  "2235698547";
-		String empleadoRubroTest =  "comercio_local";
-		String empleadoTipoPersonaTest =  "fisica";
-		Assert.assertNotNull("Falla en constructor, constructor nulo",empleadorTest);
-		Assert.assertEquals("Falla en constructor, parametro: UsserName", empleadoNombreTest,empleadorTest.getUsserName());
-		Assert.assertEquals("Falla en constructor, parametro: Password", empleadoPasswordTest,empleadorTest.getPassword());
-		Assert.assertEquals("Falla en constructor, parametro: RealName",empleadoRealNameTest,empleadorTest.getRealName());
-		Assert.assertEquals("Falla en constructor, parametro: Telefono", empleadoTelefonoTest,empleadorTest.getTelefono());
-		Assert.assertEquals("Falla en constructor, parametro: Rubro", empleadoRubroTest,empleadorTest.getRubro());
-		Assert.assertEquals("Falla en constructor, parametro: TipoPersona", empleadoTipoPersonaTest, empleadorTest.getTipoPersona());
+		String nombre =  "Juan123";
+		String password =  "Juan123";
+		String realName =  "Juan";
+		String telefono =  "2235698547";
+		String rubro =  util.Constantes.COMERCIO_LOCAL;
+		String persona =  util.Constantes.FISICA;
+		
+		Empleador empleador = new Empleador("Juan123", "Juan123", "Juan", "2235698547", rubro, persona);
+		Assert.assertNotNull("Falla en constructor, constructor nulo",empleador);
+		Assert.assertEquals("Falla en constructor, parametro: UsserName", nombre,empleador.getUsserName());
+		Assert.assertEquals("Falla en constructor, parametro: Password", password,empleador.getPassword());
+		Assert.assertEquals("Falla en constructor, parametro: RealName",realName,empleador.getRealName());
+		Assert.assertEquals("Falla en constructor, parametro: Telefono", telefono,empleador.getTelefono());
+		Assert.assertEquals("Falla en constructor, parametro: Rubro", rubro,empleador.getRubro());
+		Assert.assertEquals("Falla en constructor, parametro: TipoPersona", persona, empleador.getTipoPersona());
 		
 	}
 	
 	@Test
 	public void testCalculaComision() {
-		Empleador empleadorSaludTest = new Empleador("Juan123", "Juan123", "Juan", "2235698547", "salud", "fisica");
-		Empleador empleadorInternacionalTest = new Empleador("Juan123", "Juan123", "Juan", "2235698547", "comercio_internacional", "fisica");
-		Empleador empleadorLocalTest = new Empleador("Juan123", "Juan123", "Juan", "2235698547", "comercio_local", "fisica");
+		Empleador empleadorSaludTest = new Empleador("Juan123", "Juan123", "Juan", "2235698547", util.Constantes.SALUD, util.Constantes.FISICA);
+		Empleador empleadorInternacionalTest = new Empleador("Juan123", "Juan123", "Juan", "2235698547", util.Constantes.COMERCIO_INTERNACIONAL, util.Constantes.FISICA);
+		Empleador empleadorLocalTest = new Empleador("Juan123", "Juan123", "Juan", "2235698547", util.Constantes.COMERCIO_LOCAL, util.Constantes.FISICA);
 		int remuneracion = 250000;
 		
 		Ticket ticketTest = new Ticket("PRESENCIAL", remuneracion, "JORNADA_MEDIA", "JUNIOR", "EXP_NADA", "PRIMARIOS");
@@ -98,7 +102,7 @@ public class TestEmpleador {
 	
 	@Test
 	public void TestSetCandidato() { 
-		Empleador empleadorTest = new Empleador("Juan123", "Juan123", "Juan", "2235698547", "salud", "fisica");
+		Empleador empleadorTest = new Empleador("Juan123", "Juan123", "Juan", "2235698547", util.Constantes.SALUD, util.Constantes.FISICA);
 		EmpleadoPretenso empleadoTest = new EmpleadoPretenso("Marcos123", "Marcos123", "Marcos", "2235698456", "Rodriguez", 25);
 		empleadorTest.setCandidato(empleadoTest); 
 
