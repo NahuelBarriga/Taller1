@@ -1,8 +1,11 @@
 package test;
 
+import java.util.ArrayList;
+
 import org.junit.Assert;
 import org.junit.Test;
 
+import modeloDatos.ClientePuntaje;
 import modeloDatos.EmpleadoPretenso;
 import modeloDatos.Empleador;
 import modeloDatos.Ticket;
@@ -103,5 +106,13 @@ public class TestEmpleador {
 	}
 	
 	
+	@Test
+	public void TestListaDePostulantes() {
+		ArrayList<ClientePuntaje> listaPostulantesTest = new ArrayList<ClientePuntaje>();
+		Empleador empleadorTest = new Empleador("Juan123", "Juan123", "Juan", "2235698547", "salud", "fisica");
+		empleadorTest.setListaDePostulantes(listaPostulantesTest);
+		Assert.assertEquals("La lista de postulantes no se seteo correctamente", listaPostulantesTest, empleadorTest.getListaDePostulantes());
+		
+	}
 
 }
