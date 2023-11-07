@@ -7,8 +7,13 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import excepciones.ContraException;
 import excepciones.ImposibleCrearEmpleadoException;
 import excepciones.ImposibleCrearEmpleadorException;
+import excepciones.LimiteInferiorRemuneracionInvalidaException;
+import excepciones.LimiteSuperiorRemuneracionInvalidaException;
+import excepciones.NewRegisterException;
+import excepciones.NombreUsuarioException;
 import modeloDatos.EmpleadoPretenso;
 import modeloDatos.Empleador;
 import modeloNegocio.Agencia;
@@ -20,6 +25,7 @@ public class TestAgenciaVacia {
 	@Before
 	public void setUp() throws Exception {
 			this.agencia = Agencia.getInstance();
+			
 	}
 
 	@After
@@ -36,7 +42,8 @@ public class TestAgenciaVacia {
 		EmpleadoPretenso empleado;
 		
 		try {
-			empleado = (EmpleadoPretenso)this.agencia.registroEmpleado("Juan123", "Juan123", "Juan", "Rodriguez","2235698547" , 25);
+			empleado = (EmpleadoPretenso)this.agencia.registroEmpleado("Juan123", "Juan123"
+					, "Juan", "Rodriguez","2235698547" , 25);
 			Assert.assertNotNull("El empleado no se registro correctamente", empleado);
 		}
 		catch (Exception e) {
@@ -46,7 +53,7 @@ public class TestAgenciaVacia {
 	}
 	
 	@Test
-	public void testRegistroEmpleadoFallo() {
+	public void testRegistroEmpleadoFalloNull() {
 		
 		try {
 			EmpleadoPretenso empleado;
@@ -61,8 +68,23 @@ public class TestAgenciaVacia {
 		}
 	}
 	
-	//Faltaria agregar otro test para verificar que se lance la excepcion de nombre de usuario repetido
-	//pero al ser otro escenario con listas cargadas, tengo que crear otra clase? (la misma duda de antes)
+	@Test
+	public void testRegistroEmpleadoFalloRepetido() {
+		try {
+			EmpleadoPretenso empleado;
+			empleado = (EmpleadoPretenso)this.agencia.registroEmpleado("Juan123", "Juan123"
+					, "Juan", "Rodriguez","2235698547" , 25);
+			empleado = (EmpleadoPretenso)this.agencia.registroEmpleado("Juan123", "Juan123"
+					, "Juan", "Rodriguez","2235698547" , 25);
+			fail("Deberia haber lanzado excepcion");
+		}
+		catch (NewRegisterException e) {
+			
+		}
+		catch (Exception e) {
+			fail("No se lanzo la excepcion correcta");
+		}
+	}
 	
 	@Test
 	public void testRegistraEmpleadorExitoso() {
@@ -97,5 +119,113 @@ public class TestAgenciaVacia {
 	public void testCerrarSesion() {
 		this.agencia.cerrarSesion();
 		Assert.assertTrue("Deberia haber cerrado sesion",this.agencia.getTipoUsuario() == -1);
+	}
+	
+	@Test
+	public void testLoginEmpleadoExito() {
+		try {
+			EmpleadoPretenso empleado, usuario;
+			
+			empleado = (EmpleadoPretenso)this.agencia.registroEmpleado("Juan123", "Juan123"
+					, "Juan", "Rodriguez","2235698547" , 25);
+			usuario = (EmpleadoPretenso)this.agencia.login("Juan123", "Juan123");
+			Assert.assertEquals("El usuario devuelto no es el mismo", empleado, usuario);
+			Assert.assertTrue("El tipo de usuario no es el correcto", this.agencia.getTipoUsuario()==0);
+		}
+		catch (Exception e) {
+			fail("No deberia haber lanzado una excepcion");
+		}
+	}
+	
+	@Test
+	public void testLoginEmpleadoFallaContra() {
+		try {
+			EmpleadoPretenso empleado, usuario;
+			
+			empleado = (EmpleadoPretenso)this.agencia.registroEmpleado("Juan123", "Juan123"
+					, "Juan", "Rodriguez","2235698547" , 25);
+			usuario = (EmpleadoPretenso)this.agencia.login("Juan123", "qwerty123");
+			fail("Deberia haber lanzado una excepcion");
+		}
+		catch (ContraException e) {
+			
+		}
+		catch (Exception e) {
+			fail("No se lanzo la excepcion correcta");
+		}
+	}
+	
+	@Test
+	public void testLoginEmpleadoFallaUser() {
+		try {
+			EmpleadoPretenso empleado, usuario;
+			
+			empleado = (EmpleadoPretenso)this.agencia.registroEmpleado("Juan123", "Juan123"
+					, "Juan", "Rodriguez","2235698547" , 25);
+			usuario = (EmpleadoPretenso)this.agencia.login("Alejandro", "Juan123");
+			fail("Deberia haber lanzado una excepcion");
+		}
+		catch (NombreUsuarioException e) {
+			
+		}
+		catch (Exception e) {
+			fail("No se lanzo la excepcion correcta");
+		}
+	}
+	
+	@Test
+	public void testLoginEmpleadorExitoso() {
+		try {
+			Empleador empleador, usuario;
+			
+			empleador = (Empleador)this.agencia.registroEmpleador("Juan123", "Juan123", "Juan"
+					,"2235698547", util.Constantes.FISICA, util.Constantes.SALUD);
+			usuario = (Empleador)this.agencia.login("Juan123", "Juan123");
+			Assert.assertEquals("El usuario devuelto no es el mismo", empleador, usuario);
+			Assert.assertTrue("El tipo de usuario no es el mismo", this.agencia.getTipoUsuario()==1);
+		}
+		catch (Exception e) {
+			fail("No deberia haber lanzado una excepcion");
+		}
+	}
+	
+	@Test
+	public void testSetLimitesRemuneracion() {
+		try {
+			this.agencia.setLimitesRemuneracion(150, 180);
+			Assert.assertEquals("El limite inferior no fue seteado correctamente", 150, this.agencia.getLimiteInferior());
+			Assert.assertEquals("El limite superior no fue seteado correctamnte",180,this.agencia.getLimiteSuperior());
+		}
+		catch (Exception e) {
+			fail("No deberia haber lanzado una excepcion");
+		}
+	}
+	
+	@Test
+	public void testSetLimitesRemuneracionFallaInferior() {
+		try {
+			this.agencia.setLimitesRemuneracion(-5, -2);
+			fail("Deberia haber lanzado una excepcion");
+		}
+		catch (LimiteInferiorRemuneracionInvalidaException e) {
+			
+		}
+		catch (Exception e) {
+			fail("No se lanzo la excepcion correcta");
+		}
+	}
+	
+	@Test
+	public void testSetLimitesRemuneracionFallaSuperior() {
+		try {
+			this.agencia.setLimitesRemuneracion(20, 6);
+			fail("Deberia haber lanzado una excepcion");
+		}
+		catch (LimiteSuperiorRemuneracionInvalidaException e) {
+			
+		}
+		catch (Exception e) {
+			fail("No se lanzo la excepcion correcta");
+		}
 	}
 }
