@@ -3,6 +3,7 @@ package test;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -32,14 +33,62 @@ public class TestUtilPromo {
 		lista2.add(puntajeTest2);
 		empleador2.setListaDePostulantes(lista1);
 		empleado2.setListaDePostulantes(lista2);
+		HashMap<String, EmpleadoPretenso> empleados = new HashMap<String, EmpleadoPretenso>();
+		HashMap<String, Empleador> empleadores = new HashMap<String, Empleador>();
 		
-		//Falta crear los hash con los empeados y empleadores
 	}
 	
 	@Test
 	public void testAplicaPromo1() {
 		UtilPromo utilPromoTest = new UtilPromo();
-		utilPromoTest.aplicaPromo();
+		utilPromoTest.aplicaPromo(false, empleados, empleadores); //empleadores y empleados vacios 
 	}
-
+	@Test
+	public void testAplicaPromo2() {
+		UtilPromo utilPromoTest = new UtilPromo();
+		utilPromoTest.aplicaPromo(true, empleados, empleadores); //empleadores y empleados vacios 
+	}
+	@Test
+	public void testAplicaPromo3() {
+		UtilPromo utilPromoTest = new UtilPromo();
+		empleadores.put(null, empleador1);	
+		utilPromoTest.aplicaPromo(true, empleados, empleadores); //empleados vacio, empleadores con empleador 1 cargado 
+	}
+	@Test
+	public void testAplicaPromo4() {
+		UtilPromo utilPromoTest = new UtilPromo();
+		empleadores.put(null, empleador2);	
+		utilPromoTest.aplicaPromo(true, empleados, empleadores); //empleados vacio, empleadores con empleador 1 cargado 
+	}
+	@Test
+	public void testAplicaPromo5() {
+		UtilPromo utilPromoTest = new UtilPromo();
+		empleados.put(null, empleado1);	
+		utilPromoTest.aplicaPromo(true, empleados, empleadores); //empleadores vacio, empleados con empleado 1 cargado 
+	}
+	@Test
+	public void testAplicaPromo6() {
+		UtilPromo utilPromoTest = new UtilPromo();
+		empleados.put(null, empleado2);	
+		utilPromoTest.aplicaPromo(true, empleados, empleadores); //empleadores vacio, empleados con empleado 2 cargado 
+	}
+	@Test
+	public void testAplicaPromo7() {
+		UtilPromo utilPromoTest = new UtilPromo();
+		empleadores.put(null, empleador1);	
+		utilPromoTest.aplicaPromo(false, empleados, empleadores); //empleados vacio, empleadores con empleador 2 cargado 
+	}
+	@Test
+	public void testAplicaPromo8() {
+		UtilPromo utilPromoTest = new UtilPromo();
+		empleados.put(null, empleado1);	
+		utilPromoTest.aplicaPromo(false, empleados, empleadores); //empleadores vacio, empleados con empleado 1 cargado  
+	}
+	@Test
+	public void testAplicaPromo9() {
+		UtilPromo utilPromoTest = new UtilPromo();
+		empleados.put(null, empleado2);	
+		utilPromoTest.aplicaPromo(false, empleados, empleadores); //empleadores vacio, empleados con empleado 1 cargado 
+	}
+	
 }
