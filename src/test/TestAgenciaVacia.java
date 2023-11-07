@@ -10,12 +10,14 @@ import org.junit.Test;
 import excepciones.ContraException;
 import excepciones.ImposibleCrearEmpleadoException;
 import excepciones.ImposibleCrearEmpleadorException;
+import excepciones.ImposibleModificarTicketsException;
 import excepciones.LimiteInferiorRemuneracionInvalidaException;
 import excepciones.LimiteSuperiorRemuneracionInvalidaException;
 import excepciones.NewRegisterException;
 import excepciones.NombreUsuarioException;
 import modeloDatos.EmpleadoPretenso;
 import modeloDatos.Empleador;
+import modeloDatos.Ticket;
 import modeloNegocio.Agencia;
 
 public class TestAgenciaVacia {
@@ -115,10 +117,21 @@ public class TestAgenciaVacia {
 		}
 	}
 	
-	@Test //deberia probarlo aca? Porque no inicie sesion en el setUp, pero si lo hago me faltaria tambien probar el login
+	@Test
 	public void testCerrarSesion() {
-		this.agencia.cerrarSesion();
-		Assert.assertTrue("Deberia haber cerrado sesion",this.agencia.getTipoUsuario() == -1);
+		
+		try {
+			EmpleadoPretenso empleado;
+		
+			empleado = (EmpleadoPretenso)this.agencia.registroEmpleado("Juan123",
+					"Juan123","Juan","Rodrigez","2235698547",25);
+		
+			this.agencia.cerrarSesion();
+			Assert.assertTrue("Deberia haber cerrado sesion",this.agencia.getTipoUsuario() == -1);
+		}
+		catch (Exception e) {
+			fail("No deberia haber lanzado excepcion");
+		}
 	}
 	
 	@Test
@@ -227,5 +240,80 @@ public class TestAgenciaVacia {
 		catch (Exception e) {
 			fail("No se lanzo la excepcion correcta");
 		}
+	}
+	
+	@Test
+	public void testCrearTicketEmpleadoExitoso() {
+		try {
+			EmpleadoPretenso empleado;
+			Ticket ticket;
+			
+			empleado = (EmpleadoPretenso)this.agencia.registroEmpleado("Juan123", "Juan123", "Juan",
+					"Rodriguez","2235698547" , 25);
+			this.agencia.setEstadoContratacion(false);
+			this.agencia.crearTicketEmpleado(util.Constantes.HOME_OFFICE, 12000, util.Constantes.JORNADA_COMPLETA,
+					util.Constantes.JUNIOR, util.Constantes.EXP_NADA,util.Constantes.PRIMARIOS , empleado);
+			Assert.assertNotNull("El ticket no fue creado o asignado", this.agencia.getEmpleados().get(empleado.getUsserName()).getTicket());
+			ticket = this.agencia.getEmpleados().get(empleado.getUsserName()).getTicket();
+			Assert.assertEquals("El ticket no se cambio",util.Constantes.HOME_OFFICE , ticket.getLocacion());
+			Assert.assertEquals("El ticket no se cambio", 12000, ticket.getRemuneracion());
+			Assert.assertEquals("El ticket no se cambio", util.Constantes.JORNADA_COMPLETA, ticket.getJornada());
+			Assert.assertEquals("El ticket no se cambio", util.Constantes.JUNIOR, ticket.getPuesto());
+			Assert.assertEquals("El ticket no se cambio", util.Constantes.EXP_NADA, ticket.getExperiencia());
+			Assert.assertEquals("El ticket no se cambio", util.Constantes.PRIMARIOS, ticket.getEstudios());
+		}
+		catch (Exception e) {
+			fail("No deberia haber lanzado una excepcion"+e);
+		}
+	}
+	
+	@Test
+	public void testCrearTicketEmpleadoFallo() {
+		try {
+			EmpleadoPretenso empleado;
+			
+			empleado = (EmpleadoPretenso)this.agencia.registroEmpleado("Juan123", "Juan123", "Juan",
+					"Rodriguez","2235698547" , 25);
+			this.agencia.setEstadoContratacion(true);
+			this.agencia.crearTicketEmpleado(util.Constantes.HOME_OFFICE, 12000, util.Constantes.JORNADA_COMPLETA,
+					util.Constantes.JUNIOR, util.Constantes.EXP_NADA,util.Constantes.PRIMARIOS , empleado);
+			fail("Deberia haber lanzado una excepcion");
+		}
+		catch (ImposibleModificarTicketsException e) {
+			
+		}
+		catch (Exception e) {
+			fail("No se lanzo la excepcion correcta");
+		}
+	}
+	
+	@Test
+	public void testCrearTicketEmpleador() {
+		try {
+			Empleador empleador;
+			Ticket ticket;
+			
+			empleador = (Empleador)this.agencia.registroEmpleador("Juan123", "Juan123", "Juan", "2235698547",
+					util.Constantes.FISICA, util.Constantes.SALUD);
+			this.agencia.setEstadoContratacion(false);
+			this.agencia.crearTicketEmpleado(util.Constantes.HOME_OFFICE, 12000, util.Constantes.JORNADA_COMPLETA,
+					util.Constantes.JUNIOR, util.Constantes.EXP_NADA,util.Constantes.PRIMARIOS , empleador);
+			ticket = this.agencia.getEmpleadores().get(empleador.getUsserName()).getTicket();
+			Assert.assertNotNull("El ticket no fue creado o asignado", ticket);			
+			Assert.assertEquals("El ticket no se cambio",util.Constantes.HOME_OFFICE , ticket.getLocacion());
+			Assert.assertEquals("El ticket no se cambio", 12000, ticket.getRemuneracion());
+			Assert.assertEquals("El ticket no se cambio", util.Constantes.JORNADA_COMPLETA, ticket.getJornada());
+			Assert.assertEquals("El ticket no se cambio", util.Constantes.JUNIOR, ticket.getPuesto());
+			Assert.assertEquals("El ticket no se cambio", util.Constantes.EXP_NADA, ticket.getExperiencia());
+			Assert.assertEquals("El ticket no se cambio", util.Constantes.PRIMARIOS, ticket.getEstudios());
+		}
+		catch (Exception e) {
+			fail("No deberia haber lanzado una excepcion"+e);
+		}
+	}
+	
+	@Test
+	public void testGetContratacionEmpleador() {
+		
 	}
 }
