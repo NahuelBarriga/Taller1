@@ -27,10 +27,12 @@ public class TestPersistenciaSinDatos {
 		if (arch.exists()) {
 			arch.delete();
 		}
+		
 	}
 
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
+	//dejar en cero la agencia
 	}
 
 	@Test
