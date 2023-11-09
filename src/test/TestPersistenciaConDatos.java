@@ -20,7 +20,7 @@ public class TestPersistenciaConDatos {
 	public void setUp() throws Exception {
 		Agencia agencia = Agencia.getInstance();
 		agencia.registroEmpleado("PedroGomez123","19782022","Pedro","Gomez","2235464998",27);
-		agencia.setPersistencia();	//que vaaa?
+		agencia.);	//que vaaa?
 	}
 
 	@After
