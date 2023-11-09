@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="1.8.0_291" class="java.beans.XMLDecoder">
+ <object class="persistencia.AgenciaDTO" id="AgenciaDTO0">
+  <void property="empleados">
+   <void method="put">
+    <string>fggggfgfff</string>
+    <object class="modeloDatos.EmpleadoPretenso">
+     <void property="apellido">
+      <string>223545002</string>
+     </void>
+     <void property="edad">
+      <int>24</int>
+     </void>
+     <void property="password">
+      <string>123</string>
+     </void>
+     <void property="realName">
+      <string>f</string>
+     </void>
+     <void property="telefono">
+      <string>tttttt</string>
+     </void>
+     <void property="usserName">
+      <string>fggggfgfff</string>
+     </void>
+    </object>
+   </void>
+   <void method="put">
+    <string>gjgjgjgjjgg</string>
+    <object class="modeloDatos.EmpleadoPretenso">
+     <void property="apellido">
+      <string>223545002</string>
+     </void>
+     <void property="edad">
+      <int>24</int>
+     </void>
+     <void property="password">
+      <string>123</string>
+     </void>
+     <void property="realName">
+      <string>f</string>
+     </void>
+     <void property="telefono">
+      <string>tttttt</string>
+     </void>
+     <void property="usserName">
+      <string>gjgjgjgjjgg</string>
+     </void>
+    </object>
+   </void>
+  </void>
+  <void property="limiteSuperior">
+   <int>2000</int>
+  </void>
+ </object>
+</java>
