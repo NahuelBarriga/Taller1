@@ -20,6 +20,7 @@ import modeloDatos.Empleador;
 import modeloDatos.Ticket;
 import modeloNegocio.Agencia;
 
+//Escenario de Agencia vacia
 public class TestAgenciaVacia {
 
 	Agencia agencia;
