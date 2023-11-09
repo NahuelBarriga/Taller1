@@ -15,15 +15,16 @@ import org.junit.Test;
 import controlador.Controlador;
 import util.Constantes;
 import vista.Ventana;
+import util.Mensajes;
 
 //Esta clase verifica que los botones se habiliten y deshabiliten cuando se ingresa o se borra el texto en los diferentes JTextField.
 
-public class GuiTestEnabledDisabled {
+public class TestGuiEnabledDisabledLogIn {
 
 	Robot robot; 
 	Controlador controlador;
 	
-	public GuiTestEnabledDisabled() {
+	public TestGuiEnabledDisabledLogIn() {
 		try {
 			robot = new Robot();
 		}catch (AWTException e) {}
@@ -91,7 +92,7 @@ public class GuiTestEnabledDisabled {
 		Assert.assertFalse("El boton de login deberia estar deshabilitado", login.isEnabled());
 	}
 	
-	//PANEL REGISTRO
+//PANEL REGISTRO
 	
 	//para el EMPLEADOR
 	@Test
@@ -209,4 +210,141 @@ public class GuiTestEnabledDisabled {
 			
 			Assert.assertTrue("El boton de registrar deberia estar habilitado", registrar.isEnabled());
 		}
+
+
+
+
+///PANEL CLIENTE
+		
+		@Test
+		public void testConfirmarNuevoTicketDeshabilitado1() {
+			robot.delay(TestUtils.getDelay());
+			
+			Ventana ventana = (Ventana) controlador.getVista();
+			
+			JRadioButton cerrarSesion = (JRadioButton) TestUtils.getComponentForName(ventana, Constantes.CERRARSESION);
+			JRadioButton nuevoTicket = (JRadioButton) TestUtils.getComponentForName(ventana, Constantes.NUEVOTICKET);
+			JRadioButton confNuevoTicket = (JRadioButton) TestUtils.getComponentForName(ventana, Constantes.CONFIRMARNUEVOTICKET);
+			JRadioButton seleccionarCandidato = (JRadioButton) TestUtils.getComponentForName(ventana, Constantes.SELECCIONAR_CANDIDATO);
+			JRadioButton textAreaResult = (JRadioButton) TestUtils.getComponentForName(ventana, Constantes.TEXT_AREA_RESULTADOS);
+			JRadioButton listaCandidatos = (JRadioButton) TestUtils.getComponentForName(ventana, Constantes.LISTA_CANDIDATOS);
+			JRadioButton remuneracion = (JRadioButton) TestUtils.getComponentForName(ventana, Constantes.TEXTFIELD_REMUNERACION);
+
+			TestUtils.clickComponent(nuevoTicket,robot);
+			TestUtils.clickComponent(remuneracion, robot);
+			TestUtils.tipeaTexto("-20000", robot);
+			
+			Assert.assertFalse("El boton de ACEPTAR deberia estar deshabilitado", confNuevoTicket.isEnabled());
+			
+		}
+		
+		
+		public void testConfirmarNuevoTicketDeshabilitado2() {
+			robot.delay(TestUtils.getDelay());
+			
+			Ventana ventana = (Ventana) controlador.getVista();
+			
+			JRadioButton nuevoTicket = (JRadioButton) TestUtils.getComponentForName(ventana, Constantes.NUEVOTICKET);
+			JRadioButton confNuevoTicket = (JRadioButton) TestUtils.getComponentForName(ventana, Constantes.CONFIRMARNUEVOTICKET);
+			JRadioButton remuneracion = (JRadioButton) TestUtils.getComponentForName(ventana, Constantes.TEXTFIELD_REMUNERACION);
+
+			TestUtils.clickComponent(nuevoTicket,robot);
+			TestUtils.clickComponent(remuneracion, robot);
+			TestUtils.tipeaTexto("", robot);
+			
+			Assert.assertFalse("El boton de ACEPTAR deberia estar deshabilitado", confNuevoTicket.isEnabled());
+			
+		}
+		
+		@Test
+		public void testConfirmarNuevoTicketHabilitado() {
+			robot.delay(TestUtils.getDelay());
+			
+			Ventana ventana = (Ventana) controlador.getVista();
+			
+			JRadioButton nuevoTicket = (JRadioButton) TestUtils.getComponentForName(ventana, Constantes.NUEVOTICKET);
+			JRadioButton confNuevoTicket = (JRadioButton) TestUtils.getComponentForName(ventana, Constantes.CONFIRMARNUEVOTICKET);
+			JRadioButton remuneracion = (JRadioButton) TestUtils.getComponentForName(ventana, Constantes.TEXTFIELD_REMUNERACION);
+
+			TestUtils.clickComponent(nuevoTicket,robot);
+			TestUtils.clickComponent(remuneracion, robot);
+			TestUtils.tipeaTexto("20000", robot);
+			TestUtils.clickComponent(confNuevoTicket,robot);
+			
+			Assert.assertTrue("El boton de ACEPTAR deberia estar habilitado", confNuevoTicket.isEnabled());
+			
+		}
+		
+		
+		@Test
+		public void testNuevoTicketDeshabilitado() {
+			robot.delay(TestUtils.getDelay());
+			
+			Ventana ventana = (Ventana) controlador.getVista();
+			
+			JRadioButton nuevoTicket = (JRadioButton) TestUtils.getComponentForName(ventana, Constantes.NUEVOTICKET);
+			
+			TestUtils.clickComponent(nuevoTicket,robot);
+			
+			Assert.assertFalse("El boton de NuevoTicket deberia estar deshabilitado", nuevoTicket.isEnabled());
+			
+		}
+		
+		@Test
+		public void testNuevoTicketHabilitado() {
+			robot.delay(TestUtils.getDelay());
+			
+			Ventana ventana = (Ventana) controlador.getVista();
+			
+			JRadioButton nuevoTicket = (JRadioButton) TestUtils.getComponentForName(ventana, Constantes.NUEVOTICKET);
+			JRadioButton confNuevoTicket = (JRadioButton) TestUtils.getComponentForName(ventana, Constantes.CONFIRMARNUEVOTICKET);
+			JRadioButton remuneracion = (JRadioButton) TestUtils.getComponentForName(ventana, Constantes.TEXTFIELD_REMUNERACION);
+
+			TestUtils.clickComponent(nuevoTicket,robot);
+			TestUtils.clickComponent(remuneracion, robot);
+			TestUtils.tipeaTexto("20000", robot);
+			TestUtils.clickComponent(confNuevoTicket,robot);
+			
+			Assert.assertTrue("El boton de NuevoTicket deberia estar Habilitado", nuevoTicket.isEnabled());
+			
+		}
+		
+		@Test
+		public void testEliminarTicketDeshabilitado() {
+			robot.delay(TestUtils.getDelay());
+			
+			Ventana ventana = (Ventana) controlador.getVista();
+			
+			JRadioButton textAreaTicket = (JRadioButton) TestUtils.getComponentForName(ventana, Constantes.TEXT_AREA_TICKET);
+			JRadioButton eliminarTicket = (JRadioButton) TestUtils.getComponentForName(ventana, Constantes.ELIMINAR_TICKET);
+			
+			
+			Assert.assertEquals("El textField seberia ser Sin Ticket Creado", textAreaTicket, Mensajes.SIN_TICKET.getValor());
+			Assert.assertFalse("El boton de ELIMINAR TICKET  deberia estar deshabilitado", eliminarTicket.isEnabled());
+			
+		}
+		
+		
+		@Test
+		public void testEliminarTicketHabilitado() {
+			robot.delay(TestUtils.getDelay());
+			
+			Ventana ventana = (Ventana) controlador.getVista();
+			
+			JRadioButton textAreaTicket = (JRadioButton) TestUtils.getComponentForName(ventana, Constantes.TEXT_AREA_TICKET);
+			JRadioButton eliminarTicket = (JRadioButton) TestUtils.getComponentForName(ventana, Constantes.ELIMINAR_TICKET);
+			JRadioButton nuevoTicket = (JRadioButton) TestUtils.getComponentForName(ventana, Constantes.NUEVOTICKET);
+			JRadioButton confNuevoTicket = (JRadioButton) TestUtils.getComponentForName(ventana, Constantes.CONFIRMARNUEVOTICKET);
+			JRadioButton remuneracion = (JRadioButton) TestUtils.getComponentForName(ventana, Constantes.TEXTFIELD_REMUNERACION);
+
+			TestUtils.clickComponent(nuevoTicket,robot);
+			TestUtils.clickComponent(remuneracion, robot);
+			TestUtils.tipeaTexto("20000", robot);
+			TestUtils.clickComponent(confNuevoTicket,robot);
+			
+			Assert.assertTrue("El boton de ELIMINAR TICKET  deberia estar habilitado", eliminarTicket.isEnabled());
+			
+		}
+
 }
+		
