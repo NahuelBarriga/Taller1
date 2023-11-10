@@ -5,7 +5,9 @@ import static org.junit.Assert.*;
 import java.awt.AWTException;
 import java.awt.Robot;
 
+import javax.swing.JButton;
 import javax.swing.JRadioButton;
+import javax.swing.JTextField;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -15,6 +17,7 @@ import org.junit.Test;
 import controlador.Controlador;
 import util.Constantes;
 import vista.Ventana;
+import vista.PanelAdmin;
 
 public class TestGuiEnabledDisabledAdmin {
 
@@ -31,6 +34,8 @@ public class TestGuiEnabledDisabledAdmin {
     public void setUp() throws Exception
     {
         controlador = new Controlador();
+        Ventana ventana = (Ventana) controlador.getVista();
+        ventana.setContentPane(new PanelAdmin(controlador));
     }
 	
 	@After
@@ -47,8 +52,9 @@ public class TestGuiEnabledDisabledAdmin {
 		
 		Ventana ventana = (Ventana) controlador.getVista();
 		
-		JRadioButton textoInferior = (JRadioButton) TestUtils.getComponentForName(ventana, Constantes.TEXTO_INFERIOR);
-		JRadioButton modValores = (JRadioButton) TestUtils.getComponentForName(ventana, Constantes.MODIFICAR_VALORES);
+		JTextField textoInferior = (JTextField) TestUtils.getComponentForName(ventana, Constantes.TEXTO_INFERIOR);
+
+		JButton modValores = (JButton) TestUtils.getComponentForName(ventana, Constantes.MODIFICAR_VALORES);
 
 		TestUtils.clickComponent(textoInferior,robot);
 		TestUtils.tipeaTexto("20000", robot);
@@ -62,8 +68,8 @@ public class TestGuiEnabledDisabledAdmin {
 		
 		Ventana ventana = (Ventana) controlador.getVista();
 		
-		JRadioButton textoSuperior = (JRadioButton) TestUtils.getComponentForName(ventana, Constantes.TEXTO_SUPERIOR);
-		JRadioButton modValores = (JRadioButton) TestUtils.getComponentForName(ventana, Constantes.MODIFICAR_VALORES);
+		JTextField textoSuperior = (JTextField) TestUtils.getComponentForName(ventana, Constantes.TEXTO_SUPERIOR);
+		JButton modValores = (JButton) TestUtils.getComponentForName(ventana, Constantes.MODIFICAR_VALORES);
 
 		TestUtils.clickComponent(textoSuperior,robot);
 		TestUtils.tipeaTexto("20000", robot);
@@ -76,10 +82,10 @@ public class TestGuiEnabledDisabledAdmin {
 		robot.delay(TestUtils.getDelay());
 		
 		Ventana ventana = (Ventana) controlador.getVista();
-		
-		JRadioButton textoInferior = (JRadioButton) TestUtils.getComponentForName(ventana, Constantes.TEXTO_INFERIOR);
-		JRadioButton textoSuperior = (JRadioButton) TestUtils.getComponentForName(ventana, Constantes.TEXTO_SUPERIOR);
-		JRadioButton modValores = (JRadioButton) TestUtils.getComponentForName(ventana, Constantes.MODIFICAR_VALORES);
+
+		JTextField textoInferior = (JTextField) TestUtils.getComponentForName(ventana, Constantes.TEXTO_INFERIOR);
+		JTextField textoSuperior = (JTextField) TestUtils.getComponentForName(ventana, Constantes.TEXTO_SUPERIOR);		
+		JButton modValores = (JButton) TestUtils.getComponentForName(ventana, Constantes.MODIFICAR_VALORES);
 
 		TestUtils.clickComponent(textoInferior,robot);
 		TestUtils.tipeaTexto("-200", robot);
@@ -95,9 +101,9 @@ public class TestGuiEnabledDisabledAdmin {
 		
 		Ventana ventana = (Ventana) controlador.getVista();
 		
-		JRadioButton textoInferior = (JRadioButton) TestUtils.getComponentForName(ventana, Constantes.TEXTO_INFERIOR);
-		JRadioButton textoSuperior = (JRadioButton) TestUtils.getComponentForName(ventana, Constantes.TEXTO_SUPERIOR);
-		JRadioButton modValores = (JRadioButton) TestUtils.getComponentForName(ventana, Constantes.MODIFICAR_VALORES);
+		JTextField textoInferior = (JTextField) TestUtils.getComponentForName(ventana, Constantes.TEXTO_INFERIOR);
+		JTextField textoSuperior = (JTextField) TestUtils.getComponentForName(ventana, Constantes.TEXTO_SUPERIOR);
+		JButton modValores = (JButton) TestUtils.getComponentForName(ventana, Constantes.MODIFICAR_VALORES);
 
 		TestUtils.clickComponent(textoInferior,robot);
 		TestUtils.tipeaTexto("200", robot);
@@ -112,9 +118,9 @@ public class TestGuiEnabledDisabledAdmin {
 		
 		Ventana ventana = (Ventana) controlador.getVista();
 		
-		JRadioButton textoInferior = (JRadioButton) TestUtils.getComponentForName(ventana, Constantes.TEXTO_INFERIOR);
-		JRadioButton textoSuperior = (JRadioButton) TestUtils.getComponentForName(ventana, Constantes.TEXTO_SUPERIOR);
-		JRadioButton modValores = (JRadioButton) TestUtils.getComponentForName(ventana, Constantes.MODIFICAR_VALORES);
+		JTextField textoInferior = (JTextField) TestUtils.getComponentForName(ventana, Constantes.TEXTO_INFERIOR);
+		JTextField textoSuperior = (JTextField) TestUtils.getComponentForName(ventana, Constantes.TEXTO_SUPERIOR);
+		JButton modValores = (JButton) TestUtils.getComponentForName(ventana, Constantes.MODIFICAR_VALORES);
 
 		TestUtils.clickComponent(textoInferior,robot);
 		TestUtils.tipeaTexto("-200", robot);
@@ -129,9 +135,9 @@ public class TestGuiEnabledDisabledAdmin {
 		
 		Ventana ventana = (Ventana) controlador.getVista();
 		
-		JRadioButton textoInferior = (JRadioButton) TestUtils.getComponentForName(ventana, Constantes.TEXTO_INFERIOR);
-		JRadioButton textoSuperior = (JRadioButton) TestUtils.getComponentForName(ventana, Constantes.TEXTO_SUPERIOR);
-		JRadioButton modValores = (JRadioButton) TestUtils.getComponentForName(ventana, Constantes.MODIFICAR_VALORES);
+		JTextField textoInferior = (JTextField) TestUtils.getComponentForName(ventana, Constantes.TEXTO_INFERIOR);
+		JTextField textoSuperior = (JTextField) TestUtils.getComponentForName(ventana, Constantes.TEXTO_SUPERIOR);		
+		JButton modValores = (JButton) TestUtils.getComponentForName(ventana, Constantes.MODIFICAR_VALORES);
 
 		TestUtils.clickComponent(textoInferior,robot);
 		TestUtils.tipeaTexto("40000", robot);
@@ -146,9 +152,9 @@ public class TestGuiEnabledDisabledAdmin {
 		
 		Ventana ventana = (Ventana) controlador.getVista();
 		
-		JRadioButton textoInferior = (JRadioButton) TestUtils.getComponentForName(ventana, Constantes.TEXTO_INFERIOR);
-		JRadioButton textoSuperior = (JRadioButton) TestUtils.getComponentForName(ventana, Constantes.TEXTO_SUPERIOR);
-		JRadioButton modValores = (JRadioButton) TestUtils.getComponentForName(ventana, Constantes.MODIFICAR_VALORES);
+		JTextField textoInferior = (JTextField) TestUtils.getComponentForName(ventana, Constantes.TEXTO_INFERIOR);
+		JTextField textoSuperior = (JTextField) TestUtils.getComponentForName(ventana, Constantes.TEXTO_SUPERIOR);
+		JButton modValores = (JButton) TestUtils.getComponentForName(ventana, Constantes.MODIFICAR_VALORES);
 
 		TestUtils.clickComponent(textoInferior,robot);
 		TestUtils.tipeaTexto("20000", robot);

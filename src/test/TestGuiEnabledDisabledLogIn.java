@@ -15,7 +15,7 @@ import org.junit.Test;
 import controlador.Controlador;
 import util.Constantes;
 import vista.Ventana;
-
+import vista.PanelLogin;
 //Esta clase verifica que los botones se habiliten y deshabiliten cuando se ingresa o se borra el texto en los diferentes JTextField.
 
 public class TestGuiEnabledDisabledLogIn {
@@ -33,6 +33,8 @@ public class TestGuiEnabledDisabledLogIn {
     public void setUp() throws Exception
     {
         controlador = new Controlador();
+        Ventana ventana = (Ventana) controlador.getVista();
+        ventana.setContentPane(new PanelLogin(controlador));
     }
 	
 	@After

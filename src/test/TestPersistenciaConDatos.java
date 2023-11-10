@@ -19,8 +19,8 @@ public class TestPersistenciaConDatos {
 	@Before
 	public void setUp() throws Exception {
 		Agencia agencia = Agencia.getInstance();
-		agencia.registroEmpleado("PedroGomez123","19782022","Pedro","Gomez","2235464998",27);
-		agencia.);	//que vaaa?
+		Cliente empleado = agencia.registroEmpleado("PedroGomez123","19782022","Pedro","Gomez","2235464998",27);
+		agencia.crearTicketEmpleado("Presencial", 20000, "Carga Media", "Junior", "Nada", "Terciarios",empleado);
 	}
 
 	@After

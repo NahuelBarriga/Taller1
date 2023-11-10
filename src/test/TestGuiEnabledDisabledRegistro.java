@@ -1,4 +1,4 @@
-package test;
+	package test;
 
 import java.awt.AWTException;
 import java.awt.Robot;
@@ -14,6 +14,7 @@ import org.junit.Test;
 
 import controlador.Controlador;
 import util.Constantes;
+import vista.PanelRegistro;
 import vista.Ventana;
 
 public class TestGuiEnabledDisabledRegistro {
@@ -31,6 +32,9 @@ public class TestGuiEnabledDisabledRegistro {
     public void setUp() throws Exception
     {
         controlador = new Controlador();
+        Ventana ventana = (Ventana) controlador.getVista();
+        
+        ventana.setContentPane(new PanelRegistro(controlador));
     }
 	
 	@After
@@ -48,7 +52,6 @@ public class TestGuiEnabledDisabledRegistro {
 			
 			Ventana ventana = (Ventana) controlador.getVista();
 
-			JButton registrar = (JButton) TestUtils.getComponentForName(ventana, Constantes.REGISTRAR);
 			
 			JTextField nombreUsuario = (JTextField) TestUtils.getComponentForName(ventana, Constantes.REG_USSER_NAME);
 			JTextField password = (JTextField) TestUtils.getComponentForName(ventana, Constantes.REG_PASSWORD);
@@ -59,9 +62,6 @@ public class TestGuiEnabledDisabledRegistro {
 			JRadioButton empleador = (JRadioButton) TestUtils.getComponentForName(ventana, Constantes.EMPLEADOR);
 			
 			JButton regRegistrar = (JButton) TestUtils.getComponentForName(ventana, Constantes.REG_BUTTON_REGISTRAR);
-			
-			
-			TestUtils.clickComponent(registrar, robot);
 			
 			TestUtils.clickComponent(nombreUsuario, robot);
 			TestUtils.tipeaTexto("Pepe123", robot);
@@ -84,18 +84,14 @@ public class TestGuiEnabledDisabledRegistro {
 			robot.delay(TestUtils.getDelay());
 			
 			Ventana ventana = (Ventana) controlador.getVista();
-	
-			JButton registrar = (JButton) TestUtils.getComponentForName(ventana, Constantes.REGISTRAR);
-			
+				
 			JTextField nombreUsuario = (JTextField) TestUtils.getComponentForName(ventana, Constantes.REG_USSER_NAME);
 			
 			JRadioButton empleador = (JRadioButton) TestUtils.getComponentForName(ventana, Constantes.EMPLEADOR);
 			
 			JButton regRegistrar = (JButton) TestUtils.getComponentForName(ventana, Constantes.REG_BUTTON_REGISTRAR);
 			
-			
-			TestUtils.clickComponent(registrar, robot);
-			
+						
 			TestUtils.clickComponent(nombreUsuario, robot);
 			TestUtils.tipeaTexto("234Eme", robot);
 						
@@ -109,24 +105,20 @@ public class TestGuiEnabledDisabledRegistro {
 			robot.delay(TestUtils.getDelay());
 			
 			Ventana ventana = (Ventana) controlador.getVista();
-	
-			JButton registrar = (JButton) TestUtils.getComponentForName(ventana, Constantes.REGISTRAR);
-			
+				
 			JTextField password = (JTextField) TestUtils.getComponentForName(ventana, Constantes.REG_PASSWORD);
 			
 			JRadioButton empleador = (JRadioButton) TestUtils.getComponentForName(ventana, Constantes.EMPLEADOR);
 			
 			JButton regRegistrar = (JButton) TestUtils.getComponentForName(ventana, Constantes.REG_BUTTON_REGISTRAR);
 			
-			
-			TestUtils.clickComponent(registrar, robot);
-			
+						
 			TestUtils.clickComponent(password, robot);
 			TestUtils.tipeaTexto("Lfpw03f", robot);
 						
 			TestUtils.clickComponent(empleador, robot);
 			
-			Assert.assertFalse("El boton de registrar deberia estar habilitado", regRegistrar.isEnabled());
+			Assert.assertFalse("El boton de registrar no deberia estar habilitado", regRegistrar.isEnabled());
 		}
 		
 		@Test
@@ -134,24 +126,20 @@ public class TestGuiEnabledDisabledRegistro {
 			robot.delay(TestUtils.getDelay());
 			
 			Ventana ventana = (Ventana) controlador.getVista();
-	
-			JButton registrar = (JButton) TestUtils.getComponentForName(ventana, Constantes.REGISTRAR);
-			
+				
 			JTextField confPassword = (JTextField) TestUtils.getComponentForName(ventana, Constantes.REG_CONFIRM_PASSWORD);
 			
 			JRadioButton empleador = (JRadioButton) TestUtils.getComponentForName(ventana, Constantes.EMPLEADOR);
 			
 			JButton regRegistrar = (JButton) TestUtils.getComponentForName(ventana, Constantes.REG_BUTTON_REGISTRAR);
 			
-			
-			TestUtils.clickComponent(registrar, robot);
-			
+						
 			TestUtils.clickComponent(confPassword, robot);
 			TestUtils.tipeaTexto("Lfpw03f", robot);
 						
 			TestUtils.clickComponent(empleador, robot);
 			
-			Assert.assertFalse("El boton de registrar deberia estar habilitado", regRegistrar.isEnabled());
+			Assert.assertFalse("El boton de registrar no deberia estar habilitado", regRegistrar.isEnabled());
 		}
 		
 		@Test
@@ -159,24 +147,20 @@ public class TestGuiEnabledDisabledRegistro {
 			robot.delay(TestUtils.getDelay());
 			
 			Ventana ventana = (Ventana) controlador.getVista();
-			
-			JButton registrar = (JButton) TestUtils.getComponentForName(ventana, Constantes.REGISTRAR);
-				
+							
 			JTextField nombreReal = (JTextField) TestUtils.getComponentForName(ventana, Constantes.REG_REAL_NAME);
 			
 			JRadioButton empleador = (JRadioButton) TestUtils.getComponentForName(ventana, Constantes.EMPLEADOR);
 			
 			JButton regRegistrar = (JButton) TestUtils.getComponentForName(ventana, Constantes.REG_BUTTON_REGISTRAR);
 			
-			
-			TestUtils.clickComponent(registrar, robot);
-			
+						
 			TestUtils.clickComponent(nombreReal, robot);
 			TestUtils.tipeaTexto("Clara", robot);
 			
 			TestUtils.clickComponent(empleador, robot);
 			
-			Assert.assertFalse("El boton de registrar deberia estar deshabilitado", registrar.isEnabled());
+			Assert.assertFalse("El boton de registrar no deberia estar deshabilitado", regRegistrar.isEnabled());
 		}
 		
 		@Test
@@ -189,14 +173,14 @@ public class TestGuiEnabledDisabledRegistro {
 			
 			JTextField telefono = (JTextField) TestUtils.getComponentForName(ventana, Constantes.REG_TELEFONO);
 			
-			JButton registrar = (JButton) TestUtils.getComponentForName(ventana, Constantes.REG_BUTTON_REGISTRAR);
+			JButton regRegistrar = (JButton) TestUtils.getComponentForName(ventana, Constantes.REG_BUTTON_REGISTRAR);
 			
 			TestUtils.clickComponent(empleador, robot);
 			
 			TestUtils.clickComponent(telefono, robot);
 			TestUtils.tipeaTexto("1122334456", robot);
 			
-			Assert.assertFalse("El boton de registrar deberia estar deshabilitado", registrar.isEnabled());
+			Assert.assertFalse("El boton de registrar no deberia estar deshabilitado", regRegistrar.isEnabled());
 		}
 
 		@Test
@@ -205,7 +189,6 @@ public class TestGuiEnabledDisabledRegistro {
 			
 			Ventana ventana = (Ventana) controlador.getVista();
 
-			JButton registrar = (JButton) TestUtils.getComponentForName(ventana, Constantes.REGISTRAR);
 			
 			JTextField password = (JTextField) TestUtils.getComponentForName(ventana, Constantes.REG_PASSWORD);
 			JTextField confPassword = (JTextField) TestUtils.getComponentForName(ventana, Constantes.REG_CONFIRM_PASSWORD);
@@ -216,9 +199,7 @@ public class TestGuiEnabledDisabledRegistro {
 			
 			JButton regRegistrar = (JButton) TestUtils.getComponentForName(ventana, Constantes.REG_BUTTON_REGISTRAR);
 			
-			
-			TestUtils.clickComponent(registrar, robot);
-			
+						
 			TestUtils.clickComponent(password, robot);
 			TestUtils.tipeaTexto("123456", robot);
 			TestUtils.clickComponent(confPassword, robot);
@@ -230,7 +211,7 @@ public class TestGuiEnabledDisabledRegistro {
 			
 			TestUtils.clickComponent(empleador, robot);
 			
-			Assert.assertFalse("El boton de registrar deberia estar habilitado", regRegistrar.isEnabled());
+			Assert.assertFalse("El boton de registrar no deberia estar habilitado", regRegistrar.isEnabled());
 		}
 		
 		@Test
@@ -238,8 +219,6 @@ public class TestGuiEnabledDisabledRegistro {
 			robot.delay(TestUtils.getDelay());
 			
 			Ventana ventana = (Ventana) controlador.getVista();
-
-			JButton registrar = (JButton) TestUtils.getComponentForName(ventana, Constantes.REGISTRAR);
 			
 			JTextField nombreUsuario = (JTextField) TestUtils.getComponentForName(ventana, Constantes.REG_USSER_NAME);
 			JTextField confPassword = (JTextField) TestUtils.getComponentForName(ventana, Constantes.REG_CONFIRM_PASSWORD);
@@ -250,9 +229,7 @@ public class TestGuiEnabledDisabledRegistro {
 			
 			JButton regRegistrar = (JButton) TestUtils.getComponentForName(ventana, Constantes.REG_BUTTON_REGISTRAR);
 			
-			
-			TestUtils.clickComponent(registrar, robot);
-			
+						
 			TestUtils.clickComponent(nombreUsuario, robot);
 			TestUtils.tipeaTexto("Marie#4", robot);
 			TestUtils.clickComponent(confPassword, robot);
@@ -264,7 +241,7 @@ public class TestGuiEnabledDisabledRegistro {
 			
 			TestUtils.clickComponent(empleador, robot);
 			
-			Assert.assertFalse("El boton de registrar deberia estar habilitado", regRegistrar.isEnabled());
+			Assert.assertFalse("El boton de registrar no deberia estar habilitado", regRegistrar.isEnabled());
 		}
 		
 		@Test
@@ -272,8 +249,6 @@ public class TestGuiEnabledDisabledRegistro {
 			robot.delay(TestUtils.getDelay());
 			
 			Ventana ventana = (Ventana) controlador.getVista();
-
-			JButton registrar = (JButton) TestUtils.getComponentForName(ventana, Constantes.REGISTRAR);
 			
 			JTextField nombreUsuario = (JTextField) TestUtils.getComponentForName(ventana, Constantes.REG_USSER_NAME);
 			JTextField password = (JTextField) TestUtils.getComponentForName(ventana, Constantes.REG_PASSWORD);
@@ -284,9 +259,7 @@ public class TestGuiEnabledDisabledRegistro {
 			
 			JButton regRegistrar = (JButton) TestUtils.getComponentForName(ventana, Constantes.REG_BUTTON_REGISTRAR);
 			
-			
-			TestUtils.clickComponent(registrar, robot);
-			
+						
 			TestUtils.clickComponent(nombreUsuario, robot);
 			TestUtils.tipeaTexto("Lee", robot);
 			TestUtils.clickComponent(password, robot);
@@ -298,7 +271,7 @@ public class TestGuiEnabledDisabledRegistro {
 			
 			TestUtils.clickComponent(empleador, robot);
 			
-			Assert.assertFalse("El boton de registrar deberia estar habilitado", regRegistrar.isEnabled());
+			Assert.assertFalse("El boton de registrar no deberia estar habilitado", regRegistrar.isEnabled());
 		}
 		
 		@Test
@@ -306,8 +279,6 @@ public class TestGuiEnabledDisabledRegistro {
 			robot.delay(TestUtils.getDelay());
 			
 			Ventana ventana = (Ventana) controlador.getVista();
-
-			JButton registrar = (JButton) TestUtils.getComponentForName(ventana, Constantes.REGISTRAR);
 			
 			JTextField nombreUsuario = (JTextField) TestUtils.getComponentForName(ventana, Constantes.REG_USSER_NAME);
 			JTextField password = (JTextField) TestUtils.getComponentForName(ventana, Constantes.REG_PASSWORD);
@@ -318,11 +289,9 @@ public class TestGuiEnabledDisabledRegistro {
 			
 			JButton regRegistrar = (JButton) TestUtils.getComponentForName(ventana, Constantes.REG_BUTTON_REGISTRAR);
 			
-			
-			TestUtils.clickComponent(registrar, robot);
-			
+						
 			TestUtils.clickComponent(nombreUsuario, robot);
-			TestUtils.tipeaTexto("@Clee", robot);
+			TestUtils.tipeaTexto("Clee", robot);
 			TestUtils.clickComponent(password, robot);
 			TestUtils.tipeaTexto("L34Frg", robot);
 			TestUtils.clickComponent(confPassword, robot);
@@ -332,7 +301,7 @@ public class TestGuiEnabledDisabledRegistro {
 			
 			TestUtils.clickComponent(empleador, robot);
 			
-			Assert.assertFalse("El boton de registrar deberia estar habilitado", regRegistrar.isEnabled());
+			Assert.assertFalse("El boton de registrar no deberia estar habilitado", regRegistrar.isEnabled());
 		}
 		
 		@Test
@@ -340,8 +309,6 @@ public class TestGuiEnabledDisabledRegistro {
 			robot.delay(TestUtils.getDelay());
 			
 			Ventana ventana = (Ventana) controlador.getVista();
-
-			JButton registrar = (JButton) TestUtils.getComponentForName(ventana, Constantes.REGISTRAR);
 			
 			JTextField nombreUsuario = (JTextField) TestUtils.getComponentForName(ventana, Constantes.REG_USSER_NAME);
 			JTextField password = (JTextField) TestUtils.getComponentForName(ventana, Constantes.REG_PASSWORD);
@@ -351,10 +318,7 @@ public class TestGuiEnabledDisabledRegistro {
 			JRadioButton empleador = (JRadioButton) TestUtils.getComponentForName(ventana, Constantes.EMPLEADOR);
 			
 			JButton regRegistrar = (JButton) TestUtils.getComponentForName(ventana, Constantes.REG_BUTTON_REGISTRAR);
-			
-			
-			TestUtils.clickComponent(registrar, robot);
-			
+						
 			TestUtils.clickComponent(nombreUsuario, robot);
 			TestUtils.tipeaTexto("Frans23!", robot);
 			TestUtils.clickComponent(password, robot);
@@ -367,7 +331,7 @@ public class TestGuiEnabledDisabledRegistro {
 			
 			TestUtils.clickComponent(empleador, robot);
 			
-			Assert.assertTrue("El boton de registrar deberia estar habilitado", regRegistrar.isEnabled());
+			Assert.assertTrue("El boton de registrar no deberia estar habilitado", regRegistrar.isEnabled());
 		}
 		
 		
@@ -379,8 +343,6 @@ public class TestGuiEnabledDisabledRegistro {
 				robot.delay(TestUtils.getDelay());
 				
 				Ventana ventana = (Ventana) controlador.getVista();
-
-				JButton registrar = (JButton) TestUtils.getComponentForName(ventana, Constantes.REGISTRAR);
 				
 				JTextField nombreUsuario = (JTextField) TestUtils.getComponentForName(ventana, Constantes.REG_USSER_NAME);
 				JTextField password = (JTextField) TestUtils.getComponentForName(ventana, Constantes.REG_PASSWORD);
@@ -394,15 +356,13 @@ public class TestGuiEnabledDisabledRegistro {
 				
 				JButton regRegistrar = (JButton) TestUtils.getComponentForName(ventana, Constantes.REG_BUTTON_REGISTRAR);
 				
-				
-				TestUtils.clickComponent(registrar, robot);
-				
+								
 				TestUtils.clickComponent(nombreUsuario, robot);
 				TestUtils.tipeaTexto("Viv", robot);
 				TestUtils.clickComponent(password, robot);
-				TestUtils.tipeaTexto("Viv@234", robot);
+				TestUtils.tipeaTexto("Viv234", robot);
 				TestUtils.clickComponent(confPassword, robot);
-				TestUtils.tipeaTexto("Viv@234", robot);
+				TestUtils.tipeaTexto("Viv234", robot);
 				TestUtils.clickComponent(nombreReal, robot);
 				TestUtils.tipeaTexto("Viviana", robot);
 				TestUtils.clickComponent(telefono, robot);
@@ -424,8 +384,6 @@ public class TestGuiEnabledDisabledRegistro {
 			robot.delay(TestUtils.getDelay());
 			
 			Ventana ventana = (Ventana) controlador.getVista();
-
-			JButton registrar = (JButton) TestUtils.getComponentForName(ventana, Constantes.REGISTRAR);
 			
 			JTextField apellido = (JTextField) TestUtils.getComponentForName(ventana, Constantes.REG_APELLIDO);
 			
@@ -433,15 +391,13 @@ public class TestGuiEnabledDisabledRegistro {
 			
 			JButton regRegistrar = (JButton) TestUtils.getComponentForName(ventana, Constantes.REG_BUTTON_REGISTRAR);
 			
-			
-			TestUtils.clickComponent(registrar, robot);
-			
+						
 			TestUtils.clickComponent(apellido, robot);
 			TestUtils.tipeaTexto("Bianz", robot);
 			
 			TestUtils.clickComponent(empleado, robot);
 			
-			Assert.assertFalse("El boton de registrar deberia estar habilitado", regRegistrar.isEnabled());
+			Assert.assertFalse("El boton de registrar no deberia estar habilitado", regRegistrar.isEnabled());
 		}
 		
 		@Test
@@ -449,8 +405,6 @@ public class TestGuiEnabledDisabledRegistro {
 			robot.delay(TestUtils.getDelay());
 			
 			Ventana ventana = (Ventana) controlador.getVista();
-
-			JButton registrar = (JButton) TestUtils.getComponentForName(ventana, Constantes.REGISTRAR);
 			
 			JTextField edad = (JTextField) TestUtils.getComponentForName(ventana, Constantes.REG_EDAD);
 			
@@ -458,15 +412,13 @@ public class TestGuiEnabledDisabledRegistro {
 			
 			JButton regRegistrar = (JButton) TestUtils.getComponentForName(ventana, Constantes.REG_BUTTON_REGISTRAR);
 			
-			
-			TestUtils.clickComponent(registrar, robot);
-			
+						
 			TestUtils.clickComponent(edad, robot);
 			TestUtils.tipeaTexto("21", robot);
 			
 			TestUtils.clickComponent(empleado, robot);
 			
-			Assert.assertFalse("El boton de registrar deberia estar habilitado", regRegistrar.isEnabled());
+			Assert.assertFalse("El boton de registrar no deberia estar habilitado", regRegistrar.isEnabled());
 		}
 		
 		@Test
@@ -474,8 +426,6 @@ public class TestGuiEnabledDisabledRegistro {
 			robot.delay(TestUtils.getDelay());
 			
 			Ventana ventana = (Ventana) controlador.getVista();
-
-			JButton registrar = (JButton) TestUtils.getComponentForName(ventana, Constantes.REGISTRAR);
 			
 			JTextField nombreUsuario = (JTextField) TestUtils.getComponentForName(ventana, Constantes.REG_USSER_NAME);
 			JTextField password = (JTextField) TestUtils.getComponentForName(ventana, Constantes.REG_PASSWORD);
@@ -488,9 +438,7 @@ public class TestGuiEnabledDisabledRegistro {
 			
 			JButton regRegistrar = (JButton) TestUtils.getComponentForName(ventana, Constantes.REG_BUTTON_REGISTRAR);
 			
-			
-			TestUtils.clickComponent(registrar, robot);
-			
+						
 			TestUtils.clickComponent(nombreUsuario, robot);
 			TestUtils.tipeaTexto("Mark14", robot);
 			TestUtils.clickComponent(password, robot);
@@ -506,7 +454,7 @@ public class TestGuiEnabledDisabledRegistro {
 			
 			TestUtils.clickComponent(empleado, robot);
 			
-			Assert.assertFalse("El boton de registrar deberia estar habilitado", regRegistrar.isEnabled());
+			Assert.assertFalse("El boton de registrar no deberia estar habilitado", regRegistrar.isEnabled());
 		}
 		
 		@Test
@@ -514,8 +462,6 @@ public class TestGuiEnabledDisabledRegistro {
 			robot.delay(TestUtils.getDelay());
 			
 			Ventana ventana = (Ventana) controlador.getVista();
-
-			JButton registrar = (JButton) TestUtils.getComponentForName(ventana, Constantes.REGISTRAR);
 			
 			JTextField nombreUsuario = (JTextField) TestUtils.getComponentForName(ventana, Constantes.REG_USSER_NAME);
 			JTextField password = (JTextField) TestUtils.getComponentForName(ventana, Constantes.REG_PASSWORD);
@@ -528,9 +474,7 @@ public class TestGuiEnabledDisabledRegistro {
 			
 			JButton regRegistrar = (JButton) TestUtils.getComponentForName(ventana, Constantes.REG_BUTTON_REGISTRAR);
 			
-			
-			TestUtils.clickComponent(registrar, robot);
-			
+						
 			TestUtils.clickComponent(nombreUsuario, robot);
 			TestUtils.tipeaTexto("Li2us3", robot);
 			TestUtils.clickComponent(password, robot);
@@ -546,7 +490,7 @@ public class TestGuiEnabledDisabledRegistro {
 			
 			TestUtils.clickComponent(empleado, robot);
 			
-			Assert.assertFalse("El boton de registrar deberia estar habilitado", regRegistrar.isEnabled());
+			Assert.assertFalse("El boton de registrar no deberia estar habilitado", regRegistrar.isEnabled());
 		}
 		
 

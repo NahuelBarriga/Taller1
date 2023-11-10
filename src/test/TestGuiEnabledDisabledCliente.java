@@ -14,8 +14,13 @@ import org.junit.Test;
 
 import controlador.Controlador;
 import util.Constantes;
+import vista.PanelLogin;
 import vista.Ventana;
 import util.Mensajes;
+import vista.PanelCliente;
+import modeloDatos.Cliente;
+import modeloDatos.EmpleadoPretenso;
+
 
 //Esta clase verifica que los botones se habiliten y deshabiliten cuando se ingresa o se borra el texto en los diferentes JTextField.
 
@@ -34,6 +39,8 @@ public class TestGuiEnabledDisabledCliente {
     public void setUp() throws Exception
     {
         controlador = new Controlador();
+        Ventana ventana = (Ventana) controlador.getVista();
+        ventana.setContentPane(new PanelCliente(cliente, controlador, , ep));
     }
 	
 	@After
