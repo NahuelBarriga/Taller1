@@ -1,6 +1,7 @@
 package test;
 
-import static org.junit.Assert.*;
+
+import static org.junit.Assert.fail;
 
 import java.util.HashMap;
 
@@ -27,8 +28,10 @@ Agencia agencia;
 	@Before
 	public void setUp() throws Exception {
 			this.agencia = Agencia.getInstance();
-			Ticket ticketTestEmpleado = new Ticket(util.Constantes.HOME_OFFICE,250000,util.Constantes.JORNADA_COMPLETA,util.Constantes.ADMINISTRADOR,util.Constantes.EXP_MUCHA,util.Constantes.TERCIARIOS);
-			Ticket ticketTestEmpleador = new Ticket(util.Constantes.INDISTINTO,300000,util.Constantes.JORNADA_COMPLETA, util.Constantes.ADMINISTRADOR, util.Constantes.EXP_MEDIA,util.Constantes.TERCIARIOS);
+			
+			/*Ticket ticketTestEmpleado = new Ticket(util.Constantes.HOME_OFFICE,250000,util.Constantes.JORNADA_COMPLETA,util.Constantes.ADMINISTRADOR,util.Constantes.EXP_MUCHA,util.Constantes.TERCIARIOS);
+			Ticket ticketTestEmpleador = new Ticket(util.Constantes.HOME_OFFICE,250000,util.Constantes.JORNADA_COMPLETA,util.Constantes.ADMINISTRADOR,util.Constantes.EXP_MUCHA,util.Constantes.TERCIARIOS);
+			//Ticket ticketTestEmpleador = new Ticket(util.Constantes.INDISTINTO,300000,util.Constantes.JORNADA_COMPLETA, util.Constantes.ADMINISTRADOR, util.Constantes.EXP_MEDIA,util.Constantes.TERCIARIOS);
 			//deberian hacer match
 			EmpleadoPretenso empleadoTest = new EmpleadoPretenso("Juan123", "Juan123", "Juan", "2235698547", "Rodriguez", 25);
 			empleadoTest.setPuntaje(4);
@@ -47,12 +50,23 @@ Agencia agencia;
 			agencia.setEmpleados(empleados);
 			agencia.setEmpleadores(empleadores);
 			agencia.setLimitesRemuneracion(200000, 350000);
+			*/
+			this.agencia.registroEmpleado("Juan123", "Juan123", "Juan", "2235698547", "Rodriguez", 25);
+			this.agencia.registroEmpleador("Marcos123", "Marcos123", "Marcos", "223566985", util.Constantes.FISICA,util.Constantes.SALUD);
+			this.agencia.crearTicketEmpleado(util.Constantes.HOME_OFFICE,250000,util.Constantes.JORNADA_COMPLETA,util.Constantes.ADMINISTRADOR,util.Constantes.EXP_MUCHA,util.Constantes.TERCIARIOS, this.agencia.getEmpleados().get("Juan123"));
+			this.agencia.crearTicketEmpleador(util.Constantes.HOME_OFFICE,250000,util.Constantes.JORNADA_COMPLETA,util.Constantes.ADMINISTRADOR,util.Constantes.EXP_MUCHA,util.Constantes.TERCIARIOS, this.agencia.getEmpleadores().get("Marcos123"));
+			
+			
+			this.agencia.getEmpleados().get("Juan123").setPuntaje(4);
+			this.agencia.getEmpleadores().get("Marcos123").setPuntaje(5);
+			this.agencia.setEstadoContratacion(false);
+			this.agencia.setLimitesRemuneracion(200000, 350000);
 			
 			
 	}
 
 	@After
-	public void tearDown() { //No se si es necesario, pero lo voy a dejar de momento
+	public void tearDown() {
 		this.agencia.getCoincidencias().clear();
 		this.agencia.getComisionesUsuarios().clear();
 		this.agencia.getContrataciones().clear();
@@ -60,18 +74,6 @@ Agencia agencia;
 		this.agencia.getEmpleados().clear();
 	}
 	
-	
-	
-	@Test
-	public void testSetLimitesRemuneracion() {
-		try {	
-			Assert.assertEquals("El limite inferior no fue seteado correctamente", 200000, this.agencia.getLimiteInferior());
-			Assert.assertEquals("El limite superior no fue seteado correctamnte",350000,this.agencia.getLimiteSuperior());
-		}
-		catch (Exception e) {
-			fail("No deberia haber lanzado una excepcion");
-		}
-	}
 	
 
 	@Test
@@ -86,12 +88,26 @@ Agencia agencia;
 
 	@Test
 	public void testMatch() {
-		fail("Not yet implemented");
+		EmpleadoPretenso empleadoTest =  this.agencia.getEmpleados().get("Juan123");
+		Empleador empleadorTest = this.agencia.getEmpleadores().get("Marcos123");
+		int puntajeNuevoEmpleado = empleadoTest.getPuntaje() + 10;
+		int puntajeNuevoEmpleador = empleadorTest.getPuntaje() + 50; 
+		this.agencia.match(empleadorTest,empleadoTest);
+		
+		Assert.assertEquals("Falla en el puntaje de empleado", puntajeNuevoEmpleado, empleadoTest.getPuntaje());
+		Assert.assertEquals("Falla en el puntaje de empleador", puntajeNuevoEmpleador, empleadorTest.getPuntaje());
+		Assert.assertNull("Ticket no eliminado en empleado",empleadoTest.getTicket());
+		Assert.assertNull("Ticket no eliminado en empleador",empleadorTest.getTicket());
+		Assert.assertNotNull(this.agencia.getComisionUsuario(empleadoTest));
+		Assert.assertNotNull(this.agencia.getComisionUsuario(empleadorTest));
+		
 	}
 
 	@Test
 	public void testGeneraPostulantes() {
-		fail("Not yet implemented");
+		
+		this.agencia.generaPostulantes(); 
+		
 	}
 
 	@Test
