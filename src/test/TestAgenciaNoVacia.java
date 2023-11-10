@@ -49,7 +49,6 @@ Agencia agencia;
 			agencia.setLimitesRemuneracion(200000, 350000);
 			
 			
-			
 	}
 
 	@After
@@ -65,7 +64,7 @@ Agencia agencia;
 	
 	@Test
 	public void testSetLimitesRemuneracion() {
-		try {
+		try {	
 			Assert.assertEquals("El limite inferior no fue seteado correctamente", 200000, this.agencia.getLimiteInferior());
 			Assert.assertEquals("El limite superior no fue seteado correctamnte",350000,this.agencia.getLimiteSuperior());
 		}
@@ -173,8 +172,7 @@ Agencia agencia;
 		catch(Exception e) {
 			//System.out.println(agencia.getEmpleadores());
 			//fail("No se lanzo la excepcion correcta");
-			fail(e.getMessage());
-			
+			fail(e.getMessage());		
 		}
 	}
 	/*
