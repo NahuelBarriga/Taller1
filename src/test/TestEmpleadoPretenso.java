@@ -10,6 +10,7 @@ import org.junit.Test;
 import modeloDatos.ClientePuntaje;
 import modeloDatos.EmpleadoPretenso;
 import modeloDatos.Empleador;
+import modeloDatos.Ticket;
 
 
 
@@ -55,4 +56,19 @@ public class TestEmpleadoPretenso {
 
 	}
 
+	//--------------TEST DE INTEGRACION--------------
+	@Test
+	public void testCalculaComision() {
+		EmpleadoPretenso empleado = new EmpleadoPretenso("Juan123", "Juan123", "Juan",
+				"2235698547", "Rodriguez", 25);
+		Ticket ticket= new Ticket(util.Constantes.PRESENCIAL, 1200, util.Constantes.JORNADA_MEDIA,
+				util.Constantes.JUNIOR, util.Constantes.EXP_NADA, util.Constantes.PRIMARIOS); 
+		double comision;
+		
+		empleado.setTicket(ticket);	
+		empleado.setPuntaje(20);
+		comision = empleado.calculaComision(ticket);
+		Assert.assertEquals("Fallo en el calculo de comision", 720, comision,0.1);
+				
+	}
 }
