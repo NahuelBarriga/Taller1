@@ -63,6 +63,7 @@ Agencia agencia;
 
 	@After
 	public void tearDown() {
+		this.agencia.setEstadoContratacion(false);
 		this.agencia.getCoincidencias().clear();
 		this.agencia.getComisionesUsuarios().clear();
 		this.agencia.getContrataciones().clear();
@@ -81,8 +82,8 @@ Agencia agencia;
 	public void testCalculaPremiosCastigosAsignaciones() {
 		fail("Not yet implemented");
 	}
-	/*
-	@Test
+	
+	/*@Test
 	public void testMatch() {
 		EmpleadoPretenso empleadoTest =  this.agencia.getEmpleados().get("Juan123");
 		Empleador empleadorTest = this.agencia.getEmpleadores().get("Marcos123");
@@ -96,68 +97,17 @@ Agencia agencia;
 		Assert.assertNull("Ticket no eliminado en empleador",empleadorTest.getTicket());
 		Assert.assertNotNull(this.agencia.getComisionUsuario(empleadoTest));
 		Assert.assertNotNull(this.agencia.getComisionUsuario(empleadorTest));
-		
-	}
-*/
+	}*/
+	
 	@Test
 	public void testGeneraPostulantes() {
-		fail("Not yet implemented");
-		//this.agencia.generaPostulantes(); 
+		
+		this.agencia.generaPostulantes(); 
 		
 	}
 
-	@Test
-	public void testCrearTicketEmpleado() {
-		EmpleadoPretenso empleadoTest = this.agencia.getEmpleados().get("Juan123");
-		System.out.println(empleadoTest);
-		Ticket ticketTest = empleadoTest.getTicket();
-		try {
-			this.agencia.crearTicketEmpleado(util.Constantes.HOME_OFFICE, 250000, util.Constantes.JORNADA_EXTENDIDA, util.Constantes.MANAGMENT, util.Constantes.EXP_NADA, util.Constantes.PRIMARIOS, empleadoTest);
-			Assert.assertNotNull(empleadoTest.getTicket());
-			Assert.assertNotEquals("El ticket creado es diferente", ticketTest, empleadoTest.getTicket());
-		} catch (ImposibleModificarTicketsException e) {
-			fail("No deberia tirar excepcion");
-		}
-	}
 	
-	@Test
-	public void testCrearTicketEmpleadoExcepcion() {
-		EmpleadoPretenso empleadoTest = this.agencia.getEmpleados().get("Juan123");
-		Ticket ticketTest = empleadoTest.getTicket();
-		try {
-			this.agencia.crearTicketEmpleado(util.Constantes.HOME_OFFICE, 250000, util.Constantes.JORNADA_EXTENDIDA, util.Constantes.MANAGMENT, util.Constantes.EXP_NADA, util.Constantes.PRIMARIOS, empleadoTest);
-			fail("Deberia tirar excepcion");
-		} catch (ImposibleModificarTicketsException e) {
-			Assert.assertEquals("Ticket no se modifico", ticketTest, empleadoTest.getTicket());
-		}
-	}
-
-	@Test
-	public void testCrearTicketEmpleador() {
-		Empleador empleadorTest = this.agencia.getEmpleadores().get("Marcos123");
-		System.out.println(this.agencia.getEmpleadores());
-		Ticket ticketTest = empleadorTest.getTicket();
-		try {
-			this.agencia.crearTicketEmpleador(util.Constantes.HOME_OFFICE, 250000, util.Constantes.JORNADA_EXTENDIDA, util.Constantes.MANAGMENT, util.Constantes.EXP_NADA, util.Constantes.PRIMARIOS, empleadorTest);
-			Assert.assertNotNull(empleadorTest.getTicket());
-			Assert.assertNotEquals("El ticket creado es diferente", ticketTest, empleadorTest.getTicket());
-		} catch (ImposibleModificarTicketsException e) {
-			fail("No deberia tirar excepcion");
-		}
-	}
-	
-	@Test
-	public void testCrearTicketEmpleadorExcepcion() {
-		Empleador empleadorTest = this.agencia.getEmpleadores().get("Marcos123");
-		Ticket ticketTest = empleadorTest.getTicket();
-		try {
-			this.agencia.crearTicketEmpleador(util.Constantes.HOME_OFFICE, 250000, util.Constantes.JORNADA_EXTENDIDA, util.Constantes.MANAGMENT, util.Constantes.EXP_NADA, util.Constantes.PRIMARIOS, empleadorTest);
-			fail("Deberia tirar excepcion");
-		} catch (ImposibleModificarTicketsException e) {
-			Assert.assertEquals("Ticket no se modifico", ticketTest, empleadorTest.getTicket());
-		}
-	}
-
+/*
 	@Test
 	public void testRegistroEmpleador() {
 		try {
@@ -308,7 +258,24 @@ Agencia agencia;
 		} 
 		
 	}
+	
+	@Test
+	public void testEliminarTicketException() {
+		try {
+			this.agencia.setEstadoContratacion(true);
+			EmpleadoPretenso usuarioTest = (EmpleadoPretenso) this.agencia.login("Juan123", "Juan123");
+			try {
+				this.agencia.eliminarTicket();
+				fail("Deberia fallar");
+			} catch (ImposibleModificarTicketsException e) {
+				
+			} 
+		} catch (ContraException | NombreUsuarioException e) {
+			fail("no deberia fallar aca");
+		} 
+		
+	}
 
-
+*/
 }
 

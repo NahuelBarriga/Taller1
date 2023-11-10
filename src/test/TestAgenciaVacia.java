@@ -29,6 +29,7 @@ public class TestAgenciaVacia {
 
 	@After
 	public void tearDown() { //No se si es necesario, pero lo voy a dejar de momento
+		this.agencia.setEstadoContratacion(false);
 		this.agencia.getCoincidencias().clear();
 		this.agencia.getComisionesUsuarios().clear();
 		this.agencia.getContrataciones().clear();
@@ -37,7 +38,57 @@ public class TestAgenciaVacia {
 	}
 	
 	
+	@Test
+	public void testCrearTicketEmpleado() {
+		EmpleadoPretenso empleadoTest = new EmpleadoPretenso("Juan123", "Juan123", "Juan", "2235698547", "Rodriguez", 25);
+		Ticket ticketTest = empleadoTest.getTicket();
+		try {
+			this.agencia.crearTicketEmpleado(util.Constantes.HOME_OFFICE, 250000, util.Constantes.JORNADA_EXTENDIDA, util.Constantes.MANAGMENT, util.Constantes.EXP_NADA, util.Constantes.PRIMARIOS, empleadoTest);
+			Assert.assertNotNull(empleadoTest.getTicket());
+			Assert.assertNotEquals("El ticket creado es diferente", ticketTest, empleadoTest.getTicket());
+		} catch (ImposibleModificarTicketsException e) {
+			fail("No deberia tirar excepcion");
+		}
+	}
 	
+	@Test
+	public void testCrearTicketEmpleadoExcepcion() {
+		EmpleadoPretenso empleadoTest = new EmpleadoPretenso("Juan123", "Juan123", "Juan", "2235698547", "Rodriguez", 25);
+		this.agencia.setEstadoContratacion(true);
+		Ticket ticketTest = empleadoTest.getTicket();
+		try {
+			this.agencia.crearTicketEmpleado(util.Constantes.HOME_OFFICE, 250000, util.Constantes.JORNADA_EXTENDIDA, util.Constantes.MANAGMENT, util.Constantes.EXP_NADA, util.Constantes.PRIMARIOS, empleadoTest);
+			fail("Deberia tirar excepcion");
+		} catch (ImposibleModificarTicketsException e) {
+			Assert.assertEquals("Ticket no se modifico", ticketTest, empleadoTest.getTicket());
+		}
+	}
+
+	@Test
+	public void testCrearTicketEmpleador() {
+		Empleador empleadorTest = new Empleador("Marcos123", "Marcos123", "Marcos", "223566985",util.Constantes.SALUD,util.Constantes.FISICA);
+		Ticket ticketTest = empleadorTest.getTicket();
+		try {
+			this.agencia.crearTicketEmpleador(util.Constantes.HOME_OFFICE, 250000, util.Constantes.JORNADA_EXTENDIDA, util.Constantes.MANAGMENT, util.Constantes.EXP_NADA, util.Constantes.PRIMARIOS, empleadorTest);
+			Assert.assertNotNull(empleadorTest.getTicket());
+			Assert.assertNotEquals("El ticket creado es diferente", ticketTest, empleadorTest.getTicket());
+		} catch (ImposibleModificarTicketsException e) {
+			fail("No deberia tirar excepcion");
+		}
+	}
+	
+	@Test
+	public void testCrearTicketEmpleadorExcepcion() {
+		Empleador empleadorTest = new Empleador("Marcos123", "Marcos123", "Marcos", "223566985",util.Constantes.SALUD,util.Constantes.FISICA);
+		this.agencia.setEstadoContratacion(true);
+		Ticket ticketTest = empleadorTest.getTicket();
+		try {
+			this.agencia.crearTicketEmpleador(util.Constantes.HOME_OFFICE, 250000, util.Constantes.JORNADA_EXTENDIDA, util.Constantes.MANAGMENT, util.Constantes.EXP_NADA, util.Constantes.PRIMARIOS, empleadorTest);
+			fail("Deberia tirar excepcion");
+		} catch (ImposibleModificarTicketsException e) {
+			Assert.assertEquals("Ticket no se modifico", ticketTest, empleadorTest.getTicket());
+		}
+	}
 	
 	
 	@Test
