@@ -1,7 +1,6 @@
 package test;
 
 import static org.junit.Assert.fail;
-import static org.mockito.Mockito.mock;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -28,7 +27,7 @@ public class TestTicket {
 				util.Constantes.SENIOR, util.Constantes.EXP_MEDIA, util.Constantes.SECUNDARIOS);
 		this.testTicket3 = new Ticket(util.Constantes.INDISTINTO, 1200, util.Constantes.JORNADA_EXTENDIDA,
 				util.Constantes.MANAGMENT, util.Constantes.EXP_MUCHA, util.Constantes.TERCIARIOS);
-		agenciaMock = mock(Agencia.class);
+		
 	}
 	
 	
