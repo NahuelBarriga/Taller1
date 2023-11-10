@@ -14,7 +14,6 @@ import excepciones.NewRegisterException;
 import excepciones.NombreUsuarioException;
 import modeloDatos.EmpleadoPretenso;
 import modeloDatos.Empleador;
-import modeloDatos.Ticket;
 import modeloNegocio.Agencia;
 
 public class TestAgenciaNoVacia {
@@ -69,6 +68,7 @@ Agencia agencia;
 		this.agencia.getContrataciones().clear();
 		this.agencia.getEmpleadores().clear();
 		this.agencia.getEmpleados().clear();
+		
 	}
 	
 	
@@ -101,13 +101,15 @@ Agencia agencia;
 	
 	@Test
 	public void testGeneraPostulantes() {
-		
-		this.agencia.generaPostulantes(); 
-		
+		try {
+			this.agencia.generaPostulantes(); 
+		}
+		catch(Exception e) { //no funciona pq no funciona bien ticket
+			fail();
+		}
 	}
 
 	
-/*
 	@Test
 	public void testRegistroEmpleador() {
 		try {
@@ -276,6 +278,6 @@ Agencia agencia;
 		
 	}
 
-*/
+
 }
 
