@@ -7,12 +7,14 @@ import java.util.HashMap;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.Assert;
+
 
 import excepciones.ContraException;
 import excepciones.ImposibleCrearEmpleadorException;
+import excepciones.ImposibleModificarTicketsException;
 import excepciones.NewRegisterException;
 import excepciones.NombreUsuarioException;
-import junit.framework.Assert;
 import modeloDatos.EmpleadoPretenso;
 import modeloDatos.Empleador;
 import modeloDatos.Ticket;
@@ -95,14 +97,56 @@ Agencia agencia;
 
 	@Test
 	public void testCrearTicketEmpleado() {
-		fail("Not yet implemented");
+		EmpleadoPretenso empleadoTest = this.agencia.getEmpleados().get("Juan123");
+		Ticket ticketTest = empleadoTest.getTicket();
+		try {
+			this.agencia.crearTicketEmpleado(util.Constantes.HOME_OFFICE, 250000, util.Constantes.JORNADA_EXTENDIDA, util.Constantes.MANAGMENT, util.Constantes.EXP_NADA, util.Constantes.PRIMARIOS, empleadoTest);
+			Assert.assertNotNull(empleadoTest.getTicket());
+			Assert.assertNotEquals("El ticket creado es diferente", ticketTest, empleadoTest.getTicket());
+		} catch (ImposibleModificarTicketsException e) {
+			fail("No deberia tirar excepcion");
+		}
+	}
+	
+	@Test
+	public void testCrearTicketEmpleadoExcepcion() {
+		this.agencia.setEstadoContratacion(true);
+		EmpleadoPretenso empleadoTest = this.agencia.getEmpleados().get("Juan123");
+		Ticket ticketTest = empleadoTest.getTicket();
+		try {
+			this.agencia.crearTicketEmpleado(util.Constantes.HOME_OFFICE, 250000, util.Constantes.JORNADA_EXTENDIDA, util.Constantes.MANAGMENT, util.Constantes.EXP_NADA, util.Constantes.PRIMARIOS, empleadoTest);
+			fail("Deberia tirar excepcion");
+		} catch (ImposibleModificarTicketsException e) {
+			Assert.assertEquals("Ticket no se modifico", ticketTest, empleadoTest.getTicket());
+		}
 	}
 
 	@Test
 	public void testCrearTicketEmpleador() {
-		fail("Not yet implemented");
+		Empleador empleadorTest = this.agencia.getEmpleadores().get("Marcos123");
+		Ticket ticketTest = empleadorTest.getTicket();
+		try {
+			this.agencia.crearTicketEmpleado(util.Constantes.HOME_OFFICE, 12000, util.Constantes.JORNADA_COMPLETA,
+					util.Constantes.JUNIOR, util.Constantes.EXP_NADA,util.Constantes.PRIMARIOS , empleadorTest);
+			Assert.assertNotNull(empleadorTest.getTicket());
+			Assert.assertNotEquals("El ticket creado es diferente", ticketTest, empleadorTest.getTicket());
+		} catch (ImposibleModificarTicketsException e) {
+			fail("No deberia tirar excepcion");
+		}
 	}
-
+	
+	@Test
+	public void testCrearTicketEmpleadorExcepcion() {
+		this.agencia.setEstadoContratacion(true);
+		Empleador empleadorTest = this.agencia.getEmpleadores().get("Marcos123");
+		Ticket ticketTest = empleadorTest.getTicket();
+		try {
+			this.agencia.crearTicketEmpleador(util.Constantes.HOME_OFFICE, 250000, util.Constantes.JORNADA_EXTENDIDA, util.Constantes.MANAGMENT, util.Constantes.EXP_NADA, util.Constantes.PRIMARIOS, empleadorTest);
+			fail("Deberia tirar excepcion");
+		} catch (ImposibleModificarTicketsException e) {
+			Assert.assertEquals("Ticket no se modifico", ticketTest, empleadorTest.getTicket());
+		}
+	}
 
 	@Test
 	public void testRegistroEmpleador() {
@@ -241,19 +285,23 @@ Agencia agencia;
 		fail("Not yet implemented");
 	}
 
-	@Test
-	public void testCerrarSesion() {
-		fail("Not yet implemented");
-	}
 
 	@Test
 	public void testEliminarTicket() {
-		fail("Not yet implemented");
+		try {
+			EmpleadoPretenso usuarioTest = (EmpleadoPretenso) this.agencia.login("Juan123", "Juan123");
+			try {
+				this.agencia.eliminarTicket();
+				Assert.assertNull("El ticket fue eliminado", usuarioTest.getTicket());
+			} catch (ImposibleModificarTicketsException e) {
+				fail("Estado de contratacion no valido");
+			} 
+		} catch (ContraException | NombreUsuarioException e) {
+			fail("no deberia fallar aca");
+		} 
+		
 	}
 
-	@Test
-	public void testGetEstado() {
-		fail("Not yet implemented");
-	}
 
 }
+
