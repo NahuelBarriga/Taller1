@@ -121,6 +121,7 @@ public class TestGuiConjuntoConDatosLogIn {
         TestUtils.tipeaTexto("Cari34", robot);
         TestUtils.clickComponent(password, robot);
         TestUtils.tipeaTexto("Qwerty123", robot);
+        
         TestUtils.clickComponent(login, robot);
         
         //verifico los resultados
@@ -129,5 +130,28 @@ public class TestGuiConjuntoConDatosLogIn {
     }
 	
 	  
+	
+	@Test
+    public void testLogUsuarioInexistente()
+    {
+        robot.delay(TestUtils.getDelay());
+		Ventana ventana = (Ventana) controlador.getVista();
+
+        
+        //obtengo las referencias a los componentes necesarios
+        JTextField nombre = (JTextField) TestUtils.getComponentForName(ventana,Constantes.NOMBRE_USUARIO);
+        JTextField contrasena = (JTextField) TestUtils.getComponentForName(ventana,Constantes.PASSWORD);
+        JButton Log = (JButton) TestUtils.getComponentForName(ventana, Constantes.LOGIN);
+        //lleno los JTextField
+        TestUtils.clickComponent(nombre, robot);
+        TestUtils.tipeaTexto("JUAN ROMAN RIQUELME", robot);
+        TestUtils.clickComponent(contrasena, robot);
+        TestUtils.tipeaTexto("Qwerty123", robot);
+        TestUtils.clickComponent(Log, robot);
+        //verifico los resultados
+        //Assert.assertNull("Usuario actual deberIa ser null", controlador.getUsuarioactual());
+        Assert.assertEquals("Deberia decir:"+Mensajes.USUARIO_DESCONOCIDO , Mensajes.USUARIO_DESCONOCIDO , optionPane.getMensaje());
+    }
+
 }
 
