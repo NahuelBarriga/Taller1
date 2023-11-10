@@ -7,17 +7,13 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import excepciones.ContraException;
 import excepciones.ImposibleCrearEmpleadoException;
 import excepciones.ImposibleCrearEmpleadorException;
-import excepciones.ImposibleModificarTicketsException;
 import excepciones.LimiteInferiorRemuneracionInvalidaException;
 import excepciones.LimiteSuperiorRemuneracionInvalidaException;
 import excepciones.NewRegisterException;
-import excepciones.NombreUsuarioException;
 import modeloDatos.EmpleadoPretenso;
 import modeloDatos.Empleador;
-import modeloDatos.Ticket;
 import modeloNegocio.Agencia;
 
 //Escenario de Agencia vacia

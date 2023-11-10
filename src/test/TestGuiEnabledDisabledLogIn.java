@@ -4,7 +4,6 @@ import java.awt.AWTException;
 import java.awt.Robot;
 
 import javax.swing.JButton;
-import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
 import org.junit.After;
@@ -14,9 +13,9 @@ import org.junit.Test;
 
 import controlador.Controlador;
 import util.Constantes;
-import vista.Ventana;
 import vista.PanelLogin;
 //Esta clase verifica que los botones se habiliten y deshabiliten cuando se ingresa o se borra el texto en los diferentes JTextField.
+import vista.Ventana;
 
 public class TestGuiEnabledDisabledLogIn {
 

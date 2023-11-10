@@ -3,16 +3,12 @@ package test;
 
 import static org.junit.Assert.fail;
 
-import java.util.HashMap;
-
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.Assert;
-
 
 import excepciones.ContraException;
-import excepciones.ImposibleCrearEmpleadorException;
 import excepciones.ImposibleModificarTicketsException;
 import excepciones.NewRegisterException;
 import excepciones.NombreUsuarioException;
