@@ -28,7 +28,7 @@ Agencia agencia;
 	@Before
 	public void setUp() throws Exception {
 			this.agencia = Agencia.getInstance();
-			
+			this.agencia.setEstadoContratacion(false);
 			/*Ticket ticketTestEmpleado = new Ticket(util.Constantes.HOME_OFFICE,250000,util.Constantes.JORNADA_COMPLETA,util.Constantes.ADMINISTRADOR,util.Constantes.EXP_MUCHA,util.Constantes.TERCIARIOS);
 			Ticket ticketTestEmpleador = new Ticket(util.Constantes.HOME_OFFICE,250000,util.Constantes.JORNADA_COMPLETA,util.Constantes.ADMINISTRADOR,util.Constantes.EXP_MUCHA,util.Constantes.TERCIARIOS);
 			//Ticket ticketTestEmpleador = new Ticket(util.Constantes.INDISTINTO,300000,util.Constantes.JORNADA_COMPLETA, util.Constantes.ADMINISTRADOR, util.Constantes.EXP_MEDIA,util.Constantes.TERCIARIOS);
@@ -51,6 +51,7 @@ Agencia agencia;
 			agencia.setEmpleadores(empleadores);
 			agencia.setLimitesRemuneracion(200000, 350000);
 			*/
+			
 			this.agencia.registroEmpleado("Juan123", "Juan123", "Juan", "2235698547", "Rodriguez", 25);
 			this.agencia.registroEmpleador("Marcos123", "Marcos123", "Marcos", "223566985", util.Constantes.FISICA,util.Constantes.SALUD);
 			this.agencia.crearTicketEmpleado(util.Constantes.HOME_OFFICE,250000,util.Constantes.JORNADA_COMPLETA,util.Constantes.ADMINISTRADOR,util.Constantes.EXP_MUCHA,util.Constantes.TERCIARIOS, this.agencia.getEmpleados().get("Juan123"));
@@ -59,7 +60,6 @@ Agencia agencia;
 			
 			this.agencia.getEmpleados().get("Juan123").setPuntaje(4);
 			this.agencia.getEmpleadores().get("Marcos123").setPuntaje(5);
-			this.agencia.setEstadoContratacion(false);
 			this.agencia.setLimitesRemuneracion(200000, 350000);
 			
 			
@@ -141,8 +141,7 @@ Agencia agencia;
 		Empleador empleadorTest = this.agencia.getEmpleadores().get("Marcos123");
 		Ticket ticketTest = empleadorTest.getTicket();
 		try {
-			this.agencia.crearTicketEmpleado(util.Constantes.HOME_OFFICE, 12000, util.Constantes.JORNADA_COMPLETA,
-					util.Constantes.JUNIOR, util.Constantes.EXP_NADA,util.Constantes.PRIMARIOS , empleadorTest);
+			this.agencia.crearTicketEmpleado(util.Constantes.HOME_OFFICE, 12000, util.Constantes.JORNADA_COMPLETA, util.Constantes.JUNIOR, util.Constantes.EXP_NADA,util.Constantes.PRIMARIOS , empleadorTest);
 			Assert.assertNotNull(empleadorTest.getTicket());
 			Assert.assertNotEquals("El ticket creado es diferente", ticketTest, empleadorTest.getTicket());
 		} catch (ImposibleModificarTicketsException e) {
@@ -177,20 +176,19 @@ Agencia agencia;
 	}
 	
 	@Test
-	public void testRegistroEmpleadorExcepcion() {
+	public void testRegistroEmpleadorRepetidoExcepcion() {
 		try {
-			Empleador empleador = (Empleador)this.agencia.registroEmpleador("Marcos123", "Marcos123", "Marcos", "223566985", util.Constantes.SALUD, util.Constantes.FISICA);
+			Empleador empleadorTest = (Empleador) this.agencia.registroEmpleador("Marcos123", "Marcos123", "Marcos", "223566985", util.Constantes.FISICA,util.Constantes.SALUD);
 			fail("deberia haber lanzado una excepcion");
 		}
 		catch (NewRegisterException e) {
 			
 		}
 		catch(Exception e) {
-			//System.out.println(agencia.getEmpleadores());
-			//fail("No se lanzo la excepcion correcta");
 			fail(e.getMessage());		
 		}
 	}
+	
 	/*
 	@Test
 	public void testRegistroEmpleado() {

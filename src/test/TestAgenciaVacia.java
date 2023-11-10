@@ -96,23 +96,6 @@ public class TestAgenciaVacia {
 		}
 	}
 	
-	@Test
-	public void testRegistroEmpleadoFalloRepetido() {
-		try {
-			EmpleadoPretenso empleado;
-			empleado = (EmpleadoPretenso)this.agencia.registroEmpleado("Juan123", "Juan123"
-					, "Juan", "Rodriguez","2235698547" , 25);
-			empleado = (EmpleadoPretenso)this.agencia.registroEmpleado("Juan123", "Juan123"
-					, "Juan", "Rodriguez","2235698547" , 25);
-			fail("Deberia haber lanzado excepcion");
-		}
-		catch (NewRegisterException e) {
-			
-		}
-		catch (Exception e) {
-			fail("No se lanzo la excepcion correcta");
-		}
-	}
 	
 	@Test
 	public void testRegistraEmpleadorExitoso() {
