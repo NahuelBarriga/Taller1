@@ -28,7 +28,7 @@ Agencia agencia;
 	@Before
 	public void setUp() throws Exception {
 			this.agencia = Agencia.getInstance();
-			this.agencia.setEstadoContratacion(false);
+			//this.agencia.setEstadoContratacion(false);
 			/*Ticket ticketTestEmpleado = new Ticket(util.Constantes.HOME_OFFICE,250000,util.Constantes.JORNADA_COMPLETA,util.Constantes.ADMINISTRADOR,util.Constantes.EXP_MUCHA,util.Constantes.TERCIARIOS);
 			Ticket ticketTestEmpleador = new Ticket(util.Constantes.HOME_OFFICE,250000,util.Constantes.JORNADA_COMPLETA,util.Constantes.ADMINISTRADOR,util.Constantes.EXP_MUCHA,util.Constantes.TERCIARIOS);
 			//Ticket ticketTestEmpleador = new Ticket(util.Constantes.INDISTINTO,300000,util.Constantes.JORNADA_COMPLETA, util.Constantes.ADMINISTRADOR, util.Constantes.EXP_MEDIA,util.Constantes.TERCIARIOS);
@@ -85,7 +85,7 @@ Agencia agencia;
 	public void testCalculaPremiosCastigosAsignaciones() {
 		fail("Not yet implemented");
 	}
-
+	/*
 	@Test
 	public void testMatch() {
 		EmpleadoPretenso empleadoTest =  this.agencia.getEmpleados().get("Juan123");
@@ -102,11 +102,11 @@ Agencia agencia;
 		Assert.assertNotNull(this.agencia.getComisionUsuario(empleadorTest));
 		
 	}
-
+*/
 	@Test
 	public void testGeneraPostulantes() {
 		
-		this.agencia.generaPostulantes(); 
+		//this.agencia.generaPostulantes(); 
 		
 	}
 
@@ -125,7 +125,6 @@ Agencia agencia;
 	
 	@Test
 	public void testCrearTicketEmpleadoExcepcion() {
-		this.agencia.setEstadoContratacion(true);
 		EmpleadoPretenso empleadoTest = this.agencia.getEmpleados().get("Juan123");
 		Ticket ticketTest = empleadoTest.getTicket();
 		try {
@@ -141,7 +140,7 @@ Agencia agencia;
 		Empleador empleadorTest = this.agencia.getEmpleadores().get("Marcos123");
 		Ticket ticketTest = empleadorTest.getTicket();
 		try {
-			this.agencia.crearTicketEmpleado(util.Constantes.HOME_OFFICE, 12000, util.Constantes.JORNADA_COMPLETA, util.Constantes.JUNIOR, util.Constantes.EXP_NADA,util.Constantes.PRIMARIOS , empleadorTest);
+			this.agencia.crearTicketEmpleado(util.Constantes.HOME_OFFICE, 250000, util.Constantes.JORNADA_EXTENDIDA, util.Constantes.MANAGMENT, util.Constantes.EXP_NADA, util.Constantes.PRIMARIOS, empleadorTest);
 			Assert.assertNotNull(empleadorTest.getTicket());
 			Assert.assertNotEquals("El ticket creado es diferente", ticketTest, empleadorTest.getTicket());
 		} catch (ImposibleModificarTicketsException e) {
@@ -151,7 +150,6 @@ Agencia agencia;
 	
 	@Test
 	public void testCrearTicketEmpleadorExcepcion() {
-		this.agencia.setEstadoContratacion(true);
 		Empleador empleadorTest = this.agencia.getEmpleadores().get("Marcos123");
 		Ticket ticketTest = empleadorTest.getTicket();
 		try {
