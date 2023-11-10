@@ -13,13 +13,12 @@ import org.junit.Before;
 import org.junit.Test;
 
 import controlador.Controlador;
-import util.Constantes;
-import vista.PanelLogin;
-import vista.Ventana;
-import util.Mensajes;
-import vista.PanelCliente;
 import modeloDatos.Cliente;
 import modeloDatos.EmpleadoPretenso;
+import util.Constantes;
+import util.Mensajes;
+import vista.PanelCliente;
+import vista.Ventana;
 
 
 //Esta clase verifica que los botones se habiliten y deshabiliten cuando se ingresa o se borra el texto en los diferentes JTextField.

@@ -5,7 +5,6 @@ import java.awt.Robot;
 import java.util.HashMap;
 
 import javax.swing.JButton;
-import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
 import org.junit.After;

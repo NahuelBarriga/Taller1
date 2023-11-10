@@ -1,20 +1,37 @@
 package test;
 
 import static org.junit.Assert.fail;
+import static org.mockito.Mockito.mock;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 import modeloDatos.Ticket;
+import modeloNegocio.Agencia;
 
 
 
 public class TestTicket {
 	
-	Ticket testTicket1 = new Ticket(util.Constantes.PRESENCIAL, 1200, util.Constantes.JORNADA_MEDIA, util.Constantes.JUNIOR, util.Constantes.EXP_NADA, util.Constantes.PRIMARIOS); 
-	Ticket testTicket2 = new Ticket(util.Constantes.HOME_OFFICE, 1200, util.Constantes.JORNADA_COMPLETA, util.Constantes.SENIOR, util.Constantes.EXP_MEDIA, util.Constantes.SECUNDARIOS);
-	Ticket testTicket3 = new Ticket(util.Constantes.INDISTINTO, 1200, util.Constantes.JORNADA_EXTENDIDA, util.Constantes.MANAGMENT, util.Constantes.EXP_MUCHA, util.Constantes.TERCIARIOS);
+	Ticket testTicket1;
+	Ticket testTicket2;
+	Ticket testTicket3;	
+	Agencia agenciaMock;
+	
+	@Before
+	public void setUp() {
 
+		this.testTicket1 = new Ticket(util.Constantes.PRESENCIAL, 1200, util.Constantes.JORNADA_MEDIA,
+				util.Constantes.JUNIOR, util.Constantes.EXP_NADA, util.Constantes.PRIMARIOS);
+		this.testTicket2 = new Ticket(util.Constantes.HOME_OFFICE, 1200, util.Constantes.JORNADA_COMPLETA,
+				util.Constantes.SENIOR, util.Constantes.EXP_MEDIA, util.Constantes.SECUNDARIOS);
+		this.testTicket3 = new Ticket(util.Constantes.INDISTINTO, 1200, util.Constantes.JORNADA_EXTENDIDA,
+				util.Constantes.MANAGMENT, util.Constantes.EXP_MUCHA, util.Constantes.TERCIARIOS);
+		agenciaMock = mock(Agencia.class);
+	}
+	
+	
 	@Test
 	public void TestConstructor1() {
 		 

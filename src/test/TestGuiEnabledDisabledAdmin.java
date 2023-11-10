@@ -1,12 +1,9 @@
 package test;
 
-import static org.junit.Assert.*;
-
 import java.awt.AWTException;
 import java.awt.Robot;
 
 import javax.swing.JButton;
-import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
 import org.junit.After;
@@ -17,8 +14,8 @@ import org.junit.Test;
 import controlador.Controlador;
 import util.Constantes;
 import util.Mensajes;
-import vista.Ventana;
 import vista.PanelAdmin;
+import vista.Ventana;
 
 public class TestGuiEnabledDisabledAdmin {
 

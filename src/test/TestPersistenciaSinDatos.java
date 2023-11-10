@@ -1,21 +1,17 @@
 package test;
 
-import static org.junit.Assert.*;
+import java.io.File;
+import java.util.ArrayList;
 
 import org.junit.AfterClass;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import modeloNegocio.Agencia;
 import modeloDatos.Cliente;
 import modeloDatos.Ticket;
+import modeloNegocio.Agencia;
 import persistencia.IPersistencia;
-import persistencia.PersistenciaXML;
-
-import java.io.File;
-import java.util.ArrayList;
 
 public class TestPersistenciaSinDatos {
 

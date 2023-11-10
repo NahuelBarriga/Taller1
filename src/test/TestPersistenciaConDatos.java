@@ -1,18 +1,15 @@
 package test;
 
-import static org.junit.Assert.*;
-
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.Assert;
-
-import modeloNegocio.Agencia;
-import modeloDatos.Cliente;
-import modeloDatos.EmpleadoPretenso;
 
 import excepciones.ImposibleCrearEmpleadoException;
 import excepciones.NewRegisterException;
+import modeloDatos.Cliente;
+import modeloDatos.EmpleadoPretenso;
+import modeloNegocio.Agencia;
 
 public class TestPersistenciaConDatos {
 
