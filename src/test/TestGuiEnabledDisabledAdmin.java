@@ -16,6 +16,7 @@ import org.junit.Test;
 
 import controlador.Controlador;
 import util.Constantes;
+import util.Mensajes;
 import vista.Ventana;
 import vista.PanelAdmin;
 
@@ -23,6 +24,7 @@ public class TestGuiEnabledDisabledAdmin {
 
 	Robot robot; 
 	Controlador controlador;
+	FalsoOptionPane optionPane = new FalsoOptionPane();
 	
 	public TestGuiEnabledDisabledAdmin() {
 		try {
@@ -59,10 +61,15 @@ public class TestGuiEnabledDisabledAdmin {
 		TestUtils.clickComponent(textoInferior,robot);
 		TestUtils.tipeaTexto("20000", robot);
 		
+		Assert.assertEquals("Deberia decir"+Mensajes.LIMITE_REMUNERACION_INVALIDO.getValor(), Mensajes.LIMITE_REMUNERACION_INVALIDO.getValor(),optionPane.getMensaje());
+
 		Assert.assertFalse("El boton de Modificar deberia estar deshabilitado", modValores.isEnabled());
 
+		
 	}
 	
+	
+	@Test
 	public void testModificarValoresDiabled2() {
 		robot.delay(TestUtils.getDelay());
 		
@@ -74,10 +81,12 @@ public class TestGuiEnabledDisabledAdmin {
 		TestUtils.clickComponent(textoSuperior,robot);
 		TestUtils.tipeaTexto("20000", robot);
 		
+		Assert.assertEquals("Deberia decir"+Mensajes.LIMITE_REMUNERACION_INVALIDO.getValor(), Mensajes.LIMITE_REMUNERACION_INVALIDO.getValor(),optionPane.getMensaje());
 		Assert.assertFalse("El boton de Modificar deberia estar deshabilitado", modValores.isEnabled());
 
 	}
 	
+	@Test
 	public void testModificarValoresDiabled3() {
 		robot.delay(TestUtils.getDelay());
 		
@@ -91,11 +100,14 @@ public class TestGuiEnabledDisabledAdmin {
 		TestUtils.tipeaTexto("-200", robot);
 		TestUtils.clickComponent(textoSuperior,robot);
 		TestUtils.tipeaTexto("20000", robot);
+		
+		Assert.assertEquals("Deberia decir"+Mensajes.LIMITE_REMUNERACION_NEGATIVO.getValor(), Mensajes.LIMITE_REMUNERACION_NEGATIVO.getValor(),optionPane.getMensaje());
+
 		Assert.assertFalse("El boton de Modificar deberia estar deshabilitado", modValores.isEnabled());
 
 	}
 
-	
+	@Test
 	public void testModificarValoresDiabled4() {
 		robot.delay(TestUtils.getDelay());
 		
@@ -109,10 +121,13 @@ public class TestGuiEnabledDisabledAdmin {
 		TestUtils.tipeaTexto("200", robot);
 		TestUtils.clickComponent(textoSuperior,robot);
 		TestUtils.tipeaTexto("-2000", robot);
+		
+		Assert.assertEquals("Deberia decir"+Mensajes.LIMITE_REMUNERACION_NEGATIVO.getValor(), Mensajes.LIMITE_REMUNERACION_NEGATIVO.getValor(),optionPane.getMensaje());
 		Assert.assertFalse("El boton de Modificar deberia estar deshabilitado", modValores.isEnabled());
 
 	}
 	
+	@Test
 	public void testModificarValoresDiabled5() {
 		robot.delay(TestUtils.getDelay());
 		
@@ -126,10 +141,14 @@ public class TestGuiEnabledDisabledAdmin {
 		TestUtils.tipeaTexto("-200", robot);
 		TestUtils.clickComponent(textoSuperior,robot);
 		TestUtils.tipeaTexto("-100", robot);
+		
+		
+		Assert.assertEquals("Deberia decir"+Mensajes.LIMITE_REMUNERACION_NEGATIVO.getValor(), Mensajes.LIMITE_REMUNERACION_NEGATIVO.getValor(),optionPane.getMensaje());
 		Assert.assertFalse("El boton de Modificar deberia estar deshabilitado", modValores.isEnabled());
 
 	}
 	
+	@Test
 	public void testModificarValoresDiabled6() {
 		robot.delay(TestUtils.getDelay());
 		
@@ -143,10 +162,14 @@ public class TestGuiEnabledDisabledAdmin {
 		TestUtils.tipeaTexto("40000", robot);
 		TestUtils.clickComponent(textoSuperior,robot);
 		TestUtils.tipeaTexto("20000", robot);
+		
+		Assert.assertEquals("Deberia decir"+Mensajes.LIMITE_REMUNERACION_INVALIDO.getValor(), Mensajes.LIMITE_REMUNERACION_INVALIDO.getValor(),optionPane.getMensaje());
+
 		Assert.assertFalse("El boton de Modificar deberia estar deshabilitado", modValores.isEnabled());
 
 	}
 	
+	@Test
 	public void testModificarValoresEnabled() {
 		robot.delay(TestUtils.getDelay());
 		
@@ -157,10 +180,13 @@ public class TestGuiEnabledDisabledAdmin {
 		JButton modValores = (JButton) TestUtils.getComponentForName(ventana, Constantes.MODIFICAR_VALORES);
 
 		TestUtils.clickComponent(textoInferior,robot);
-		TestUtils.tipeaTexto("20000", robot);
+		TestUtils.tipeaTexto("2000", robot);
 		TestUtils.clickComponent(textoSuperior,robot);
-		TestUtils.tipeaTexto("40000", robot);
-		Assert.assertTrue("El boton de Modificar deberia estar deshabilitado", modValores.isEnabled());
+		TestUtils.tipeaTexto("4000", robot);
+		
+		robot.delay(TestUtils.getDelay());
+		
+		Assert.assertTrue("El boton de Modificar deberia estar habilitado", modValores.isEnabled());
 
 	}
 	
