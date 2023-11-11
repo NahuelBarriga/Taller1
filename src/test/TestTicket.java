@@ -2,7 +2,6 @@ package test;
 
 import static org.junit.Assert.fail;
 
-import org.easymock.EasyMock;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -17,15 +16,16 @@ public class TestTicket {
 	Ticket testTicket1;
 	Ticket testTicket2;
 	Ticket testTicket3;	
+	Agencia agenciaMock;
 	
 	@Before
 	public void setUp() {
 
 		this.testTicket1 = new Ticket(util.Constantes.PRESENCIAL, 1200, util.Constantes.JORNADA_MEDIA,
 				util.Constantes.JUNIOR, util.Constantes.EXP_NADA, util.Constantes.PRIMARIOS);
-		this.testTicket2 = new Ticket(util.Constantes.HOME_OFFICE, 5000, util.Constantes.JORNADA_COMPLETA,
+		this.testTicket2 = new Ticket(util.Constantes.HOME_OFFICE, 1200, util.Constantes.JORNADA_COMPLETA,
 				util.Constantes.SENIOR, util.Constantes.EXP_MEDIA, util.Constantes.SECUNDARIOS);
-		this.testTicket3 = new Ticket(util.Constantes.INDISTINTO, 20000, util.Constantes.JORNADA_EXTENDIDA,
+		this.testTicket3 = new Ticket(util.Constantes.INDISTINTO, 1200, util.Constantes.JORNADA_EXTENDIDA,
 				util.Constantes.MANAGMENT, util.Constantes.EXP_MUCHA, util.Constantes.TERCIARIOS);
 		
 	}
@@ -53,7 +53,7 @@ public class TestTicket {
 	@Test
 	public void TestConstructor2() {
 		String locacionTest = util.Constantes.HOME_OFFICE;
-		int remuneracionTest = 5000;
+		int remuneracionTest = 1200;
 		String jornadaTest = util.Constantes.JORNADA_COMPLETA;
 		String puestoTest = util.Constantes.SENIOR; 
 		String experienciaTest = util.Constantes.EXP_MEDIA; 
@@ -71,7 +71,7 @@ public class TestTicket {
 	@Test
 	public void TestConstructor3() {
 		String locacionTest = util.Constantes.INDISTINTO;
-		int remuneracionTest = 20000;
+		int remuneracionTest = 1200;
 		String jornadaTest = util.Constantes.JORNADA_EXTENDIDA;
 		String puestoTest = util.Constantes.MANAGMENT; 
 		String experienciaTest = util.Constantes.EXP_MUCHA; 
@@ -265,7 +265,9 @@ public class TestTicket {
 
 	@Test
 	public void testGetComparacionRemuneracion() {
-		
+		/*Ticket testTicketr= new Ticket("PRESENCIAL", 1200, "JORNADA_MEDIA", "JUNIOR", "EXP_NADA", "PRIMARIOS");
+		Ticket testTicketExpMedia= new Ticket("PRESENCIAL", 1200, "JORNADA_COMPLETA", "SENIOR", "EXP_MEDIA", "SECUNDARIOS");
+		Ticket testTicketExpMucha= new Ticket("PRESENCIAL", 1200, "JORNADA_EXTENDIDA", "MANAGMENT", "EXP_MUCHA", "TERCIARIOS");
 		double resultadoTest1 = 1;
 		double resultadoTest2 = -1;
 		double resultadoTest3 = -0.5;
@@ -273,39 +275,17 @@ public class TestTicket {
 		double resultadoTest5 = 1.5;
 		double resultadoTest6 = -1.5;
 		double resultadoTest7 = 2;
-		double resultado;
-	
-		//Escenario 1: (this.remuneracion < V1)
-		resultado = testTicket1.getComparacionRemuneracion(testTicket1);
-		Assert.assertEquals(resultado, resultadoTest1, 0);
-		resultado = testTicket1.getComparacionRemuneracion(testTicket2);
-		Assert.assertEquals(resultado, resultadoTest3, 0);
-		resultado = testTicket1.getComparacionRemuneracion(testTicket3);
-		//Assert.assertEquals(resultado, resultadoTest2, 0);
-		
-		//Escenario 2: (this.remuneracion > V1 && this.remuneracion < V2)
-		resultado = testTicket2.getComparacionRemuneracion(testTicket1);
-		Assert.assertEquals(resultado, resultadoTest1, 0);
-		resultado = testTicket2.getComparacionRemuneracion(testTicket2);
-		//Assert.assertEquals(resultado, resultadoTest3, 0);
-		resultado = testTicket2.getComparacionRemuneracion(testTicket3);
-		Assert.assertEquals(resultado, resultadoTest2, 0);
-		
-		//Escenario 3: (this.remuneracion > V2)
-		resultado = testTicket3.getComparacionRemuneracion(testTicket1);
-		Assert.assertEquals(resultado, resultadoTest1, 0);
-		resultado = testTicket3.getComparacionRemuneracion(testTicket2);
-		Assert.assertEquals(resultado, resultadoTest3, 0);
-		resultado = testTicket3.getComparacionRemuneracion(testTicket3);
-		Assert.assertEquals(resultado, resultadoTest2, 0);
+		double resultado;*/
+		fail("Not yet implemented");
 	}
-	
-	
+
 	@Test
 	public void testGetComparacionTotal() {
+		/*Ticket testTicketTotal1= new Ticket("PRESENCIAL", 1200, "JORNADA_MEDIA", "JUNIOR", "EXP_NADA", "PRIMARIOS");
+		Ticket testTicketTotal2= new Ticket("PRESENCIAL", 1200, "JORNADA_MEDIA", "JUNIOR", "EXP_NADA", "PRIMARIOS");
 		double resultadoEsperado = 6;
-		double resultado = testTicket1.getComparacionTotal(testTicket1);
-		Assert.assertEquals(resultado, resultadoEsperado, 0);
+		double resultado = testTicketTotal1.getComparacionTotal(testTicketTotal2);
+		Assert.assertEquals(resultado, resultadoEsperado, 0);*/
 		fail("Not yet implemented");
 	}
 
