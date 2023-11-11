@@ -3,6 +3,8 @@ package test;
 
 import static org.junit.Assert.fail;
 
+import java.util.ArrayList;
+
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -12,13 +14,17 @@ import excepciones.ContraException;
 import excepciones.ImposibleModificarTicketsException;
 import excepciones.NewRegisterException;
 import excepciones.NombreUsuarioException;
+import modeloDatos.ClientePuntaje;
+import modeloDatos.Contratacion;
 import modeloDatos.EmpleadoPretenso;
 import modeloDatos.Empleador;
 import modeloNegocio.Agencia;
 
 public class TestAgenciaNoVacia {
 
-Agencia agencia;
+private Agencia agencia;
+private Empleador empleador;
+private EmpleadoPretenso empleado;
 	
 	@Before
 	public void setUp() throws Exception {
@@ -47,8 +53,8 @@ Agencia agencia;
 			agencia.setLimitesRemuneracion(200000, 350000);
 			*/
 			
-			this.agencia.registroEmpleado("Juan123", "Juan123", "Juan", "2235698547", "Rodriguez", 25);
-			this.agencia.registroEmpleador("Marcos123", "Marcos123", "Marcos", "223566985", util.Constantes.FISICA,util.Constantes.SALUD);
+			this.empleado = (EmpleadoPretenso)agencia.registroEmpleado("Juan123", "Juan123", "Juan", "2235698547", "Rodriguez", 25);
+			this.empleador = (Empleador)agencia.registroEmpleador("Marcos123", "Marcos123", "Marcos", "223566985", util.Constantes.FISICA,util.Constantes.SALUD);
 			this.agencia.crearTicketEmpleado(util.Constantes.HOME_OFFICE,250000,util.Constantes.JORNADA_COMPLETA,util.Constantes.ADMINISTRADOR,util.Constantes.EXP_MUCHA,util.Constantes.TERCIARIOS, this.agencia.getEmpleados().get("Juan123"));
 			this.agencia.crearTicketEmpleador(util.Constantes.HOME_OFFICE,250000,util.Constantes.JORNADA_COMPLETA,util.Constantes.ADMINISTRADOR,util.Constantes.EXP_MUCHA,util.Constantes.TERCIARIOS, this.agencia.getEmpleadores().get("Marcos123"));
 			
@@ -74,8 +80,38 @@ Agencia agencia;
 	
 
 	@Test
-	public void testGatillarRonda() {
-		fail("Not yet implemented");
+	public void testGatillarRondaEstadoVerdadero() {
+		try {
+			Empleador empleador2 = (Empleador)this.agencia.registroEmpleador("Guillesky", "Chad", "Guillermo", "223840122", util.Constantes.FISICA,
+					util.Constantes.COMERCIO_INTERNACIONAL);
+			this.agencia.crearTicketEmpleador(util.Constantes.PRESENCIAL,100000,util.Constantes.JORNADA_EXTENDIDA,util.Constantes.JUNIOR,
+					util.Constantes.EXP_NADA,util.Constantes.SECUNDARIOS, empleador2);		
+		
+			ArrayList<Contratacion> contrataciones = (ArrayList<Contratacion>)this.agencia.getContrataciones().clone();		
+			int puntaje = empleador2.getPuntaje();
+			
+			this.empleado.setCandidato(this.empleador);
+			this.empleador.setCandidato(this.empleado);			
+	
+			this.agencia.setEstadoContratacion(true);
+			this.agencia.gatillarRonda();			
+			Assert.assertNotEquals("No hubo contrataciones",contrataciones, this.agencia.getContrataciones());
+			Assert.assertEquals("No se penalizo al empleador que no contrato",puntaje-20, empleador2.getPuntaje());
+			Assert.assertNull(this.empleado.getListaDePostulantes());
+			Assert.assertNull(this.empleador.getListaDePostulantes());
+			Assert.assertNull(empleador2.getListaDePostulantes());
+			Assert.assertFalse("No se cambio el estado de contratacion", this.agencia.isEstadoContratacion());			
+		}
+		catch (Exception e) {
+			fail();			
+		}
+	}
+	
+	@Test
+	public void testGatillarRondaEstadoFalso() {
+		
+		
+		
 	}
 
 	@Test
@@ -83,12 +119,12 @@ Agencia agencia;
 		fail("Not yet implemented");
 	}
 	
-	/*@Test
+	@Test
 	public void testMatch() {
 		EmpleadoPretenso empleadoTest =  this.agencia.getEmpleados().get("Juan123");
 		Empleador empleadorTest = this.agencia.getEmpleadores().get("Marcos123");
 		int puntajeNuevoEmpleado = empleadoTest.getPuntaje() + 10;
-		int puntajeNuevoEmpleador = empleadorTest.getPuntaje() + 50; 
+		int puntajeNuevoEmpleador = empleadorTest.getPuntaje() + 50; 		
 		this.agencia.match(empleadorTest,empleadoTest);
 		
 		Assert.assertEquals("Falla en el puntaje de empleado", puntajeNuevoEmpleado, empleadoTest.getPuntaje());
@@ -97,15 +133,18 @@ Agencia agencia;
 		Assert.assertNull("Ticket no eliminado en empleador",empleadorTest.getTicket());
 		Assert.assertNotNull(this.agencia.getComisionUsuario(empleadoTest));
 		Assert.assertNotNull(this.agencia.getComisionUsuario(empleadorTest));
-	}*/
+	}
 	
 	@Test
 	public void testGeneraPostulantes() {
 		try {
-			this.agencia.generaPostulantes(); 
-		}
-		catch(Exception e) { //no funciona pq no funciona bien ticket
-			fail();
+			this.agencia.login("admin", "admin");
+			System.out.println("soy admin");
+			System.out.println(this.agencia.getEmpleadores());
+			System.out.println(this.agencia.getEmpleados());			
+			this.agencia.generaPostulantes();
+		} catch (ContraException | NombreUsuarioException e) {
+			fail("Fallo en login");
 		}
 	}
 
@@ -126,8 +165,10 @@ Agencia agencia;
 	@Test
 	public void testRegistroEmpleadorRepetidoExcepcion() {
 		try {
-			Empleador empleadorTest = (Empleador) this.agencia.registroEmpleador("Marcos123", "Marcos123", "Marcos", "223566985", util.Constantes.FISICA,util.Constantes.SALUD);
-			fail("deberia haber lanzado una excepcion");
+			Empleador empleadorTest = (Empleador) this.agencia.registroEmpleador(this.empleador.getUsserName(), this.empleador.getPassword(),
+					this.empleador.getRealName(),this.empleador.getTelefono(), this.empleador.getRubro(),
+					this.empleador.getTipoPersona());
+			fail("Deberia haber lanzado una excepcion");
 		}
 		catch (NewRegisterException e) {
 			
@@ -154,8 +195,9 @@ Agencia agencia;
 	@Test
 	public void testRegistroEmpleadoFalloRepetido() {
 		try {
-			EmpleadoPretenso empleado = (EmpleadoPretenso)this.agencia.registroEmpleado("Juan123", "Juan123"
-					, "Juan", "Rodriguez","2235698547" , 25);
+			EmpleadoPretenso empleado = (EmpleadoPretenso)this.agencia.registroEmpleado(this.empleado.getUsserName(),
+					this.empleado.getPassword(),this.empleado.getRealName(),this.empleado.getApellido(),
+					this.empleado.getTelefono() , this.empleado.getEdad());
 			fail("Deberia haber lanzado excepcion");
 		}
 		catch (NewRegisterException e) {
@@ -231,19 +273,31 @@ Agencia agencia;
 	
 	@Test
 	public void testGetContratacionEmpleador() {
-		fail("Not yet implemented");
+		Contratacion nueva;
+		EmpleadoPretenso empleado;
+		
+		nueva = new Contratacion(this.empleador,this.empleado);
+		this.agencia.getContrataciones().add(nueva);
+		empleado = (EmpleadoPretenso)this.agencia.getContratacionEmpleador(this.empleador);
+		Assert.assertNotNull("Devolvio null", empleador);
+		Assert.assertEquals("No devolvio el mismo empleado", this.empleador, empleador);
 	}
 
+	
+	//Agregue una contratacion a la lista de contrataciones, habria que fijarse si puede molestar a futuro con otros test
+	/*
 	@Test
 	public void testGetContratacionEmpleadoPretenso() {
-		fail("Not yet implemented");
+		Contratacion nueva;
+		Empleador empleador;
+		
+		nueva = new Contratacion(this.empleador,this.empleado);
+		this.agencia.getContrataciones().add(nueva);
+		empleador = (Empleador)this.agencia.getContratacionEmpleadoPretenso(this.empleado);
+		Assert.assertNotNull("Devolvio null", empleador);
+		Assert.assertEquals("No devolvio el mismo empleador", this.empleador, empleador);
 	}
-
-	@Test
-	public void testAplicaPromo() {
-		fail("Not yet implemented");
-	}
-
+	*/
 
 	@Test
 	public void testEliminarTicket() {
@@ -268,16 +322,16 @@ Agencia agencia;
 			EmpleadoPretenso usuarioTest = (EmpleadoPretenso) this.agencia.login("Juan123", "Juan123");
 			try {
 				this.agencia.eliminarTicket();
-				fail("Deberia fallar");
+				fail("Deberia haber lanzado excepcion");
 			} catch (ImposibleModificarTicketsException e) {
 				
 			} 
 		} catch (ContraException | NombreUsuarioException e) {
-			fail("no deberia fallar aca");
+			fail("Se lanzo la excepcion equivocada");
 		} 
 		
 	}
-
-
+	
+	
 }
 
