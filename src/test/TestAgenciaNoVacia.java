@@ -91,8 +91,6 @@ private EmpleadoPretenso empleado;
 		
 			ArrayList<Contratacion> contrataciones = (ArrayList<Contratacion>)this.agencia.getContrataciones().clone();		
 			int puntajeEmpleador2 = empleador2.getPuntaje();
-			int puntajeEmpleador1;
-			int puntajeEmpleado;
 			
 			this.empleado.setCandidato(this.empleador);
 			this.empleador.setCandidato(this.empleado);			
@@ -130,6 +128,7 @@ private EmpleadoPretenso empleado;
 		EmpleadoPretenso empleadoTest1 = this.agencia.getEmpleados().get("Juan123");
 		Empleador empleadorTest =  this.agencia.getEmpleadores().get("Marcos123"); 
 		
+
 		ArrayList<ClientePuntaje> listEmpleadores = new ArrayList<ClientePuntaje>();
 		listEmpleadores.add(new ClientePuntaje(10,empleadorTest));
 		
@@ -144,6 +143,12 @@ private EmpleadoPretenso empleado;
 			empleadoTest3.setPuntaje(0);
 			int puntajeEmpleadoTest3 = empleadoTest3.getPuntaje();
 			
+			this.agencia.crearTicketEmpleador(util.Constantes.PRESENCIAL,15000000,util.Constantes.JORNADA_EXTENDIDA,util.Constantes.JUNIOR,
+					util.Constantes.EXP_NADA,util.Constantes.SECUNDARIOS, empleadoTest2);		
+			this.agencia.crearTicketEmpleador(util.Constantes.PRESENCIAL,100000000,util.Constantes.JORNADA_EXTENDIDA,util.Constantes.JUNIOR,
+					util.Constantes.EXP_NADA,util.Constantes.SECUNDARIOS, empleadoTest3);		
+			
+		
 			
 			listaPostulantes.add(new ClientePuntaje(30,empleadoTest1));
 			listaPostulantes.add(new ClientePuntaje(15,empleadoTest2)); 
@@ -171,6 +176,9 @@ private EmpleadoPretenso empleado;
 			Assert.assertEquals("La premiacion por contratacion no funciona", puntajeEmpleadoTest1 + 15, empleadoTest1.getPuntaje());
 			
 		} catch (NewRegisterException | ImposibleCrearEmpleadoException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ImposibleModificarTicketsException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
