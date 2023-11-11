@@ -1,4 +1,4 @@
-package test;
+package testGuiPanelRegistro;
 
 import java.awt.AWTException;
 import java.awt.Robot;
@@ -20,6 +20,9 @@ import modeloNegocio.Agencia;
 import util.Constantes;
 import util.Mensajes;
 import vista.Ventana;
+
+import test.FalsoOptionPane;
+import test.TestUtils;
 
 
 public class TestGuiConjuntoConDatosRegistro {
@@ -70,10 +73,7 @@ public class TestGuiConjuntoConDatosRegistro {
 	public void testUsuarioRepetido() {
 		robot.delay(TestUtils.getDelay());
 		Ventana ventana = (Ventana) controlador.getVista();
-		
-		
-		
-		
+	
 	}*/
 
 	

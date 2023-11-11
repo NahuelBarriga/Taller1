@@ -1,4 +1,4 @@
-package test;
+package testGuiPanelLogin;
 
 import java.awt.AWTException;
 import java.awt.Robot;
@@ -19,6 +19,9 @@ import modeloNegocio.Agencia;
 import util.Constantes;
 import util.Mensajes;
 import vista.Ventana;
+
+import test.FalsoOptionPane;
+import test.TestUtils;
 
 
 public class TestGuiConjuntoConDatosLogIn {
@@ -125,7 +128,7 @@ public class TestGuiConjuntoConDatosLogIn {
         
         //verifico los resultados
         //Assert.assertNull("Usuario actual deber�a ser null", );
-        Assert.assertEquals("Deberia decir:"+Mensajes.PASS_ERRONEO , Mensajes.PASS_ERRONEO , optionPane.getMensaje());
+        Assert.assertEquals("Deberia decir:"+Mensajes.PASS_ERRONEO.getValor() , Mensajes.PASS_ERRONEO.getValor() , optionPane.getMensaje());
     }
 	
 	  
@@ -149,7 +152,7 @@ public class TestGuiConjuntoConDatosLogIn {
         TestUtils.clickComponent(Log, robot);
         //verifico los resultados
         //Assert.assertNull("Usuario actual deberIa ser null", controlador.getUsuarioactual());
-        Assert.assertEquals("Deberia decir:"+Mensajes.USUARIO_DESCONOCIDO , Mensajes.USUARIO_DESCONOCIDO , optionPane.getMensaje());
+        Assert.assertEquals("Deberia decir:"+Mensajes.USUARIO_DESCONOCIDO.getValor() , Mensajes.USUARIO_DESCONOCIDO.getValor() , optionPane.getMensaje());
     }
 
 }

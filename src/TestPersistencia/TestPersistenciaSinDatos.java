@@ -1,4 +1,4 @@
-package test;
+package TestPersistencia;
 
 import java.io.File;
 import java.util.ArrayList;

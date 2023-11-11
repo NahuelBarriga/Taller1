@@ -1,4 +1,4 @@
-package test;
+package testGuiPanelLogin;
 
 import java.awt.AWTException;
 import java.awt.Robot;
@@ -16,6 +16,11 @@ import util.Constantes;
 import vista.PanelLogin;
 //Esta clase verifica que los botones se habiliten y deshabiliten cuando se ingresa o se borra el texto en los diferentes JTextField.
 import vista.Ventana;
+
+
+import test.FalsoOptionPane;
+
+import test.TestUtils;
 
 public class TestGuiEnabledDisabledLogIn {
 

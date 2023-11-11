@@ -1,4 +1,4 @@
-	package test;
+	package testGuiPanelRegistro;
 
 import java.awt.AWTException;
 import java.awt.Robot;
@@ -16,6 +16,11 @@ import controlador.Controlador;
 import util.Constantes;
 import vista.PanelRegistro;
 import vista.Ventana;
+
+
+import test.FalsoOptionPane;
+import test.TestUtils;
+
 
 public class TestGuiEnabledDisabledRegistro {
 
