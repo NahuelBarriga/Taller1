@@ -19,6 +19,7 @@ import modeloDatos.EmpleadoPretenso;
 import modeloDatos.Empleador;
 import modeloDatos.Ticket;
 import modeloNegocio.Agencia;
+import util.Mensajes;
 
 //Escenario de Agencia vacia
 public class TestAgenciaVacia {
@@ -219,7 +220,17 @@ public class TestAgenciaVacia {
 		}
 	}
 
-	
 
+	@Test
+	public void getEstadoContratando() {
+		this.agencia.setEstadoContratacion(true);
+		Assert.assertEquals("Fallo en getEstado", Mensajes.AGENCIA_EN_CONTRATACION.getValor(), this.agencia.getEstado());
+	}
+	
+	@Test
+	public void getEstadoBusqueda() {
+		this.agencia.setEstadoContratacion(false);
+		Assert.assertEquals("Fallo en getEstado", Mensajes.AGENCIA_EN_BUSQUEDA.getValor(), this.agencia.getEstado());
+	}
 	
 }
