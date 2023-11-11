@@ -55,8 +55,8 @@ private EmpleadoPretenso empleado;
 			
 			this.empleado = (EmpleadoPretenso)agencia.registroEmpleado("Juan123", "Juan123", "Juan", "2235698547", "Rodriguez", 25);
 			this.empleador = (Empleador)agencia.registroEmpleador("Marcos123", "Marcos123", "Marcos", "223566985", util.Constantes.FISICA,util.Constantes.SALUD);
-			this.agencia.crearTicketEmpleado(util.Constantes.HOME_OFFICE,250000,util.Constantes.JORNADA_COMPLETA,util.Constantes.ADMINISTRADOR,util.Constantes.EXP_MUCHA,util.Constantes.TERCIARIOS, this.agencia.getEmpleados().get("Juan123"));
-			this.agencia.crearTicketEmpleador(util.Constantes.HOME_OFFICE,250000,util.Constantes.JORNADA_COMPLETA,util.Constantes.ADMINISTRADOR,util.Constantes.EXP_MUCHA,util.Constantes.TERCIARIOS, this.agencia.getEmpleadores().get("Marcos123"));
+			this.agencia.crearTicketEmpleado(util.Constantes.HOME_OFFICE,250000,util.Constantes.JORNADA_COMPLETA,util.Constantes.MANAGMENT,util.Constantes.EXP_MUCHA,util.Constantes.TERCIARIOS, this.agencia.getEmpleados().get("Juan123"));
+			this.agencia.crearTicketEmpleador(util.Constantes.HOME_OFFICE,250000,util.Constantes.JORNADA_COMPLETA,util.Constantes.MANAGMENT,util.Constantes.EXP_MUCHA,util.Constantes.TERCIARIOS, this.agencia.getEmpleadores().get("Marcos123"));
 			
 			
 			this.agencia.getEmpleados().get("Juan123").setPuntaje(4);
@@ -88,7 +88,9 @@ private EmpleadoPretenso empleado;
 					util.Constantes.EXP_NADA,util.Constantes.SECUNDARIOS, empleador2);		
 		
 			ArrayList<Contratacion> contrataciones = (ArrayList<Contratacion>)this.agencia.getContrataciones().clone();		
-			int puntaje = empleador2.getPuntaje();
+			int puntajeEmpleador2 = empleador2.getPuntaje();
+			int puntajeEmpleador1;
+			int puntajeEmpleado;
 			
 			this.empleado.setCandidato(this.empleador);
 			this.empleador.setCandidato(this.empleado);			
@@ -96,20 +98,26 @@ private EmpleadoPretenso empleado;
 			this.agencia.setEstadoContratacion(true);
 			this.agencia.gatillarRonda();			
 			Assert.assertNotEquals("No hubo contrataciones",contrataciones, this.agencia.getContrataciones());
-			Assert.assertEquals("No se penalizo al empleador que no contrato",puntaje-20, empleador2.getPuntaje());
-			Assert.assertNull(this.empleado.getListaDePostulantes());
-			Assert.assertNull(this.empleador.getListaDePostulantes());
-			Assert.assertNull(empleador2.getListaDePostulantes());
+			Assert.assertEquals("No se penalizo al empleador2 que no contrato",puntajeEmpleador2-20, this.agencia.getEmpleadores().get("Guillesky").getPuntaje());
+			//Assert.assertEquals("No se premio al empleador que contrato",puntajeEmpleador1, this.agencia.getEmpleadores().get("Marcos123").getPuntaje());
+			//Assert.assertEquals("No se premio al empleador que contrato",puntajeEmpleado, empleador2.getPuntaje());
+		
+			Assert.assertNull("El metodo no creo las listas de postulantes",this.empleado.getListaDePostulantes());
+			Assert.assertNull("El metodo no creo las listas de postulantes",this.empleador.getListaDePostulantes());
+			Assert.assertNull("El metodo no creo las listas de postulantes",empleador2.getListaDePostulantes());
 			Assert.assertFalse("No se cambio el estado de contratacion", this.agencia.isEstadoContratacion());			
 		}
 		catch (Exception e) {
-			fail();			
+			fail("No deberia fallar la creacion de empleador");			
 		}
 	}
 	
 	@Test
 	public void testGatillarRondaEstadoFalso() {
-		
+		this.agencia.setEstadoContratacion(false);
+		this.agencia.gatillarRonda();
+		Assert.assertNotNull("El metodo no creo las listas de postulantes",this.agencia.getEmpleadores().get("Marcos123").getListaDePostulantes());
+		Assert.assertNotNull("El metodo no creo las listas de postulantes",this.agencia.getEmpleados().get("Juan123").getListaDePostulantes());
 		
 		
 	}
@@ -139,10 +147,13 @@ private EmpleadoPretenso empleado;
 	public void testGeneraPostulantes() {
 		try {
 			this.agencia.login("admin", "admin");
-			System.out.println("soy admin");
-			System.out.println(this.agencia.getEmpleadores());
-			System.out.println(this.agencia.getEmpleados());			
 			this.agencia.generaPostulantes();
+			//System.out.println(this.agencia.getEmpleadores().get("Marcos123").getRealName() + this.agencia.getEmpleadores().get("Marcos123").getListaDePostulantes());
+			//System.out.println(this.agencia.getEmpleados().get("Juan123").getRealName() + this.agencia.getEmpleados().get("Juan123").getListaDePostulantes());
+			Assert.assertNotNull(this.agencia.getEmpleadores().get("Marcos123").getListaDePostulantes());
+			Assert.assertNotNull(this.agencia.getEmpleados().get("Juan123").getListaDePostulantes());
+			
+			
 		} catch (ContraException | NombreUsuarioException e) {
 			fail("Fallo en login");
 		}
