@@ -61,14 +61,23 @@ public class TestEmpleadoPretenso {
 	public void testCalculaComision() {
 		EmpleadoPretenso empleado = new EmpleadoPretenso("Juan123", "Juan123", "Juan",
 				"2235698547", "Rodriguez", 25);
-		Ticket ticket= new Ticket(util.Constantes.PRESENCIAL, 1200, util.Constantes.JORNADA_MEDIA,
+		Ticket ticketTest1= new Ticket(util.Constantes.PRESENCIAL, 1200, util.Constantes.JORNADA_MEDIA,
 				util.Constantes.JUNIOR, util.Constantes.EXP_NADA, util.Constantes.PRIMARIOS); 
+		Ticket ticketTest2= new Ticket(util.Constantes.PRESENCIAL, 1200, util.Constantes.JORNADA_MEDIA,
+				util.Constantes.SENIOR, util.Constantes.EXP_NADA, util.Constantes.PRIMARIOS);
+		Ticket ticketTest3= new Ticket(util.Constantes.PRESENCIAL, 1200, util.Constantes.JORNADA_MEDIA,
+				util.Constantes.MANAGMENT, util.Constantes.EXP_NADA, util.Constantes.PRIMARIOS);
 		double comision;
-		
-		empleado.setTicket(ticket);	
 		empleado.setPuntaje(20);
-		comision = empleado.calculaComision(ticket);
-		Assert.assertEquals("Fallo en el calculo de comision", 720, comision,0.1);
+		
+		comision = empleado.calculaComision(ticketTest1);
+		Assert.assertEquals("Fallo en el calculo de comision", 720, comision,0.1); 
+		
+		comision = empleado.calculaComision(ticketTest2);
+		Assert.assertEquals("Fallo en el calculo de comision", 840, comision,0.1);
+		
+		comision = empleado.calculaComision(ticketTest3);
+		Assert.assertEquals("Fallo en el calculo de comision", 960, comision,0.1);
 				
 	}
 }
