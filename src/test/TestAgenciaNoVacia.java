@@ -11,6 +11,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import excepciones.ContraException;
+import excepciones.ImposibleCrearEmpleadoException;
+import excepciones.ImposibleCrearEmpleadorException;
 import excepciones.ImposibleModificarTicketsException;
 import excepciones.NewRegisterException;
 import excepciones.NombreUsuarioException;
@@ -123,9 +125,107 @@ private EmpleadoPretenso empleado;
 	}
 
 	@Test
-	public void testCalculaPremiosCastigosAsignaciones() {
-		fail("Not yet implemented");
+	public void testCalculaPremiosCastigosAsignacionesEmpleados() {
+		ArrayList<ClientePuntaje> listaPostulantes= new ArrayList<ClientePuntaje>();
+		EmpleadoPretenso empleadoTest1 = this.agencia.getEmpleados().get("Juan123");
+		Empleador empleadorTest =  this.agencia.getEmpleadores().get("Marcos123"); 
+		
+		ArrayList<ClientePuntaje> listEmpleadores = new ArrayList<ClientePuntaje>();
+		listEmpleadores.add(new ClientePuntaje(10,empleadorTest));
+		
+		empleadoTest1.setPuntaje(30);
+		int puntajeEmpleadoTest1 = empleadoTest1.getPuntaje(); 
+		try {
+			EmpleadoPretenso empleadoTest2 = (EmpleadoPretenso) this.agencia.registroEmpleado("Pepe123", "Pepe123", "Pedro", "", "22356987", 45);
+			empleadoTest2.setPuntaje(15);
+			int puntajeEmpleadoTest2 = empleadoTest2.getPuntaje();
+	
+			EmpleadoPretenso empleadoTest3 = (EmpleadoPretenso) this.agencia.registroEmpleado("Lucas123", "Lucas123", "Lucas", "Gonzalez", "22386285", 17);
+			empleadoTest3.setPuntaje(0);
+			int puntajeEmpleadoTest3 = empleadoTest3.getPuntaje();
+			
+			
+			listaPostulantes.add(new ClientePuntaje(30,empleadoTest1));
+			listaPostulantes.add(new ClientePuntaje(15,empleadoTest2)); 
+			listaPostulantes.add(new ClientePuntaje(0,empleadoTest3));
+			
+			empleadoTest1.setListaDePostulantes(listEmpleadores);
+			empleadoTest2.setListaDePostulantes(listEmpleadores);
+			empleadoTest3.setListaDePostulantes(listEmpleadores);
+			
+			empleadorTest.setListaDePostulantes(listaPostulantes);
+			System.out.println(empleadorTest.getListaDePostulantes());
+			this.agencia.calculaPremiosCastigosAsignaciones();
+			System.out.println(empleadorTest.getListaDePostulantes());
+			
+			Assert.assertEquals("La premiacion por salir primero no funciona", puntajeEmpleadoTest1 + 5, empleadoTest1.getPuntaje());
+			Assert.assertEquals("No deberia variar por estar en el medio", puntajeEmpleadoTest2, empleadoTest2.getPuntaje());
+			Assert.assertEquals("El castigo por salir ultimo no funciona", puntajeEmpleadoTest3 - 5, empleadoTest3.getPuntaje());
+			
+			
+			empleadorTest.setCandidato(empleadoTest1);
+			empleadoTest1.setCandidato(empleadorTest);
+			this.agencia.setEstadoContratacion(true);
+			this.agencia.gatillarRonda();
+			
+			Assert.assertEquals("La premiacion por contratacion no funciona", puntajeEmpleadoTest1 + 15, empleadoTest1.getPuntaje());
+			
+		} catch (NewRegisterException | ImposibleCrearEmpleadoException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+				
 	}
+	
+	@Test
+	public void testCalculaPremiosCastigosAsignacionesEmpleadores() {
+		ArrayList<ClientePuntaje> listaPostulantes= new ArrayList<ClientePuntaje>();
+		ArrayList<ClientePuntaje> listaEmpleado= new ArrayList<ClientePuntaje>();
+		EmpleadoPretenso empleadoTest = this.agencia.getEmpleados().get("Juan123");
+		
+		listaEmpleado.add(new ClientePuntaje(30,empleadoTest));
+		
+		
+		Empleador empleadorTest1 = this.agencia.getEmpleadores().get("Marcos123");
+		empleadorTest1.setPuntaje(40);
+		int puntajeEmpleadorTest1 = empleadorTest1.getPuntaje();
+		try {
+			Empleador empleadorTest2 = (Empleador)this.agencia.registroEmpleador("Pepe123", "pepe23", "Pedro","Vasquez" , util.Constantes.FISICA, util.Constantes.SALUD);
+			empleadorTest2.setPuntaje(15);
+			int puntajeEmpleadorTest2 = empleadorTest2.getPuntaje();
+			Empleador empleadorTest3 = (Empleador)this.agencia.registroEmpleador("Guillesky", "Chad", "Guillermo", "223840122", util.Constantes.FISICA, util.Constantes.COMERCIO_INTERNACIONAL);
+			empleadorTest3.setPuntaje(0);
+			int puntajeEmpleadorTest3 = empleadorTest3.getPuntaje();
+			
+			listaPostulantes.add(new ClientePuntaje(40,empleadorTest1));
+			listaPostulantes.add(new ClientePuntaje(15,empleadorTest2)); 
+			listaPostulantes.add(new ClientePuntaje(0,empleadorTest3));
+			
+			empleadoTest.setListaDePostulantes(listaPostulantes);
+			System.out.println(empleadoTest.getListaDePostulantes());
+			this.agencia.calculaPremiosCastigosAsignaciones();
+			System.out.println(empleadoTest.getListaDePostulantes());
+			
+			Assert.assertEquals("El empleador primero no fue premiado", puntajeEmpleadorTest1 + 10, empleadorTest1.getPuntaje());
+			Assert.assertEquals("No deberia variar por estar en el medio", puntajeEmpleadorTest2, empleadorTest2.getPuntaje());
+			Assert.assertEquals("No deberia variar por estar ultimo", puntajeEmpleadorTest3, empleadorTest3.getPuntaje());
+			
+			empleadorTest1.setCandidato(empleadoTest);
+			empleadoTest.setCandidato(empleadorTest1);
+			this.agencia.gatillarRonda();
+			
+			Assert.assertEquals("El empleador primero no fue premiado", puntajeEmpleadorTest1 + 50, empleadorTest1.getPuntaje()); //este varia de mas y los otros no hacen nada
+			Assert.assertEquals("No deberia variar por estar en el medio", puntajeEmpleadorTest2 -20, empleadorTest2.getPuntaje());
+			Assert.assertEquals("No deberia variar por estar ultimo", puntajeEmpleadorTest3 -20, empleadorTest3.getPuntaje());
+			
+			
+		} catch (NewRegisterException | ImposibleCrearEmpleadorException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
 	
 	@Test
 	public void testMatch() {
