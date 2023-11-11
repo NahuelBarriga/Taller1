@@ -263,7 +263,7 @@ public class TestTicket {
 		Assert.assertEquals(resultado, resultadoTest1, 0);
 	}
 
-	/*@Test
+	@Test
 	public void testGetComparacionRemuneracion() {
 		
 		double resultadoTest1 = 1;
@@ -299,7 +299,8 @@ public class TestTicket {
 		resultado = testTicket3.getComparacionRemuneracion(testTicket3);
 		Assert.assertEquals(resultado, resultadoTest2, 0);
 	}
-	*/
+	
+	
 	@Test
 	public void testGetComparacionTotal() {
 		double resultadoEsperado = 6;
