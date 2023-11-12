@@ -19,7 +19,6 @@ import modeloNegocio.Agencia;
 import util.Constantes;
 import util.Mensajes;
 import vista.Ventana;
-
 import test.FalsoOptionPane;
 import test.TestUtils;
 
@@ -76,40 +75,7 @@ public class TestGuiConjuntoConDatosLogIn {
     }
 	
 	@Test
-	public void testLoginEmpleadoOk() {//Ver que pasa con el getUsuarioLogeado ..... ???
-		
-		robot.delay(TestUtils.getDelay());
-		Ventana ventana = (Ventana) controlador.getVista();
-		
-		
-		
-		//referencia a los componentes
-		JTextField nombreUsuario = (JTextField) TestUtils.getComponentForName(ventana, Constantes.NOMBRE_USUARIO);
-		JTextField password = (JTextField) TestUtils.getComponentForName(ventana, Constantes.PASSWORD);
-		JButton login = (JButton) TestUtils.getComponentForName(ventana, Constantes.LOGIN);
-		
-		System.out.println("Usuario: "+ventana.getUsserName());
-
-		//completo
-		TestUtils.clickComponent(nombreUsuario, robot);
-		TestUtils.tipeaTexto("Meel", robot);
-		TestUtils.clickComponent(password, robot);
-		TestUtils.tipeaTexto("LLdoe234", robot);
-		
-		System.out.println("Usuario: "+ventana.getUsserName());
-		
-		TestUtils.clickComponent(login, robot);
-		
-		//verifico
-		
-		//Assert.assertEquals("Deberia coincidir el nombre de usuario con el nombre ingresado", "Meel", //usuario logueado);
-        //Assert.assertEquals("Memnsaje incorrecto, deber�a decir"+ Mensajes.    LOGIN_OK.getValor() ,Mensajes.LOGIN_OK.getValor(),op.getMensaje());
-		//no va xq no tira msj
-		
-	}
-	
-	@Test
-    public void testLogContraseniaErronea(){ 
+    public void testLoginContraseniaErronea(){ 
         robot.delay(TestUtils.getDelay());
 		Ventana ventana = (Ventana) controlador.getVista();
 
@@ -122,38 +88,83 @@ public class TestGuiConjuntoConDatosLogIn {
         TestUtils.clickComponent(nombreUsuario, robot);
         TestUtils.tipeaTexto("Cari34", robot);
         TestUtils.clickComponent(password, robot);
-        TestUtils.tipeaTexto("Qwerty123", robot);
+        TestUtils.tipeaTexto("Qwerty", robot);
         
         TestUtils.clickComponent(login, robot);
-        
-        //verifico los resultados
-        //Assert.assertNull("Usuario actual deber�a ser null", );
+      
         Assert.assertEquals("Deberia decir:"+Mensajes.PASS_ERRONEO.getValor() , Mensajes.PASS_ERRONEO.getValor() , optionPane.getMensaje());
     }
 	
 	  
 	
 	@Test
-    public void testLogUsuarioInexistente()
-    {
+    public void testLoginUsuarioDesconocido(){
         robot.delay(TestUtils.getDelay());
 		Ventana ventana = (Ventana) controlador.getVista();
 
-        
-        //obtengo las referencias a los componentes necesarios
-        JTextField nombre = (JTextField) TestUtils.getComponentForName(ventana,Constantes.NOMBRE_USUARIO);
-        JTextField contrasena = (JTextField) TestUtils.getComponentForName(ventana,Constantes.PASSWORD);
-        JButton Log = (JButton) TestUtils.getComponentForName(ventana, Constantes.LOGIN);
-        //lleno los JTextField
-        TestUtils.clickComponent(nombre, robot);
-        TestUtils.tipeaTexto("JUAN ROMAN RIQUELME", robot);
-        TestUtils.clickComponent(contrasena, robot);
-        TestUtils.tipeaTexto("Qwerty123", robot);
-        TestUtils.clickComponent(Log, robot);
-        //verifico los resultados
-        //Assert.assertNull("Usuario actual deberIa ser null", controlador.getUsuarioactual());
+        JTextField nombreUsuario = (JTextField) TestUtils.getComponentForName(ventana,Constantes.NOMBRE_USUARIO);
+        JTextField password = (JTextField) TestUtils.getComponentForName(ventana,Constantes.PASSWORD);
+        JButton login = (JButton) TestUtils.getComponentForName(ventana, Constantes.LOGIN);
+  
+        TestUtils.clickComponent(nombreUsuario, robot);
+        TestUtils.tipeaTexto("Juan", robot);
+        TestUtils.clickComponent(password, robot);
+        TestUtils.tipeaTexto("dhao2d", robot);
+        TestUtils.clickComponent(login, robot);
+       
         Assert.assertEquals("Deberia decir:"+Mensajes.USUARIO_DESCONOCIDO.getValor() , Mensajes.USUARIO_DESCONOCIDO.getValor() , optionPane.getMensaje());
     }
+	
+	@Test
+    public void testCerrarSesionEmpleadoEstadoInicial(){ //Cuando se cierra sesion que el panel de login este en el estado inicial
+        robot.delay(TestUtils.getDelay());
+		Ventana ventana = (Ventana) controlador.getVista();
 
+        JTextField nombreUsuario = (JTextField) TestUtils.getComponentForName(ventana,Constantes.NOMBRE_USUARIO);
+        JTextField password = (JTextField) TestUtils.getComponentForName(ventana,Constantes.PASSWORD);
+        JButton login = (JButton) TestUtils.getComponentForName(ventana, Constantes.LOGIN);
+        
+        
+        TestUtils.clickComponent(nombreUsuario, robot);
+        TestUtils.tipeaTexto("Cari34", robot);
+        TestUtils.clickComponent(password, robot);
+        TestUtils.tipeaTexto("LSk7F", robot);
+        TestUtils.clickComponent(login, robot);
+        
+        robot.delay(TestUtils.getDelay());
+        
+        JButton cerrarSesion = (JButton) TestUtils.getComponentForName(ventana, Constantes.CERRARSESION);
+        TestUtils.clickComponent(cerrarSesion, robot);
+        
+        Assert.assertEquals("Deberia estar vacio","", nombreUsuario.getText());
+        Assert.assertEquals("Deberia estar vacio","", password.getText());
+        
+    }
+	
+	@Test
+    public void testCerrarSesionEmpleadorEstadoInicial(){ 
+        robot.delay(TestUtils.getDelay());
+		Ventana ventana = (Ventana) controlador.getVista();
+
+        JTextField nombreUsuario = (JTextField) TestUtils.getComponentForName(ventana,Constantes.NOMBRE_USUARIO);
+        JTextField password = (JTextField) TestUtils.getComponentForName(ventana,Constantes.PASSWORD);
+        JButton login = (JButton) TestUtils.getComponentForName(ventana, Constantes.LOGIN);
+        
+        TestUtils.clickComponent(nombreUsuario, robot);
+        TestUtils.tipeaTexto("Lee123", robot);
+        TestUtils.clickComponent(password, robot);
+        TestUtils.tipeaTexto("123456", robot);
+        TestUtils.clickComponent(login, robot);
+       
+        robot.delay(TestUtils.getDelay());
+        //cambia de panel
+        JButton cerrarSesion = (JButton) TestUtils.getComponentForName(ventana, Constantes.CERRARSESION);
+        TestUtils.clickComponent(cerrarSesion, robot);
+
+        Assert.assertEquals("Deberia estar vacio","", nombreUsuario.getText());
+        Assert.assertEquals("Deberia estar vacio","", password.getText());
+
+    }
+    
 }
 
