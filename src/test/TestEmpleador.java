@@ -3,6 +3,7 @@ package test;
 import java.util.ArrayList;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 import modeloDatos.ClientePuntaje;
@@ -11,51 +12,70 @@ import modeloDatos.Empleador;
 import modeloDatos.Ticket;
 
 public class TestEmpleador {
-
+	private Empleador empleador;
+	int remuneracion;
+	Ticket ticket;
+	
+	@Before
+	public void setUp() {
+		this.empleador = new Empleador("Juan123", "Juan123", "Juan", "2235698547", util.Constantes.SALUD,
+				util.Constantes.FISICA);
+		this.remuneracion = 200000;
+		this.ticket = new Ticket("PRESENCIAL", remuneracion, "JORNADA_MEDIA", "JUNIOR", "EXP_NADA", "PRIMARIOS");
+	}
+	
+	
 	@Test
 	public void  testEmpleador() {
-		
-		String nombre =  "Juan123";
-		String password =  "Juan123";
-		String realName =  "Juan";
-		String telefono =  "2235698547";
-		String rubro =  util.Constantes.SALUD;
-		String persona =  util.Constantes.FISICA;
-		Empleador empleador = new Empleador("Juan123", "Juan123", "Juan", "2235698547", rubro, persona);
-		
-		Assert.assertNotNull("Falla en constructor, constructor nulo",empleador);
-		Assert.assertEquals("Falla en constructor, parametro: UsserName", nombre,empleador.getUsserName());
-		Assert.assertEquals("Falla en constructor, parametro: Password", password,empleador.getPassword());
-		Assert.assertEquals("Falla en constructor, parametro: RealName",realName,empleador.getRealName());
-		Assert.assertEquals("Falla en constructor, parametro: Telefono", telefono,empleador.getTelefono());
-		Assert.assertEquals("Falla en constructor, parametro: Rubro", rubro,empleador.getRubro());
-		Assert.assertEquals("Falla en constructor, parametro: TipoPersona", persona, empleador.getTipoPersona());
-		
+		Assert.assertEquals("Falla en constructor, parametro: UsserName", "Juan123",empleador.getUsserName());
+			
 	}
 	
 	@Test
-	public void testCalculaComision() {
-		Empleador empleadorSaludTest = new Empleador("Juan123", "Juan123", "Juan", "2235698547", util.Constantes.SALUD, util.Constantes.FISICA);
-		Empleador empleadorInternacionalTest = new Empleador("Juan123", "Juan123", "Juan", "2235698547", util.Constantes.COMERCIO_INTERNACIONAL, util.Constantes.FISICA);
-		Empleador empleadorLocalTest = new Empleador("Juan123", "Juan123", "Juan", "2235698547", util.Constantes.COMERCIO_LOCAL, util.Constantes.FISICA);
-		int remuneracion = 250000;
-		
-		Ticket ticketTest = new Ticket("PRESENCIAL", remuneracion, "JORNADA_MEDIA", "JUNIOR", "EXP_NADA", "PRIMARIOS");
-
-		//Escenario1:  this.empleador.rubro == "Salud"
-		Double remuneracionSalud = empleadorSaludTest.calculaComision(ticketTest);
-		Double remuneracionEsperada = remuneracion*0.6;
-		Assert.assertEquals("Falla en calculo de comision, Escenario 1", remuneracionEsperada, remuneracionSalud);
-		
-		//Escenario2: this.rubro == "comercio_local" 
-		Double remuneracionLocal = empleadorLocalTest.calculaComision(ticketTest);
-		remuneracionEsperada = remuneracion*0.7;
-		Assert.assertEquals("Falla en calculo de comision, Escenario 2", remuneracionEsperada, remuneracionLocal);
-		
-		//Escenario3 this.rubro == "comercio_internacional"	
-		Double remuneracionInternacional = empleadorInternacionalTest.calculaComision(ticketTest);
-		remuneracionEsperada = remuneracion*0.8;
-		Assert.assertEquals("Falla en calculo de comision, Escenario 3", remuneracionEsperada, remuneracionInternacional);
+	public void testEmpleadorPassword() {
+		Assert.assertEquals("Falla en constructor, parametro: Password", "Juan123",this.empleador.getPassword());
+	}
+	
+	@Test
+	public void testEmpleadorRealName() {
+		Assert.assertEquals("Falla en constructor, parametro: RealName","Juan",this.empleador.getRealName());
+	}
+	
+	@Test
+	public void testEmpleadorTelefono() {
+		Assert.assertEquals("Falla en constructor, parametro: Telefono", "2235698547",this.empleador.getTelefono());
+	}
+	
+	@Test
+	public void testEmpleadorRubro() {
+		Assert.assertEquals("Falla en constructor, parametro: Rubro", util.Constantes.SALUD,empleador.getRubro());
+	}
+	
+	@Test
+	public void testEmpleadorTipoPersona() {
+		Assert.assertEquals("Falla en constructor, parametro: TipoPersona", util.Constantes.FISICA, empleador.getTipoPersona());
+	}
+	
+	@Test
+	public void testCalculaComisionSalud() {
+		double esperada = this.remuneracion*0.6;
+		Assert.assertEquals("Falla en calculo de comision, escenario salud", esperada, this.empleador.calculaComision(this.ticket),0);
+	}
+	
+	@Test
+	public void testCalculaComisionLocal() {
+		Empleador empleador = new Empleador("Juan123", "Juan123", "Juan", "2235698547",
+				util.Constantes.COMERCIO_LOCAL, util.Constantes.FISICA);
+		double esperada = this.remuneracion*0.7;
+		Assert.assertEquals("Falla en calculo de comision, escenario local", esperada, empleador.calculaComision(this.ticket),0);
+	}
+	
+	@Test
+	public void testCalculaComisionInternacional() {
+		Empleador empleador = new Empleador("Juan123", "Juan123", "Juan", "2235698547",
+				util.Constantes.COMERCIO_INTERNACIONAL, util.Constantes.FISICA);
+		double esperada = this.remuneracion*0.8;
+		Assert.assertEquals("Falla en calculo de comision, escenario internacional", esperada, empleador.calculaComision(this.ticket),0);
 		
 	}
 	
@@ -68,9 +88,8 @@ public class TestEmpleador {
 		Assert.assertEquals("Falla en setCandidato, candidato no agregado", empleadoTest, empleadorTest.getCandidato());
 	}
 	
-	
 	@Test
-	public void TestListaDePostulantes() {
+	public void TestSetListaDePostulantes() {
 		ArrayList<ClientePuntaje> listaPostulantesTest = new ArrayList<ClientePuntaje>();
 		Empleador empleadorTest = new Empleador("Juan123", "Juan123", "Juan", "2235698547", "salud", "fisica");
 		empleadorTest.setListaDePostulantes(listaPostulantesTest);

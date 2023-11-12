@@ -10,9 +10,6 @@ import modeloDatos.Usuario;
 
 public class TestUsuario {
 
-	@Before
-	public void setUp() throws Exception {		
-	}
 
 	@Test
 	public void test() {

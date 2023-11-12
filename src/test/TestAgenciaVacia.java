@@ -42,14 +42,13 @@ public class TestAgenciaVacia {
 		this.agencia.getEmpleados().clear();
 	}
 	
-	
 	@Test
 	public void testCrearTicketEmpleado() {
 		EmpleadoPretenso empleadoTest = new EmpleadoPretenso("Juan123", "Juan123", "Juan", "2235698547", "Rodriguez", 25);
 		Ticket ticketTest = empleadoTest.getTicket();
 		try {
-			this.agencia.crearTicketEmpleado(util.Constantes.HOME_OFFICE, 250000, util.Constantes.JORNADA_EXTENDIDA, util.Constantes.MANAGMENT, util.Constantes.EXP_NADA, util.Constantes.PRIMARIOS, empleadoTest);
-			Assert.assertNotNull(empleadoTest.getTicket());
+			this.agencia.crearTicketEmpleado(util.Constantes.HOME_OFFICE, 250000, util.Constantes.JORNADA_EXTENDIDA,
+					util.Constantes.MANAGMENT, util.Constantes.EXP_NADA, util.Constantes.PRIMARIOS, empleadoTest);
 			Assert.assertNotEquals("El ticket creado es diferente", ticketTest, empleadoTest.getTicket());
 		} catch (ImposibleModificarTicketsException e) {
 			fail("No deberia tirar excepcion");
@@ -74,8 +73,8 @@ public class TestAgenciaVacia {
 		Empleador empleadorTest = new Empleador("Marcos123", "Marcos123", "Marcos", "223566985",util.Constantes.SALUD,util.Constantes.FISICA);
 		Ticket ticketTest = empleadorTest.getTicket();
 		try {
-			this.agencia.crearTicketEmpleador(util.Constantes.HOME_OFFICE, 250000, util.Constantes.JORNADA_EXTENDIDA, util.Constantes.MANAGMENT, util.Constantes.EXP_NADA, util.Constantes.PRIMARIOS, empleadorTest);
-			Assert.assertNotNull(empleadorTest.getTicket());
+			this.agencia.crearTicketEmpleador(util.Constantes.HOME_OFFICE, 250000, util.Constantes.JORNADA_EXTENDIDA
+					, util.Constantes.MANAGMENT, util.Constantes.EXP_NADA, util.Constantes.PRIMARIOS, empleadorTest);
 			Assert.assertNotEquals("El ticket creado es diferente", ticketTest, empleadorTest.getTicket());
 		} catch (ImposibleModificarTicketsException e) {
 			fail("No deberia tirar excepcion");
@@ -94,29 +93,7 @@ public class TestAgenciaVacia {
 			Assert.assertEquals("Ticket no se modifico", ticketTest, empleadorTest.getTicket());
 		}
 	}
-	
-	
-	@Test
-	public void testGeneraPostulantes() {
-		try {
-			this.agencia.registroEmpleado("Juan123", "Juan123", "Juan", "2235698547", "Rodriguez", 25);
-		} catch (NewRegisterException | ImposibleCrearEmpleadoException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
-			this.agencia.registroEmpleador("Marcos123", "Marcos123", "Marcos", "223566985", util.Constantes.FISICA,util.Constantes.SALUD);
-		} catch (NewRegisterException | ImposibleCrearEmpleadorException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		this.agencia.generaPostulantes(); 
-		
-	}
-	
-	
-	
-	
+
 	@Test
 	public void testRegistroEmpleadoExitoso() {
 		EmpleadoPretenso empleado;
@@ -148,7 +125,6 @@ public class TestAgenciaVacia {
 		}
 	}
 	
-	
 	@Test
 	public void testRegistraEmpleadorExitoso() {
 		Empleador empleador;
@@ -178,13 +154,21 @@ public class TestAgenciaVacia {
 		}
 	}
 	
-	
-
 	@Test
-	public void testSetLimitesRemuneracion() {
+	public void testSetLimitesRemuneracionInferior() {
 		try {
 			agencia.setLimitesRemuneracion(200000, 350000);
 			Assert.assertEquals("El limite inferior no fue seteado correctamente", 200000, this.agencia.getLimiteInferior());
+		}
+		catch (Exception e) {
+			fail("No deberia haber lanzado una excepcion");
+		}
+	}
+	
+	@Test
+	public void testSetLimitesRemuneracionSuperior() {
+		try {
+			agencia.setLimitesRemuneracion(200000, 350000);			
 			Assert.assertEquals("El limite superior no fue seteado correctamnte",350000,this.agencia.getLimiteSuperior());
 		}
 		catch (Exception e) {
@@ -206,6 +190,7 @@ public class TestAgenciaVacia {
 		}
 	}
 	
+	
 	@Test
 	public void testSetLimitesRemuneracionFallaSuperior() {
 		try {
@@ -219,13 +204,14 @@ public class TestAgenciaVacia {
 			fail("No se lanzo la excepcion correcta");
 		}
 	}
-
+	
 
 	@Test
 	public void getEstadoContratando() {
 		this.agencia.setEstadoContratacion(true);
 		Assert.assertEquals("Fallo en getEstado", Mensajes.AGENCIA_EN_CONTRATACION.getValor(), this.agencia.getEstado());
 	}
+	
 	
 	@Test
 	public void getEstadoBusqueda() {

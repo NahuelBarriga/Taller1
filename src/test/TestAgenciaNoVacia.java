@@ -31,40 +31,15 @@ private EmpleadoPretenso empleado;
 	@Before
 	public void setUp() throws Exception {
 			this.agencia = Agencia.getInstance();
-			//this.agencia.setEstadoContratacion(false);
-			/*Ticket ticketTestEmpleado = new Ticket(util.Constantes.HOME_OFFICE,250000,util.Constantes.JORNADA_COMPLETA,util.Constantes.ADMINISTRADOR,util.Constantes.EXP_MUCHA,util.Constantes.TERCIARIOS);
-			Ticket ticketTestEmpleador = new Ticket(util.Constantes.HOME_OFFICE,250000,util.Constantes.JORNADA_COMPLETA,util.Constantes.ADMINISTRADOR,util.Constantes.EXP_MUCHA,util.Constantes.TERCIARIOS);
-			//Ticket ticketTestEmpleador = new Ticket(util.Constantes.INDISTINTO,300000,util.Constantes.JORNADA_COMPLETA, util.Constantes.ADMINISTRADOR, util.Constantes.EXP_MEDIA,util.Constantes.TERCIARIOS);
-			//deberian hacer match
-			EmpleadoPretenso empleadoTest = new EmpleadoPretenso("Juan123", "Juan123", "Juan", "2235698547", "Rodriguez", 25);
-			empleadoTest.setPuntaje(4);
-			empleadoTest.setTicket(ticketTestEmpleado);
-			
-			Empleador empleadorTest = new Empleador("Marcos123", "Marcos123", "Marcos", "223566985", util.Constantes.SALUD, util.Constantes.FISICA);
-			empleadorTest.setPuntaje(5);
-			empleadorTest.setTicket(ticketTestEmpleador);
-			
-			HashMap<String, EmpleadoPretenso> empleados = new HashMap<String, EmpleadoPretenso>();
-			empleados.put("Juan123", empleadoTest);
-			HashMap<String, Empleador> empleadores = new HashMap<String, Empleador>();
-			empleadores.put("Marcos123", empleadorTest);
-			
-			//settear los limites para que se contrate
-			agencia.setEmpleados(empleados);
-			agencia.setEmpleadores(empleadores);
-			agencia.setLimitesRemuneracion(200000, 350000);
-			*/
 			
 			this.empleado = (EmpleadoPretenso)agencia.registroEmpleado("Juan123", "Juan123", "Juan", "2235698547", "Rodriguez", 25);
 			this.empleador = (Empleador)agencia.registroEmpleador("Marcos123", "Marcos123", "Marcos", "223566985", util.Constantes.FISICA,util.Constantes.SALUD);
 			this.agencia.crearTicketEmpleado(util.Constantes.HOME_OFFICE,250000,util.Constantes.JORNADA_COMPLETA,util.Constantes.MANAGMENT,util.Constantes.EXP_MUCHA,util.Constantes.TERCIARIOS, this.agencia.getEmpleados().get("Juan123"));
 			this.agencia.crearTicketEmpleador(util.Constantes.HOME_OFFICE,250000,util.Constantes.JORNADA_COMPLETA,util.Constantes.MANAGMENT,util.Constantes.EXP_MUCHA,util.Constantes.TERCIARIOS, this.agencia.getEmpleadores().get("Marcos123"));
 			
-			
 			this.agencia.getEmpleados().get("Juan123").setPuntaje(4);
 			this.agencia.getEmpleadores().get("Marcos123").setPuntaje(5);
 			this.agencia.setLimitesRemuneracion(200000, 350000);
-			
 			
 	}
 
@@ -79,32 +54,19 @@ private EmpleadoPretenso empleado;
 		
 	}
 	
-	
-
 	@Test
-	public void testGatillarRondaEstadoVerdadero() {
+	public void testGatillarRondaEstadoVerdaderoEstado() {
 		try {
 			Empleador empleador2 = (Empleador)this.agencia.registroEmpleador("Guillesky", "Chad", "Guillermo", "223840122", util.Constantes.FISICA,
 					util.Constantes.COMERCIO_INTERNACIONAL);
 			this.agencia.crearTicketEmpleador(util.Constantes.PRESENCIAL,100000,util.Constantes.JORNADA_EXTENDIDA,util.Constantes.JUNIOR,
 					util.Constantes.EXP_NADA,util.Constantes.SECUNDARIOS, empleador2);		
-		
-			ArrayList<Contratacion> contrataciones = (ArrayList<Contratacion>)this.agencia.getContrataciones().clone();		
-			int puntajeEmpleador2 = empleador2.getPuntaje();
 			
 			this.empleado.setCandidato(this.empleador);
 			this.empleador.setCandidato(this.empleado);			
-	
 			this.agencia.setEstadoContratacion(true);
-			this.agencia.gatillarRonda();			
-			Assert.assertNotEquals("No hubo contrataciones",contrataciones, this.agencia.getContrataciones());
-			Assert.assertEquals("No se penalizo al empleador2 que no contrato",puntajeEmpleador2-20, this.agencia.getEmpleadores().get("Guillesky").getPuntaje());
-			//Assert.assertEquals("No se premio al empleador que contrato",puntajeEmpleador1, this.agencia.getEmpleadores().get("Marcos123").getPuntaje());
-			//Assert.assertEquals("No se premio al empleador que contrato",puntajeEmpleado, empleador2.getPuntaje());
-		
-			Assert.assertNull("El metodo no creo las listas de postulantes",this.empleado.getListaDePostulantes());
-			Assert.assertNull("El metodo no creo las listas de postulantes",this.empleador.getListaDePostulantes());
-			Assert.assertNull("El metodo no creo las listas de postulantes",empleador2.getListaDePostulantes());
+			this.agencia.gatillarRonda();
+			
 			Assert.assertFalse("No se cambio el estado de contratacion", this.agencia.isEstadoContratacion());			
 		}
 		catch (Exception e) {
@@ -113,13 +75,82 @@ private EmpleadoPretenso empleado;
 	}
 	
 	@Test
-	public void testGatillarRondaEstadoFalso() {
+	public void testGatillarRondaEstadoVerdaderoContrataciones() {
+		try {
+			Empleador empleador2 = (Empleador)this.agencia.registroEmpleador("Guillesky", "Chad", "Guillermo", "223840122", util.Constantes.FISICA,
+					util.Constantes.COMERCIO_INTERNACIONAL);
+			this.agencia.crearTicketEmpleador(util.Constantes.PRESENCIAL,100000,util.Constantes.JORNADA_EXTENDIDA,util.Constantes.JUNIOR,
+					util.Constantes.EXP_NADA,util.Constantes.SECUNDARIOS, empleador2);	
+			ArrayList<Contratacion> contrataciones = (ArrayList<Contratacion>)this.agencia.getContrataciones().clone();
+			
+			this.empleado.setCandidato(this.empleador);
+			this.empleador.setCandidato(this.empleado);			
+			this.agencia.setEstadoContratacion(true);
+			this.agencia.gatillarRonda();
+			Assert.assertNotEquals("No se crearon las contrataciones",contrataciones, this.agencia.getContrataciones());
+		}
+		catch (Exception e) {
+			fail("No deberia fallar la creacion de empleador");
+		}
+	}
+	
+	@Test
+	public void testGatillarRondaEstadoVerdaderoPenalizacion() {
+		try {
+			Empleador empleador2 = (Empleador)this.agencia.registroEmpleador("Guillesky", "Chad", "Guillermo", "223840122", util.Constantes.FISICA,
+					util.Constantes.COMERCIO_INTERNACIONAL);
+			this.agencia.crearTicketEmpleador(util.Constantes.PRESENCIAL,100000,util.Constantes.JORNADA_EXTENDIDA,util.Constantes.JUNIOR,
+					util.Constantes.EXP_NADA,util.Constantes.SECUNDARIOS, empleador2);
+			int puntajeEmpleador2 = empleador2.getPuntaje();
+			
+			this.empleado.setCandidato(this.empleador);
+			this.empleador.setCandidato(this.empleado);			
+			this.agencia.setEstadoContratacion(true);
+			this.agencia.gatillarRonda();
+			
+			Assert.assertEquals("No se penalizo al empleador que no contrato",puntajeEmpleador2-20,
+					this.agencia.getEmpleadores().get("Guillesky").getPuntaje());
+
+		}
+		catch (Exception e) {
+			fail("No deberia haber fallado la creacion de empleador");
+		}
+	}
+	
+	@Test
+	public void testGatillarRondaEstadoVErdaderoListaPostulantes() {
+		try {
+			Empleador empleador2 = (Empleador)this.agencia.registroEmpleador("Guillesky", "Chad", "Guillermo", "223840122", util.Constantes.FISICA,
+					util.Constantes.COMERCIO_INTERNACIONAL);
+			this.agencia.crearTicketEmpleador(util.Constantes.PRESENCIAL,100000,util.Constantes.JORNADA_EXTENDIDA,util.Constantes.JUNIOR,
+					util.Constantes.EXP_NADA,util.Constantes.SECUNDARIOS, empleador2);
+			
+			this.empleado.setCandidato(this.empleador);
+			this.empleador.setCandidato(this.empleado);			
+			this.agencia.setEstadoContratacion(true);
+			this.agencia.gatillarRonda();
+			
+			Assert.assertNull("El metodo no creo las listas de postulantes",this.empleado.getListaDePostulantes());
+			Assert.assertNull("El metodo no creo las listas de postulantes",this.empleador.getListaDePostulantes());
+			Assert.assertNull("El metodo no creo las listas de postulantes",empleador2.getListaDePostulantes());
+		}
+		catch (Exception e) {
+			fail("No deberia haber fallado la creacion de empleador");
+		}
+	}
+	
+	@Test
+	public void testGatillarRondaEstadoFalsoEmpleado() {
+		this.agencia.setEstadoContratacion(false);
+		this.agencia.gatillarRonda();
+		Assert.assertNotNull("El metodo no creo las listas de postulantes",this.agencia.getEmpleados().get("Juan123").getListaDePostulantes());
+	}
+	
+	@Test
+	public void testGatillarRondaEstadoFalsoEmpleador() {
 		this.agencia.setEstadoContratacion(false);
 		this.agencia.gatillarRonda();
 		Assert.assertNotNull("El metodo no creo las listas de postulantes",this.agencia.getEmpleadores().get("Marcos123").getListaDePostulantes());
-		Assert.assertNotNull("El metodo no creo las listas de postulantes",this.agencia.getEmpleados().get("Juan123").getListaDePostulantes());
-		
-		
 	}
 
 	@Test
@@ -233,8 +264,7 @@ private EmpleadoPretenso empleado;
 		}
 		
 	}
-	
-	
+		
 	@Test
 	public void testMatch() {
 		EmpleadoPretenso empleadoTest =  this.agencia.getEmpleados().get("Juan123");
@@ -249,6 +279,11 @@ private EmpleadoPretenso empleado;
 		Assert.assertNull("Ticket no eliminado en empleador",empleadorTest.getTicket());
 		Assert.assertNotNull(this.agencia.getComisionUsuario(empleadoTest));
 		Assert.assertNotNull(this.agencia.getComisionUsuario(empleadorTest));
+	}	
+	
+	@Test
+	public void testMatchPtjeEmpleador() {
+		
 	}
 	
 	@Test
