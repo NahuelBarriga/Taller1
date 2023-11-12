@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="17.0.9" class="java.beans.XMLDecoder">
+ <object class="persistencia.AgenciaDTO" id="AgenciaDTO0">
+  <void property="comisionesUsuarios">
+   <void method="put">
+    <object class="modeloDatos.Empleador" id="Empleador0">
+     <void property="candidato">
+      <object class="modeloDatos.EmpleadoPretenso" id="EmpleadoPretenso0">
+       <void property="apellido">
+        <string>2235489652</string>
+       </void>
+       <void property="candidato">
+        <object idref="Empleador0"/>
+       </void>
+       <void property="edad">
+        <int>25</int>
+       </void>
+       <void property="password">
+        <string>Juan123</string>
+       </void>
+       <void property="puntaje">
+        <int>8</int>
+       </void>
+       <void property="realName">
+        <string>Juan</string>
+       </void>
+       <void property="telefono">
+        <string>loquesea</string>
+       </void>
+       <void property="usserName">
+        <string>Juan123</string>
+       </void>
+      </object>
+     </void>
+     <void property="password">
+      <string>Juan123</string>
+     </void>
+     <void property="puntaje">
+      <int>90</int>
+     </void>
+     <void property="realName">
+      <string>2235489652</string>
+     </void>
+     <void property="rubro">
+      <string>FISICA</string>
+     </void>
+     <void property="telefono">
+      <string>Juan</string>
+     </void>
+     <void property="tipoPersona">
+      <string>COMERCIO INTERNACIONAL</string>
+     </void>
+     <void property="usserName">
+      <string>marcos123</string>
+     </void>
+    </object>
+    <double>200000.0</double>
+   </void>
+   <void method="put">
+    <object idref="EmpleadoPretenso0"/>
+    <double>140000.0</double>
+   </void>
+  </void>
+  <void property="contrataciones">
+   <void method="add">
+    <object class="modeloDatos.Contratacion">
+     <void property="empleado">
+      <object idref="EmpleadoPretenso0"/>
+     </void>
+     <void property="empleador">
+      <object idref="Empleador0"/>
+     </void>
+     <void property="fecha">
+      <object class="java.util.GregorianCalendar">
+       <void property="time">
+        <object class="java.util.Date">
+         <long>1699763153252</long>
+        </object>
+       </void>
+      </object>
+     </void>
+    </object>
+   </void>
+  </void>
+  <void property="empleadores">
+   <void method="put">
+    <string>marcos123</string>
+    <object idref="Empleador0"/>
+   </void>
+  </void>
+  <void property="empleados">
+   <void method="put">
+    <string>Juan123</string>
+    <object idref="EmpleadoPretenso0"/>
+   </void>
+  </void>
+  <void property="limiteSuperior">
+   <int>300000</int>
+  </void>
+ </object>
+</java>
