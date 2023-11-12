@@ -1,56 +1,392 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <java version="1.8.0_291" class="java.beans.XMLDecoder">
  <object class="persistencia.AgenciaDTO" id="AgenciaDTO0">
-  <void property="empleados">
+  <void property="empleadores">
    <void method="put">
-    <string>fggggfgfff</string>
-    <object class="modeloDatos.EmpleadoPretenso">
-     <void property="apellido">
-      <string>223545002</string>
-     </void>
-     <void property="edad">
-      <int>24</int>
-     </void>
+    <string>jorge123</string>
+    <object class="modeloDatos.Empleador">
      <void property="password">
-      <string>123</string>
+      <string>milamila</string>
+     </void>
+     <void property="puntaje">
+      <int>490</int>
      </void>
      <void property="realName">
-      <string>f</string>
+      <string>2235413002</string>
+     </void>
+     <void property="rubro">
+      <string>FISICA</string>
      </void>
      <void property="telefono">
-      <string>tttttt</string>
+      <string>jorge</string>
+     </void>
+     <void property="ticket">
+      <object class="modeloDatos.Ticket">
+       <void property="estudios">
+        <string>Primario</string>
+       </void>
+       <void property="experiencia">
+        <string>ExperienciaNada</string>
+       </void>
+       <void property="jornada">
+        <string>CargaMedia</string>
+       </void>
+       <void property="locacion">
+        <string>Presencial</string>
+       </void>
+       <void property="puesto">
+        <string>Junior</string>
+       </void>
+       <void property="remuneracion">
+        <int>25000</int>
+       </void>
+      </object>
+     </void>
+     <void property="tipoPersona">
+      <string>SALUD</string>
      </void>
      <void property="usserName">
-      <string>fggggfgfff</string>
+      <string>jorge123</string>
      </void>
     </object>
    </void>
    <void method="put">
-    <string>gjgjgjgjjgg</string>
-    <object class="modeloDatos.EmpleadoPretenso">
-     <void property="apellido">
-      <string>223545002</string>
-     </void>
-     <void property="edad">
-      <int>24</int>
-     </void>
+    <string>juli123</string>
+    <object class="modeloDatos.Empleador">
      <void property="password">
-      <string>123</string>
+      <string>milamila</string>
+     </void>
+     <void property="puntaje">
+      <int>199</int>
      </void>
      <void property="realName">
-      <string>f</string>
+      <string>2235414002</string>
+     </void>
+     <void property="rubro">
+      <string>FISICA</string>
      </void>
      <void property="telefono">
-      <string>tttttt</string>
+      <string>julieta</string>
+     </void>
+     <void property="ticket">
+      <object class="modeloDatos.Ticket">
+       <void property="estudios">
+        <string>Secundario</string>
+       </void>
+       <void property="experiencia">
+        <string>ExperienciaNada</string>
+       </void>
+       <void property="jornada">
+        <string>CargaCompleta</string>
+       </void>
+       <void property="locacion">
+        <string>Presencial</string>
+       </void>
+       <void property="puesto">
+        <string>Junior</string>
+       </void>
+       <void property="remuneracion">
+        <int>25000</int>
+       </void>
+      </object>
+     </void>
+     <void property="tipoPersona">
+      <string>SALUD</string>
      </void>
      <void property="usserName">
-      <string>gjgjgjgjjgg</string>
+      <string>juli123</string>
+     </void>
+    </object>
+   </void>
+  </void>
+  <void property="empleados">
+   <void method="put">
+    <string>gggg</string>
+    <object class="modeloDatos.EmpleadoPretenso">
+     <void property="apellido">
+      <string>2235414002</string>
+     </void>
+     <void property="edad">
+      <int>34</int>
+     </void>
+     <void property="password">
+      <string>1</string>
+     </void>
+     <void property="realName">
+      <string>pedrooo</string>
+     </void>
+     <void property="telefono">
+      <string>hernan</string>
+     </void>
+     <void property="usserName">
+      <string>gggg</string>
+     </void>
+    </object>
+   </void>
+   <void method="put">
+    <string>rrr</string>
+    <object class="modeloDatos.EmpleadoPretenso">
+     <void property="apellido">
+      <string>1234567</string>
+     </void>
+     <void property="edad">
+      <int>45</int>
+     </void>
+     <void property="password">
+      <string>rrr</string>
+     </void>
+     <void property="realName">
+      <string>jli</string>
+     </void>
+     <void property="telefono">
+      <string>erty</string>
+     </void>
+     <void property="usserName">
+      <string>rrr</string>
+     </void>
+    </object>
+   </void>
+   <void method="put">
+    <string>ddddd</string>
+    <object class="modeloDatos.EmpleadoPretenso">
+     <void property="apellido">
+      <string>22343343</string>
+     </void>
+     <void property="edad">
+      <int>34</int>
+     </void>
+     <void property="password">
+      <string>ddddddd</string>
+     </void>
+     <void property="puntaje">
+      <int>100</int>
+     </void>
+     <void property="realName">
+      <string>ddddd</string>
+     </void>
+     <void property="telefono">
+      <string>eeee</string>
+     </void>
+     <void property="ticket">
+      <object class="modeloDatos.Ticket">
+       <void property="estudios">
+        <string>Primario</string>
+       </void>
+       <void property="experiencia">
+        <string>ExperienciaNada</string>
+       </void>
+       <void property="jornada">
+        <string>CargaMedia</string>
+       </void>
+       <void property="locacion">
+        <string>Presencial</string>
+       </void>
+       <void property="puesto">
+        <string>Junior</string>
+       </void>
+       <void property="remuneracion">
+        <int>5555</int>
+       </void>
+      </object>
+     </void>
+     <void property="usserName">
+      <string>ddddd</string>
+     </void>
+    </object>
+   </void>
+   <void method="put">
+    <string>pepe123</string>
+    <object class="modeloDatos.EmpleadoPretenso">
+     <void property="apellido">
+      <string>2235414002</string>
+     </void>
+     <void property="edad">
+      <int>27</int>
+     </void>
+     <void property="password">
+      <string>milamila</string>
+     </void>
+     <void property="puntaje">
+      <int>25</int>
+     </void>
+     <void property="realName">
+      <string>julieta</string>
+     </void>
+     <void property="telefono">
+      <string>hernandez</string>
+     </void>
+     <void property="ticket">
+      <object class="modeloDatos.Ticket">
+       <void property="estudios">
+        <string>Primario</string>
+       </void>
+       <void property="experiencia">
+        <string>ExperienciaNada</string>
+       </void>
+       <void property="jornada">
+        <string>CargaMedia</string>
+       </void>
+       <void property="locacion">
+        <string>Presencial</string>
+       </void>
+       <void property="puesto">
+        <string>Junior</string>
+       </void>
+       <void property="remuneracion">
+        <int>20000</int>
+       </void>
+      </object>
+     </void>
+     <void property="usserName">
+      <string>pepe123</string>
+     </void>
+    </object>
+   </void>
+   <void method="put">
+    <string>wwww</string>
+    <object class="modeloDatos.EmpleadoPretenso">
+     <void property="apellido">
+      <string>2235414002</string>
+     </void>
+     <void property="edad">
+      <int>34</int>
+     </void>
+     <void property="password">
+      <string>1</string>
+     </void>
+     <void property="realName">
+      <string>pedrooo</string>
+     </void>
+     <void property="telefono">
+      <string>hernan</string>
+     </void>
+     <void property="usserName">
+      <string>wwww</string>
+     </void>
+    </object>
+   </void>
+   <void method="put">
+    <string>hola</string>
+    <object class="modeloDatos.EmpleadoPretenso">
+     <void property="apellido">
+      <string>2234</string>
+     </void>
+     <void property="edad">
+      <int>34</int>
+     </void>
+     <void property="password">
+      <string>12345</string>
+     </void>
+     <void property="puntaje">
+      <int>-10</int>
+     </void>
+     <void property="realName">
+      <string>holaaa</string>
+     </void>
+     <void property="telefono">
+      <string>hhhh</string>
+     </void>
+     <void property="ticket">
+      <object class="modeloDatos.Ticket">
+       <void property="estudios">
+        <string>Primario</string>
+       </void>
+       <void property="experiencia">
+        <string>ExperienciaNada</string>
+       </void>
+       <void property="jornada">
+        <string>CargaMedia</string>
+       </void>
+       <void property="locacion">
+        <string>Presencial</string>
+       </void>
+       <void property="puesto">
+        <string>Junior</string>
+       </void>
+       <void property="remuneracion">
+        <int>89</int>
+       </void>
+      </object>
+     </void>
+     <void property="usserName">
+      <string>hola</string>
+     </void>
+    </object>
+   </void>
+   <void method="put">
+    <string>kkkkk</string>
+    <object class="modeloDatos.EmpleadoPretenso">
+     <void property="apellido">
+      <string>2235414002</string>
+     </void>
+     <void property="edad">
+      <int>34</int>
+     </void>
+     <void property="password">
+      <string>16</string>
+     </void>
+     <void property="realName">
+      <string>pedrooo</string>
+     </void>
+     <void property="telefono">
+      <string>hernan</string>
+     </void>
+     <void property="usserName">
+      <string>kkkkk</string>
+     </void>
+    </object>
+   </void>
+   <void method="put">
+    <string>pepepito123</string>
+    <object class="modeloDatos.EmpleadoPretenso">
+     <void property="apellido">
+      <string>2235414002</string>
+     </void>
+     <void property="edad">
+      <int>27</int>
+     </void>
+     <void property="password">
+      <string>milamila</string>
+     </void>
+     <void property="puntaje">
+      <int>95</int>
+     </void>
+     <void property="realName">
+      <string>julieta</string>
+     </void>
+     <void property="telefono">
+      <string>hernandez</string>
+     </void>
+     <void property="ticket">
+      <object class="modeloDatos.Ticket">
+       <void property="estudios">
+        <string>Primario</string>
+       </void>
+       <void property="experiencia">
+        <string>ExperienciaNada</string>
+       </void>
+       <void property="jornada">
+        <string>CargaMedia</string>
+       </void>
+       <void property="locacion">
+        <string>Presencial</string>
+       </void>
+       <void property="puesto">
+        <string>Junior</string>
+       </void>
+       <void property="remuneracion">
+        <int>400</int>
+       </void>
+      </object>
+     </void>
+     <void property="usserName">
+      <string>pepepito123</string>
      </void>
     </object>
    </void>
   </void>
   <void property="limiteSuperior">
-   <int>2000</int>
+   <int>9000</int>
   </void>
  </object>
 </java>

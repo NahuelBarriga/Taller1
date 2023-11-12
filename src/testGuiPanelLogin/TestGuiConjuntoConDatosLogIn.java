@@ -160,9 +160,11 @@ public class TestGuiConjuntoConDatosLogIn {
         //cambia de panel
         JButton cerrarSesion = (JButton) TestUtils.getComponentForName(ventana, Constantes.CERRARSESION);
         TestUtils.clickComponent(cerrarSesion, robot);
+        
+        robot.delay(TestUtils.getDelay()+8000);
 
-        Assert.assertEquals("Deberia estar vacio","", nombreUsuario.getText());
-        Assert.assertEquals("Deberia estar vacio","", password.getText());
+       Assert.assertEquals("Deberia estar vacio","",nombreUsuario.getText());
+       Assert.assertEquals("Deberia estar vacio","", password.getText());
 
     }
     
