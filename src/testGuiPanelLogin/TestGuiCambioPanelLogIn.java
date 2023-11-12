@@ -67,7 +67,6 @@ public class TestGuiCambioPanelLogIn {
 	
 	@Test
 	public void testLoginCambioPanel() {
-		
 		robot.delay(TestUtils.getDelay());
 		Ventana ventana = (Ventana) controlador.getVista();
 		
@@ -85,4 +84,45 @@ public class TestGuiCambioPanelLogIn {
 		
 		Assert.assertTrue("Deberia cambiar de panel", ((JButton)TestUtils.getComponentForName((Ventana) controlador.getVista(), Constantes.CERRARSESION)).isEnabled());
 	}
+	
+	
+	@Test
+	public void testCambioPanelBotonReg() {
+		robot.delay(TestUtils.getDelay());
+		Ventana ventana = (Ventana) controlador.getVista();
+		
+		JButton registrar = (JButton) TestUtils.getComponentForName(ventana, Constantes.REGISTRAR);
+
+		TestUtils.clickComponent(registrar, robot);
+		
+		robot.delay(TestUtils.getDelay());
+		
+		Assert.assertTrue("Deberia cambiar de panel", ((JButton)TestUtils.getComponentForName((Ventana) controlador.getVista(), Constantes.REG_BUTTON_CANCELAR)).isEnabled());
+	}
+	
+	
+	
+	@Test 
+	public void testCambioPanelAdmin(){
+		robot.delay(TestUtils.getDelay());
+		Ventana ventana = (Ventana) controlador.getVista();
+		
+		JTextField nombreUsuario = (JTextField) TestUtils.getComponentForName(ventana, Constantes.NOMBRE_USUARIO);
+		JTextField password = (JTextField) TestUtils.getComponentForName(ventana, Constantes.PASSWORD);
+		JButton login = (JButton) TestUtils.getComponentForName(ventana, Constantes.LOGIN);
+		
+
+		TestUtils.clickComponent(nombreUsuario, robot);
+		TestUtils.tipeaTexto("admin", robot);
+		TestUtils.clickComponent(password, robot);
+		TestUtils.tipeaTexto("admin", robot);
+
+		
+		TestUtils.clickComponent(login, robot);
+		robot.delay(TestUtils.getDelay());
+		
+		Assert.assertTrue("Deberia cambiar de panel", ((JTextField)TestUtils.getComponentForName((Ventana) controlador.getVista(), Constantes.TEXTO_INFERIOR)).isEnabled());
+		
+	}
 }
+
