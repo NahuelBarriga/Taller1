@@ -73,7 +73,7 @@ public class TestGuiEnabledDisabledCliente {
 		
 	}
 	
-	
+	@Test
 	public void testConfirmarNuevoTicketDeshabilitado2() {
 		robot.delay(TestUtils.getDelay());
 		

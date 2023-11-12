@@ -1,5 +1,7 @@
 package TestPersistencia;
 
+import java.io.IOException;
+
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -25,17 +27,15 @@ public class TestPersistenciaConDatos {
 	}
 
 	@Test
-	public void testEscrituraConDatos() {
-		try {
+	public void testEscrituraConDatos() throws NewRegisterException, ImposibleCrearEmpleadoException, ClassNotFoundException, IOException{
+		
 			EmpleadoPretenso ep = new EmpleadoPretenso("JuanCABJ","1234567","Juan","Solari","223453225",31);
 			Agencia.getInstance().registroEmpleado("JuanCABJ","1234567","Juan","Solari","223453225",31);
-			Agencia.setPersistencia(Agencia); //que vaaa?
+			Agencia agencia = Agencia.getInstance();
+			agencia.cargarAgencia("Agencia.txt"); //que vaaa?
 			Assert.assertNotNull("No deberia ser null", Agencia.getInstance().getEmpleados()); // verifico si algo se guardó
 			Assert.assertNotEquals("Deberian ser diferentes",ep , Agencia.getInstance().getEmpleados());
-		} catch (NewRegisterException e) {
-			
-		} catch (ImposibleCrearEmpleadoException e) {
-		}
+		
 		
 		
 	}

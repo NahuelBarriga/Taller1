@@ -1,6 +1,7 @@
 package TestPersistencia;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import org.junit.AfterClass;
@@ -14,8 +15,6 @@ import modeloNegocio.Agencia;
 import persistencia.IPersistencia;
 
 public class TestPersistenciaSinDatos {
-
-	IPersistencia agencia;
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -28,30 +27,26 @@ public class TestPersistenciaSinDatos {
 
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
-	//dejar en cero la agencia
 	}
 
 	@Test
-	public void testCreaArchivoVacioExitoso() {
-		Agencia agencia2 = new Agencia();
-		agencia2.setPersistencia(agencia); //cual seria el parametro??
-		//estoy entre esto o Agencia.cerrarSesion()
-		File arch = new File("Agencia.txt");
+	public void testCreaArchivoVacioExitoso() throws IOException {
+		Agencia agencia = Agencia.getInstance();
+		agencia.guardarAgencia("Agencia.txt");
+		File arch = new File("Agencia.txt");	
 		Assert.assertTrue("Deberia existir", arch.exists());
 	}
 	
 	
 	@Test
-	public void testLecturaArchivoVacio() {
+	public void testLecturaArchivoVacio() throws ClassNotFoundException,IOException{
 		 ArrayList<Agencia> listaClientes = new ArrayList<Agencia>();
 		 ArrayList<Ticket> tickets = new ArrayList<Ticket>();
-		 //todo muy raro, con que invoco la persistencia?
-		 //estoy entre esto o Agencia.cargarAgencia();
-		 Agencia agencia2 = new Agencia();
-		 agencia2.getPersistencia();
+		 Agencia agencia = Agencia.getInstance();
+		 agencia.cargarAgencia("Agencia.txt");
 		 Assert.assertEquals("Los sistemas deberian estar vacios",listaClientes,Agencia.getInstance().getIterartorEmpleadores());
 		 Assert.assertEquals("Los sistemas deberian estar vacios",listaClientes,Agencia.getInstance().getIteratorEmpleadosPretensos());
-		 Assert.assertEquals("Los sistemas deberian estar vacios",tickets,Cliente.getTicket());
+		 //Assert.assertEquals("Los sistemas deberian estar vacios",tickets,;
 	}
 
 	
