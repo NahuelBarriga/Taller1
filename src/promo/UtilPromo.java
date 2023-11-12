@@ -27,7 +27,7 @@ public class UtilPromo
 	 *         <b>Pre: </b> los parametros empleados y empledores son diferentes de null<br>
 	 * 
 	 */
-
+ 
 	public Cliente aplicaPromo(boolean promoPorListaDePostulantes, 
 			HashMap<String, EmpleadoPretenso> empleados, HashMap<String, Empleador> empleadores)
 	{
@@ -46,7 +46,7 @@ public class UtilPromo
 					contadorEmpleador += empleador.getListaDePostulantes().size();
 			}
 			Iterator<EmpleadoPretenso> itEmpleados = empleados.values().iterator();
-			while (itEmpleados.hasNext())
+			while (itEmpleados.hasNext()) 
 			{
 				EmpleadoPretenso empleadoPretenso = itEmpleados.next();
 				if (empleadoPretenso.getListaDePostulantes() != null)
