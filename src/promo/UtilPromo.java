@@ -63,7 +63,7 @@ public class UtilPromo
 		else
 			clientes = empleados.values().iterator();
 
-		int puntajeMaximo = Integer.MIN_VALUE;
+		int puntajeMaximo = Integer.MIN_VALUE; 
 		while (clientes.hasNext())
 		{
 			Cliente cl = (Cliente) clientes.next();
