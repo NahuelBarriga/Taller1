@@ -32,7 +32,7 @@ public class TestPersInterfaz {
 	@Test
     public void testAbrirInput() throws IOException  {
 		try {
-			persistencia.abrirInput("archivo.xml");
+			persistencia.abrirInput("Agencia.xml");
 		}
 		catch (Exception e1){
 			fail("1 escenario: no deberia lanzar una excepcion");
@@ -48,7 +48,7 @@ public class TestPersInterfaz {
 	@Test
     public void testAbrirOutput() {
 		try {
-			persistencia.abrirOutput("archivo.xml");
+			persistencia.abrirOutput("Agencia.xml");
 		} catch (IOException e1) {
 			fail("no deberia lanzar una excepcion escenario 1");
 		}
@@ -62,7 +62,7 @@ public class TestPersInterfaz {
 	@Test
 	public void TestCerrarInput() {
 		try {
-			persistencia.abrirInput("archivo.xml");			
+			persistencia.abrirInput("Agencia.xml");			
 			persistencia.cerrarInput();
 		} catch (IOException e) {
 			fail("no deber�a lanzar una excepcion");	
@@ -72,7 +72,7 @@ public class TestPersInterfaz {
 	@Test
 	public void TestCerrarOutput() {
 		try {
-			persistencia.abrirOutput("archivo.xml");			
+			persistencia.abrirOutput("Agencia.xml");			
 			persistencia.cerrarOutput();
 		} catch (IOException e) {
 			fail("no deberia lanzar una excepcion al primer intento de cerrar");
@@ -117,7 +117,7 @@ public class TestPersInterfaz {
 		agencia.setLimiteInferior(1000);
 		agencia.setLimiteSuperior(2000);
 		try {
-			persistencia.abrirOutput("archivoConDatos.xml");
+			persistencia.abrirOutput("AgenciaConDatos.xml");
 			persistencia.escribir(agencia);
 			persistencia.cerrarOutput();
 		} catch (IOException e) {
