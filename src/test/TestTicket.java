@@ -39,7 +39,7 @@ public class TestTicket {
 			
 	}
 	
-	
+
 	@Test
 	public void TestConstructorLocacion1() {
 		String locacionTest = util.Constantes.PRESENCIAL;

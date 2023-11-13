@@ -15,6 +15,7 @@ import org.junit.Test;
 
 import controlador.Controlador;
 import util.Constantes;
+import vista.PanelLogin;
 import vista.PanelRegistro;
 import vista.Ventana;
 import test.FalsoOptionPane;
@@ -35,9 +36,6 @@ public class TestGuiCambioPanelRegistro {
 	public void setUp() throws Exception{
 		controlador = new Controlador();
 		controlador.setMyOptionPane(optionPane);
-		
-		Ventana ventana = (Ventana) controlador.getVista();
-        ventana.setContentPane(new PanelRegistro(controlador));
 	}
 	
 	
@@ -47,12 +45,16 @@ public class TestGuiCambioPanelRegistro {
 		ventana.setVisible(false);
 		
 	}
-	
+
 	@Test
 	public void testApretaRegistrar() {
-		
 		robot.delay(TestUtils.getDelay());
 		Ventana ventana = (Ventana) controlador.getVista();
+		
+		JButton registrar = (JButton) TestUtils.getComponentForName(ventana, Constantes.REGISTRAR);
+		TestUtils.clickComponent(registrar, robot);
+		
+		robot.delay(300);
 		
 		JTextField nombreUsuario = (JTextField) TestUtils.getComponentForName(ventana, Constantes.REG_USSER_NAME);
 		JTextField password = (JTextField) TestUtils.getComponentForName(ventana, Constantes.REG_PASSWORD);
@@ -63,10 +65,8 @@ public class TestGuiCambioPanelRegistro {
 		JTextField edad = (JTextField) TestUtils.getComponentForName(ventana, Constantes.REG_EDAD);
 		
 		JRadioButton empleado = (JRadioButton) TestUtils.getComponentForName(ventana, Constantes.EMPLEADO);
-		
 		JButton regRegistrar = (JButton) TestUtils.getComponentForName(ventana, Constantes.REG_BUTTON_REGISTRAR);
 		
-						
 		TestUtils.clickComponent(nombreUsuario, robot);
 		TestUtils.tipeaTexto("Viv", robot);
 		TestUtils.clickComponent(password, robot);
@@ -86,22 +86,23 @@ public class TestGuiCambioPanelRegistro {
 		TestUtils.clickComponent(regRegistrar, robot);
 		
 		robot.delay(TestUtils.getDelay());
-		
-		Assert.assertTrue("Deberia cambiar de panel", ((JButton)TestUtils.getComponentForName((Ventana) controlador.getVista(), Constantes.NUEVOTICKET)).isEnabled());
+
+		Assert.assertTrue("Deberia cambiar de panel", ((JButton)TestUtils.getComponentForName((Ventana) controlador.getVista(), Constantes.CERRARSESION)).isEnabled());
 	}
 	
 	@Test
 	public void testApretaCancelar() {
 		robot.delay(TestUtils.getDelay());
 		Ventana ventana = (Ventana) controlador.getVista();
+		ventana.setContentPane(new PanelRegistro(controlador));
 		
 		JButton cancelar = (JButton) TestUtils.getComponentForName(ventana, Constantes.REG_BUTTON_CANCELAR);
 
 		TestUtils.clickComponent(cancelar, robot);
 		
 		robot.delay(TestUtils.getDelay());
+		ventana.setContentPane(new PanelLogin(controlador));
 		
 		Assert.assertTrue("Deberia cambiar de panel", ((JButton)TestUtils.getComponentForName((Ventana) controlador.getVista(), Constantes.REGISTRAR)).isEnabled());
-	}
-	
+	}	
 }

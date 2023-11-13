@@ -21,10 +21,9 @@ import util.Constantes;
 import util.Mensajes;
 import vista.PanelRegistro;
 import vista.Ventana;
-
-import test.FalsoOptionPane;
 import test.TestUtils;
 
+import test.FalsoOptionPane;
 
 public class TestGuiConjuntoConDatosRegistro {
 	Robot robot;
@@ -39,21 +38,15 @@ public class TestGuiConjuntoConDatosRegistro {
 	
 	@Before
 	public void setUp() throws Exception{
-		
 		controlador = new Controlador();
 		controlador.setMyOptionPane(optionPane);
 		
 		Agencia.getInstance().setEmpleados(new HashMap<String, EmpleadoPretenso>());
 		Agencia.getInstance().setEmpleadores(new HashMap<String, Empleador>());
-		//Registar 3 usuarios validos 
-		this.registrarEmpleado("JuliGomez", "654321","Juliana", "Gomez", "9984737372", 34);
+		 
+		this.registrarEmpleado("JuliGomez", "654321","Juliana", "Gomez", "9984737372", 21);
 		this.registrarEmpleado("Cari34", "LSk7F","Carola", "2737382992", "Diaz", 25);
-		//this.registrarEmpleado("Czzzz", "sss","xxx", "333333", "Diaz", 21);
 		this.registrarEmpleador("Lee123", "123456", "Lisandro", "112233234", Constantes.FISICA, Constantes.SALUD);
-		
-		
-        Ventana ventana = (Ventana) controlador.getVista();
-        ventana.setContentPane(new PanelRegistro(controlador));
 	}
 	
 	public void registrarEmpleador(String usuario, String pass, String nombre, String tel, String tipoPersona, String rubro) throws Exception {
@@ -64,7 +57,6 @@ public class TestGuiConjuntoConDatosRegistro {
 		Agencia.getInstance().registroEmpleado(usuario, pass, nombre, apellido, tel, edad);
 	}
 	
-	
 	@After
 	public void tearDown() throws Exception{
 		Ventana ventana = (Ventana) controlador.getVista();
@@ -74,10 +66,14 @@ public class TestGuiConjuntoConDatosRegistro {
 	
 	
 	@Test
-	public void testUsuarioRepetido() {
+	public void testUsuarioRepetido() {		
 		robot.delay(TestUtils.getDelay());
-		Ventana ventana = (Ventana) controlador.getVista();
+		Ventana ventana = (Ventana) controlador.getVista();		
 		
+		JButton registrar = (JButton) TestUtils.getComponentForName(ventana, Constantes.REGISTRAR);
+		TestUtils.clickComponent(registrar, robot);
+		robot.delay(TestUtils.getDelay());
+
 		JTextField nombreUsuario = (JTextField) TestUtils.getComponentForName(ventana, Constantes.REG_USSER_NAME);
 		JTextField password = (JTextField) TestUtils.getComponentForName(ventana, Constantes.REG_PASSWORD);
 		JTextField confPassword = (JTextField) TestUtils.getComponentForName(ventana, Constantes.REG_CONFIRM_PASSWORD);
@@ -86,7 +82,7 @@ public class TestGuiConjuntoConDatosRegistro {
 		JTextField apellido = (JTextField) TestUtils.getComponentForName(ventana, Constantes.REG_APELLIDO);
 		JTextField edad = (JTextField) TestUtils.getComponentForName(ventana, Constantes.REG_EDAD);
 		
-		JRadioButton empleado = (JRadioButton) TestUtils.getComponentForName(ventana, Constantes.EMPLEADOR);
+		JRadioButton empleado = (JRadioButton) TestUtils.getComponentForName(ventana, Constantes.EMPLEADO);
 		
 		JButton regRegistrar = (JButton) TestUtils.getComponentForName(ventana, Constantes.REG_BUTTON_REGISTRAR);
 		
@@ -97,27 +93,32 @@ public class TestGuiConjuntoConDatosRegistro {
 		TestUtils.clickComponent(confPassword, robot);
 		TestUtils.tipeaTexto("654321", robot);
 		TestUtils.clickComponent(nombreReal, robot);
-		TestUtils.tipeaTexto("Julieta", robot);
+		TestUtils.tipeaTexto("Juliana", robot);
 		TestUtils.clickComponent(telefono, robot);
-		TestUtils.tipeaTexto("2235454332", robot);
+		TestUtils.tipeaTexto("9984737372", robot);
 		TestUtils.clickComponent(apellido, robot);
 		TestUtils.tipeaTexto("Gomez", robot);
 		TestUtils.clickComponent(edad, robot);
-		TestUtils.tipeaTexto("34", robot);
+		TestUtils.tipeaTexto("21", robot);
 		
 		TestUtils.clickComponent(empleado, robot);
 		TestUtils.clickComponent(regRegistrar, robot);
+		robot.delay(1000);
 		
+		System.out.println("Msj del optPanel: "+optionPane.getMensaje());
 		
 		Assert.assertEquals("Deberia decir:"+Mensajes.USUARIO_REPETIDO.getValor(), Mensajes.USUARIO_REPETIDO.getValor(),optionPane.getMensaje());
-	
+		
 	}
 
-	
 	@Test
 	public void testContrasNoCoinciden() {
 		robot.delay(TestUtils.getDelay());
 		Ventana ventana = (Ventana) controlador.getVista();
+		
+		JButton registrar = (JButton) TestUtils.getComponentForName(ventana, Constantes.REGISTRAR);
+		TestUtils.clickComponent(registrar, robot);
+		robot.delay(TestUtils.getDelay());
 		
 		JTextField nombreUsuario = (JTextField) TestUtils.getComponentForName(ventana, Constantes.REG_USSER_NAME);
 		JTextField password = (JTextField) TestUtils.getComponentForName(ventana, Constantes.REG_PASSWORD);
@@ -149,9 +150,8 @@ public class TestGuiConjuntoConDatosRegistro {
 		
 		TestUtils.clickComponent(empleado, robot);
 		TestUtils.clickComponent(regRegistrar, robot);
-		
+		System.out.println("Msj del optPanel: "+ optionPane.getMensaje());
 	
-		
 		Assert.assertEquals("Deberia decir:"+Mensajes.PASS_NO_COINCIDE.getValor(), Mensajes.PASS_NO_COINCIDE.getValor(),optionPane.getMensaje());
 	}
 	
