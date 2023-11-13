@@ -57,30 +57,14 @@ public class TestUtilPromo {
 		this.empleadores.put(null, this.empleador1);
 		utilPromoTest.aplicaPromo(true, this.empleados, this.empleadores); //empleados vacio, empleadores con empleador 1 cargado 
 	}
-	/*@Test
-	public void testAplicaPromo4() {
-		UtilPromo utilPromoTest = new UtilPromo();
-		this.empleadores.put(null, this.empleador2);	
-		utilPromoTest.aplicaPromo(true, this.empleados, this.empleadores); //empleados vacio, empleadores con empleador 1 cargado 
-	}*/
+
 	@Test
 	public void testAplicaPromo5() {
 		UtilPromo utilPromoTest = new UtilPromo();
 		this.empleados.put(null, this.empleado1);	
 		utilPromoTest.aplicaPromo(true, this.empleados, this.empleadores); //empleadores vacio, empleados con empleado 1 cargado 
 	}
-	/*@Test
-	public void testAplicaPromo6() {
-		UtilPromo utilPromoTest = new UtilPromo();
-		this.empleados.put(null, this.empleado2);	
-		utilPromoTest.aplicaPromo(true, this.empleados, this.empleadores); //empleadores vacio, empleados con empleado 2 cargado 
-	}
-	@Test
-	public void testAplicaPromo7() {
-		UtilPromo utilPromoTest = new UtilPromo();
-		this.empleadores.put(null, this.empleador1);	
-		utilPromoTest.aplicaPromo(false, this.empleados, this.empleadores); //empleados vacio, empleadores con empleador 2 cargado 
-	}*/
+
 	@Test
 	public void testAplicaPromo8() {
 		UtilPromo utilPromoTest = new UtilPromo();

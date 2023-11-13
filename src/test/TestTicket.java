@@ -455,7 +455,7 @@ public class TestTicket {
 		Assert.assertEquals(resultadoEsperado, resultado,0);
 		fail("Not yet implemented");
 	}
-	//corto aca pq sino muero
+	//Corte
 
 }
 

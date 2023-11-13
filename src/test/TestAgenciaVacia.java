@@ -33,7 +33,7 @@ public class TestAgenciaVacia {
 	}
 
 	@After
-	public void tearDown() { //No se si es necesario, pero lo voy a dejar de momento
+	public void tearDown() { 
 		this.agencia.setEstadoContratacion(false);
 		this.agencia.getCoincidencias().clear();
 		this.agencia.getComisionesUsuarios().clear();

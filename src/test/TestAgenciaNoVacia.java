@@ -302,7 +302,6 @@ private EmpleadoPretenso empleado;
 		}
 	}
 
-	
 	@Test
 	public void testRegistroEmpleador() {
 		try {
@@ -319,9 +318,9 @@ private EmpleadoPretenso empleado;
 	@Test
 	public void testRegistroEmpleadorRepetidoExcepcion() {
 		try {
-			Empleador empleadorTest = (Empleador) this.agencia.registroEmpleador(this.empleador.getUsserName(), this.empleador.getPassword(),
-					this.empleador.getRealName(),this.empleador.getTelefono(), this.empleador.getRubro(),
-					this.empleador.getTipoPersona());
+			Empleador empleadorTest = (Empleador) this.agencia.registroEmpleador(this.empleador.getUsserName(), 
+					this.empleador.getPassword(),this.empleador.getRealName(),this.empleador.getTelefono(),
+					this.empleador.getRubro(),	this.empleador.getTipoPersona());
 			fail("Deberia haber lanzado una excepcion");
 		}
 		catch (NewRegisterException e) {
@@ -399,7 +398,7 @@ private EmpleadoPretenso empleado;
 		}
 	}
 	
-	//el resto de las excepciones en empleadores y admin lo "corto", no tiene sentido, ya funciona
+	//El resto de las excepciones en empleadores y admin lo "corto", no tiene sentido, ya funciona
 	
 	@Test
 	public void testLoginEmpleador() {
@@ -437,21 +436,6 @@ private EmpleadoPretenso empleado;
 	}
 
 	
-	//Agregue una contratacion a la lista de contrataciones, habria que fijarse si puede molestar a futuro con otros test
-	/*
-	@Test
-	public void testGetContratacionEmpleadoPretenso() {
-		Contratacion nueva;
-		Empleador empleador;
-		
-		nueva = new Contratacion(this.empleador,this.empleado);
-		this.agencia.getContrataciones().add(nueva);
-		empleador = (Empleador)this.agencia.getContratacionEmpleadoPretenso(this.empleado);
-		Assert.assertNotNull("Devolvio null", empleador);
-		Assert.assertEquals("No devolvio el mismo empleador", this.empleador, empleador);
-	}
-	*/
-
 	@Test
 	public void testEliminarTicket() {
 		try {
@@ -485,6 +469,15 @@ private EmpleadoPretenso empleado;
 		
 	}
 	
-	
+	@Test
+	public void testCerrarSesion() {
+		try {
+			this.agencia.login(this.empleado.getUsserName(), this.empleado.getPassword());
+			this.agencia.cerrarSesion();
+			Assert.assertTrue("No se cerro sesion correctamente",this.agencia.getTipoUsuario()==-1);
+		} catch (ContraException | NombreUsuarioException e) {
+			fail("No deberia haber lanzado excepcion");
+		}
+	}
 }
 
