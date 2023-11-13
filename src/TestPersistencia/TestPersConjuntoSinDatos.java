@@ -14,11 +14,11 @@ import modeloDatos.Ticket;
 import modeloNegocio.Agencia;
 import persistencia.IPersistencia;
 
-public class TestPersistenciaSinDatos {
+public class TestPersConjuntoSinDatos {
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		File arch = new File("Agencia.txt"); // testeo si el archivo existe para borrarlo y arrancar con el metodo de creacion exitosa
+		File arch = new File("Agencia.xml"); // testeo si el archivo existe para borrarlo y arrancar con el metodo de creacion exitosa
 		if (arch.exists()) {
 			arch.delete();
 		}
@@ -32,8 +32,8 @@ public class TestPersistenciaSinDatos {
 	@Test
 	public void testCreaArchivoVacioExitoso() throws IOException {
 		Agencia agencia = Agencia.getInstance();
-		agencia.guardarAgencia("Agencia.txt");
-		File arch = new File("Agencia.txt");	
+		agencia.guardarAgencia("Agencia.xml");
+		File arch = new File("Agencia.xml");	
 		Assert.assertTrue("Deberia existir", arch.exists());
 	}
 	
@@ -43,7 +43,7 @@ public class TestPersistenciaSinDatos {
 		 ArrayList<Agencia> listaClientes = new ArrayList<Agencia>();
 		 ArrayList<Ticket> tickets = new ArrayList<Ticket>();
 		 Agencia agencia = Agencia.getInstance();
-		 agencia.cargarAgencia("Agencia.txt");
+		 agencia.cargarAgencia("Agencia.xml");
 		 Assert.assertEquals("Los sistemas deberian estar vacios",listaClientes,Agencia.getInstance().getIterartorEmpleadores());
 		 Assert.assertEquals("Los sistemas deberian estar vacios",listaClientes,Agencia.getInstance().getIteratorEmpleadosPretensos());
 	}

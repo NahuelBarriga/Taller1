@@ -13,7 +13,7 @@ import modeloDatos.Cliente;
 import modeloDatos.EmpleadoPretenso;
 import modeloNegocio.Agencia;
 
-public class TestPersistenciaConDatos {
+public class TestPersConjuntoConDatos {
 
 	@Before
 	public void setUp() throws Exception {
@@ -32,7 +32,7 @@ public class TestPersistenciaConDatos {
 			EmpleadoPretenso ep = new EmpleadoPretenso("JuanCABJ","1234567","Juan","Solari","223453225",31);
 			Agencia.getInstance().registroEmpleado("JuanCABJ","1234567","Juan","Solari","223453225",31);
 			Agencia agencia = Agencia.getInstance();
-			agencia.cargarAgencia("Agencia.txt"); 
+			agencia.cargarAgencia("Agencia.xml"); 
 			Assert.assertNotNull("No deberia ser null", Agencia.getInstance().getEmpleados()); // verifico si algo se guardó
 			Assert.assertNotEquals("Deberian ser diferentes",ep , Agencia.getInstance().getEmpleados());
 		
