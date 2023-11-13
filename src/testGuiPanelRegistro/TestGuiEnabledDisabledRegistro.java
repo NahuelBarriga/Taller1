@@ -28,6 +28,7 @@ public class TestGuiEnabledDisabledRegistro {
 	public TestGuiEnabledDisabledRegistro() {
 		try {
 			robot = new Robot();
+
 		}catch (AWTException e) {}
 	}
 	

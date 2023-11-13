@@ -27,6 +27,7 @@ import test.TestUtils;
 public class TestGuiCambioPanelAdmin {
 	Robot robot;
 	Controlador controlador;
+	
 	FalsoOptionPane optionPane = new FalsoOptionPane();
 	
 	public TestGuiCambioPanelAdmin() {
