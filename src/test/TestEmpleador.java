@@ -24,11 +24,9 @@ public class TestEmpleador {
 		this.ticket = new Ticket("PRESENCIAL", remuneracion, "JORNADA_MEDIA", "JUNIOR", "EXP_NADA", "PRIMARIOS");
 	}
 	
-	
 	@Test
-	public void  testEmpleador() {
+	public void  testEmpleadorUsertName() {
 		Assert.assertEquals("Falla en constructor, parametro: UsserName", "Juan123",empleador.getUsserName());
-			
 	}
 	
 	@Test

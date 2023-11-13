@@ -30,13 +30,16 @@ public class TestTicket {
 		} catch (LimiteSuperiorRemuneracionInvalidaException | LimiteInferiorRemuneracionInvalidaException e) {
 			e.printStackTrace();
 		}
-		this.testTicket1 = new Ticket(util.Constantes.PRESENCIAL, 800, util.Constantes.JORNADA_MEDIA, util.Constantes.JUNIOR, util.Constantes.EXP_NADA, util.Constantes.PRIMARIOS);
-		this.testTicket2 = new Ticket(util.Constantes.HOME_OFFICE, 1200, util.Constantes.JORNADA_COMPLETA, util.Constantes.SENIOR, util.Constantes.EXP_MEDIA, util.Constantes.SECUNDARIOS);
-		this.testTicket3 = new Ticket(util.Constantes.INDISTINTO, 4000, util.Constantes.JORNADA_EXTENDIDA, util.Constantes.MANAGMENT, util.Constantes.EXP_MUCHA, util.Constantes.TERCIARIOS);
+		this.testTicket1 = new Ticket(util.Constantes.PRESENCIAL, 800, util.Constantes.JORNADA_MEDIA,
+				util.Constantes.JUNIOR, util.Constantes.EXP_NADA, util.Constantes.PRIMARIOS);
+		this.testTicket2 = new Ticket(util.Constantes.HOME_OFFICE, 1200, util.Constantes.JORNADA_COMPLETA,
+				util.Constantes.SENIOR, util.Constantes.EXP_MEDIA, util.Constantes.SECUNDARIOS);
+		this.testTicket3 = new Ticket(util.Constantes.INDISTINTO, 4000, util.Constantes.JORNADA_EXTENDIDA,
+				util.Constantes.MANAGMENT, util.Constantes.EXP_MUCHA, util.Constantes.TERCIARIOS);
 			
 	}
 	
-	
+
 	@Test
 	public void TestConstructorLocacion1() {
 		String locacionTest = util.Constantes.PRESENCIAL;
@@ -142,7 +145,8 @@ public class TestTicket {
 	
 	@Test
 	public void testSetRemuneracion() {
-		Ticket testTicket = new Ticket(util.Constantes.HOME_OFFICE, 1200, util.Constantes.HOME_OFFICE, util.Constantes.JUNIOR, util.Constantes.EXP_NADA, util.Constantes.PRIMARIOS);
+		Ticket testTicket = new Ticket(util.Constantes.HOME_OFFICE, 1200, util.Constantes.HOME_OFFICE,
+				util.Constantes.JUNIOR, util.Constantes.EXP_NADA, util.Constantes.PRIMARIOS);
 		testTicket.setRemuneracion(5200);
 		int remuneracionTest = 5200; 
 		Assert.assertEquals("No se seteo la remuneracion correctamente", remuneracionTest, testTicket.getRemuneracion());	
@@ -241,6 +245,7 @@ public class TestTicket {
 		double resultado = testTicket3.getComparacionJornada(testTicket2);
 		Assert.assertEquals(resultado, 1, 0);	
 	}
+	
 	@Test
 	public void testGetComparacionJornadaT3T3() {
 		double resultado = testTicket3.getComparacionJornada(testTicket3);
