@@ -281,10 +281,7 @@ private EmpleadoPretenso empleado;
 		Assert.assertNotNull(this.agencia.getComisionUsuario(empleadorTest));
 	}	
 	
-	@Test
-	public void testMatchPtjeEmpleador() {
-		
-	}
+
 	
 	@Test
 	public void testGeneraPostulantes() {
@@ -436,6 +433,24 @@ private EmpleadoPretenso empleado;
 	}
 
 	
+<<<<<<< Updated upstream
+=======
+	//Agregue una contratacion a la lista de contrataciones, habria que fijarse si puede molestar a futuro con otros test
+	
+	@Test
+	public void testGetContratacionEmpleadoPretenso() {
+		Contratacion nueva;
+		Empleador empleador;
+		
+		nueva = new Contratacion(this.empleador,this.empleado);
+		this.agencia.getContrataciones().add(nueva);
+		empleador = (Empleador)this.agencia.getContratacionEmpleadoPretenso(this.empleado);
+		Assert.assertNotNull("Devolvio null", empleador);
+		Assert.assertEquals("No devolvio el mismo empleador", this.empleador, empleador);
+	}
+	
+
+>>>>>>> Stashed changes
 	@Test
 	public void testEliminarTicket() {
 		try {
