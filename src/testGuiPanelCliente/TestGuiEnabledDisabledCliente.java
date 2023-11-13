@@ -318,7 +318,7 @@ public class TestGuiEnabledDisabledCliente {
 		robot.delay(TestUtils.getDelay());
 		
 		Assert.assertTrue("El boton de ELIMINAR TICKET  deberia estar habilitado", eliminarTicket.isEnabled());
-		
+		2000020000
 	}
 	
 	@Test

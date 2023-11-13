@@ -46,7 +46,6 @@ public class TestPersistenciaSinDatos {
 		 agencia.cargarAgencia("Agencia.txt");
 		 Assert.assertEquals("Los sistemas deberian estar vacios",listaClientes,Agencia.getInstance().getIterartorEmpleadores());
 		 Assert.assertEquals("Los sistemas deberian estar vacios",listaClientes,Agencia.getInstance().getIteratorEmpleadosPretensos());
-		 //Assert.assertEquals("Los sistemas deberian estar vacios",tickets,;
 	}
 
 	

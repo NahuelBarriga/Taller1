@@ -32,7 +32,7 @@ public class TestPersistenciaConDatos {
 			EmpleadoPretenso ep = new EmpleadoPretenso("JuanCABJ","1234567","Juan","Solari","223453225",31);
 			Agencia.getInstance().registroEmpleado("JuanCABJ","1234567","Juan","Solari","223453225",31);
 			Agencia agencia = Agencia.getInstance();
-			agencia.cargarAgencia("Agencia.txt"); //que vaaa?
+			agencia.cargarAgencia("Agencia.txt"); 
 			Assert.assertNotNull("No deberia ser null", Agencia.getInstance().getEmpleados()); // verifico si algo se guardó
 			Assert.assertNotEquals("Deberian ser diferentes",ep , Agencia.getInstance().getEmpleados());
 		
