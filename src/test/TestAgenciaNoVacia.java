@@ -377,7 +377,6 @@ private EmpleadoPretenso empleado;
 	public void testLoginExcepcionUsser() {
 		try {
 			agencia.login("Juan123", "qwerty123");
-			Assert.assertTrue("El tipo de usuario no es el correcto", this.agencia.getTipoUsuario()==0);
 			fail("Deberia haber lanzado una excepcion");
 		}
 		catch (ContraException e) {
@@ -391,7 +390,6 @@ private EmpleadoPretenso empleado;
 	public void testLoginExcepcionPass() {
 		try {
 			agencia.login("Pedro569", "Juan123");
-			Assert.assertTrue("El tipo de usuario no es el correcto", this.agencia.getTipoUsuario()==0);
 			fail("Deberia haber lanzado una excepcion");
 		}
 		catch (NombreUsuarioException e) {
@@ -400,6 +398,7 @@ private EmpleadoPretenso empleado;
 			fail("No se lanzo la excepcion correcta");
 		}
 	}
+	
 	//el resto de las excepciones en empleadores y admin lo "corto", no tiene sentido, ya funciona
 	
 	@Test
